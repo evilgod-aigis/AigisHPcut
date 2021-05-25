@@ -1,0 +1,388 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+/*
+div {
+    border: solid 1px black;
+}
+*/
+#app {/**/
+    margin: 10px;
+    padding: 0;
+    font-size: 14px;
+}
+
+#header {
+    margin: 10px 0;
+    padding: 0;
+    font-size: 18px;
+}
+#containts {/**/
+    margin: 0;
+    padding: 0;
+}
+
+/*設定部分*/
+#main {/**/
+    margin-bottom: 10px;
+    padding: 0;
+    height: auto;
+    overflow: hidden;
+    /*
+    width: 1200px;
+    */
+}
+.opt1 {
+    width:340px;
+    float: left;
+}
+.opt2 {
+    overflow: hidden;
+}
+.optcap5em {
+    height: auto;
+    width: 5em;
+    float: left;
+    text-align: right;
+}
+.optcap6em {
+    height: auto;
+    width: 6em;
+    float: left;
+    text-align: right;
+}
+.optcap7em {
+    height: auto;
+    width: 7em;
+    float: left;
+    text-align: right;
+}
+.optcap8em {
+    height: auto;
+    width: 8em;
+    float: left;
+    text-align: right;
+}
+.optcap9em {
+    height: auto;
+    width: 9em;
+    float: left;
+    text-align: right;
+}
+.optcap10em {
+    height: auto;
+    width: 10em;
+    float: left;
+    text-align: right;
+}
+.optset {
+    height: auto;
+    width: auto;
+    float: left;
+}
+.box {
+    text-align: left;
+}
+input {
+    margin: 0;
+    padding: 0;
+}
+.number1 {
+    width: 50px;
+}
+.number2 {
+    width: 80px;
+}
+input[type="checkbox"] {
+    margin-right: 3px;
+    vertical-align: -2px;
+}
+/*設定部分　ここまで*/
+
+/*ユニットデータテーブル*/
+#unitsData {
+    margin-bottom: 10px;
+    padding: 0;
+    height: auto;
+    clear: both;
+}
+#unitsTable {
+    font-size: 14px;
+    font-weight: normal;
+    border-collapse: collapse;
+}
+.unitsHead {
+    text-align: center;
+    background-color: rgb(200, 200, 200);
+}
+#unitsTable td:nth-child(1) { width: 10.5em; text-align: left;}     /*名前*/
+#unitsTable td:nth-child(2) { width: 6em; text-align: left;}        /*属性*/
+#unitsTable td:nth-child(3) { width: 4.5em; text-align: center;}    /*タイプ*/
+#unitsTable td:nth-child(4) { width: 2.5em; text-align: center;}    /*レア*/
+#unitsTable td:nth-child(5) { width: 9.5em; text-align: left;}      /*クラス*/
+#unitsTable td:nth-child(6) { width: 8.5em; text-align: left;}      /*好感度*/
+#unitsTable td:nth-child(7) { width: 3.5em; text-align: center;}    /*スキル*/
+#unitsTable td:nth-child(8) { width: 3.5em; text-align: center;}    /*対象*/
+#unitsTable td:nth-child(9) { width: 5em; text-align: right;}       /*初回*/
+#unitsTable td:nth-child(10) { width: 5em; text-align: right;}      /*間隔*/
+#unitsTable td:nth-child(11) { width: 3.5em; text-align: right;}    /*減少率*/
+#unitsTable td:nth-child(12) { width: 3em; text-align: center;}     /*特攻*/
+#unitsTable td:nth-child(13) { width: 3.5em; text-align: center;}     /*削除*/
+.delUnitBtn {
+    width: 100%;
+}
+.unitAddBtn {
+    width: 100%;
+}
+/*ユニットデータテーブル　ここまで*/
+
+/*モーダル*/
+.modal {
+    /* 要素を重ねた時の順番 */
+    z-index: 1;
+    /* 画面全体を覆う設定 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 画面の中央に要素を表示させる設定 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modalContent {
+    z-index: 2;
+    min-height: auto;
+    max-height: 95%;
+    min-width: min-content;
+    max-width: 800px;
+    padding: 1em;
+    border: 2px solid orange;
+    border-radius: 5px;
+    background: white;
+    overflow: auto;
+}
+.modalHeader {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.modalBody {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.modalOpt1 {
+    margin-bottom: 10px;
+    padding: 0;
+    min-width: 500px;
+    max-width: 100%;
+    float: left;
+}
+.modalOpt2 {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.modalOpt3 {
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+.modalOptset1 {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: auto;
+    float: left;
+}
+.modalOptset2 {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: auto;
+    float: left;
+}
+.modal .box {
+    margin: 0;
+    padding: 0;
+}
+.modalName {
+    width: 11em;
+}
+.modalClass {
+    margin-right: 5px;
+    width: 12em;
+}
+.modalTarget {
+    width: 5em;
+}
+.modalNumber {
+    width: 50px;
+}
+.modalBody button {
+    vertical-align: 0;
+    height: 20px;
+    line-height: 1;
+}
+.addUnitAlart {
+    margin: 10px 0;
+    height: 3em;
+    overflow: hidden;
+}
+.modalFooter {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.modalFooter button {
+    vertical-align: 0;
+    height: 24px;
+    line-height: 1;
+    width: 7em;
+}
+.buttonArea {
+    margin: 0 auto;
+    width: max-content;
+}
+/*モーダル　ここまで*/
+
+/*グラフのところ*/
+#graph {
+    margin-bottom: 10px;
+    padding: 0;
+    height: auto;
+    clear: both;
+}
+#graphArea {
+    margin: 0;
+    padding: 0;
+}
+.wrap_checkbox {
+    text-align: left;
+}
+.wrap_checkbox label {
+    display: block;
+    margin-left: 0;
+}
+.wrap_checkbox label input {
+    display: none;
+}
+.wrap_checkbox label span {
+    display: inline-block;
+    width: 64px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 12px;
+    color: black;
+    background: white;
+}
+.wrap_checkbox label input:checked + span {
+    color: white;
+    background: rgb(100, 100, 100);
+}
+/*グラフのところ　ここまで*/
+
+#footer {
+    margin-top: 60px;
+    padding: 0;
+    font-size: 12px;
+}
+
+/*ツールチップ*/
+.tooltip {
+    display: block !important;
+    font-size: 12px;
+    z-index: 10000;
+  }
+  .tooltip .tooltip-inner {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px 4px;
+  }
+  .tooltip .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 5px;
+    border-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+  }
+  .tooltip[x-placement^="top"] {
+    margin-bottom: 5px;
+  }
+  .tooltip[x-placement^="top"] .tooltip-arrow {
+    border-width: 5px 5px 0 5px;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    bottom: -5px;
+    left: calc(50% - 5px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .tooltip[x-placement^="bottom"] {
+    margin-top: 5px;
+  }
+  .tooltip[x-placement^="bottom"] .tooltip-arrow {
+    border-width: 0 5px 5px 5px;
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+    border-top-color: transparent !important;
+    top: -5px;
+    left: calc(50% - 5px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .tooltip[x-placement^="right"] {
+    margin-left: 5px;
+  }
+  .tooltip[x-placement^="right"] .tooltip-arrow {
+    border-width: 5px 5px 5px 0;
+    border-left-color: transparent !important;
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    left: -5px;
+    top: calc(50% - 5px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .tooltip[x-placement^="left"] {
+    margin-right: 5px;
+  }
+  .tooltip[x-placement^="left"] .tooltip-arrow {
+    border-width: 5px 0 5px 5px;
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+    border-bottom-color: transparent !important;
+    right: -5px;
+    top: calc(50% - 5px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .tooltip.popover .popover-inner {
+    background: #f9f9f9;
+    color: black;
+    padding: 24px;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px rgba(black, .1);
+  }
+  .tooltip.popover .popover-arrow {
+    border-color: #f9f9f9;
+  }
+  .tooltip[aria-hidden='true'] {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .15s, visibility .15s;
+  }
+  .tooltip[aria-hidden='false'] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .15s;
+  }
+  /*ツールチップ　ここまで*/
