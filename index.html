@@ -919,10 +919,51 @@
                 　　　攻撃ヒット時発生型（{{unitsList_onHit[0].unitInfo.unitName}}～{{unitsList_onHit[unitsList_onHit.length - 1].unitInfo.unitName}}）の攻撃間隔は海外版wikiの60fpsの値を元に計算したから誤差があるかもしれない<br>
                 　　　グラフの色が見分けづらいのは<span style="text-decoration: line-through">仕様です</span> すまん　(変更したいときは下の折り畳み参照)<br>
                 　　　グラフは凡例の名前をクリックすると表示/非表示を切り替え可能<br>
-                　　　グラフは右クリックから画像として保存できる模様
+                　　　グラフは右クリックから画像として保存できる模様<br>
+                <br>
                 <details>
-                    <summary>簡単な</summary>
+                    <summary>簡単な内容変更(コンソール)</summary>
+                    <div>
+                        F12キーで開発ツールを開き、コンソール(Console)タグの入力ウィンドウに以下を参考にコードを入力し実行<br>
+                        ・初動短縮や再動短縮オプションのチェックボックスをアクティブにしたい。<br>
+                        　　vm.<span style="font-style: italic; color: red;">list</span>[<span style="font-style: italic; color: red">i</span>].disable=false<br>
+                        　　　・<span style="font-style: italic; color: red;">list</span>：初動短縮　rWTlist<br>
+                        　　　　　　 再動短縮　rCTlist<br>
+                        　　　　　　 スキル時間延長　skillExtendlist<br>
+                        　　　　　　 硬直短縮　編成バフ　hasteTeemList<br>
+                        　　　　　　 　　　　　スキル　　hasteSkillList<br>
+                        　　　・<span style="font-style: italic; color: red;">i</span>　 ：リストの番号(一番上が0、順に1、2、･･･)<br>
+                        　　(例)硬直短縮(編成バフ)の雷光の魔剣士タラニアのチェックボックスをアクティブにしたい。<br>
+                        　　　　　コンソールタグの入力ウィンドウに「vm.hasteTeemList[3].disabled=false」と入力してEnter<br>
+                        <br>
+                        ・グラフの非表示じゃ物足りない。ユニットデータごと消したい。<br>
+                        　　vm.unitsList_<span style="font-style: italic; color: red;">type</span>.splice(<span style="font-style: italic; color: red">i</span>, 1)<br>
+                        　　　・<span style="font-style: italic; color: red;">type</span>：スキル発動時発生型　onSkillAct<br>
+                        　　　　　　　&thinsp;攻撃ヒット時発生型　onHit<br>
+                        　　　・<span style="font-style: italic; color: red;">i</span>　　：リストの番号(一番上が0、順に1、2、･･･)<br>
+                        　　(例)<span v-tooltip.top-start="`製作者はコハル大好きだよ！`">スキル発動時発生型の猫又コハルのデータを消したい。</span><br>
+                        　　　　　コンソールタグ(略)に「vm.unitsList_onSkillAct.splice(4,1)」と入力して(略)<br>
+                        <br>
+                        ・グラフの色を変えたい。※実行した後、グラフにマウスオーバーすれば反映される<br>
+                        　　vm.canvas.data["datasets"][<span style="font-style: italic; color: red">i</span>].borderColor='<span style="font-style: italic; color: red">color</span>'<br>
+                        　　　・<span style="font-style: italic; color: red">i</span>　　：リストの番号(一番上が0、順に1、2、･･･；発生型の区別なく通し番号なので注意)<br>
+                        　　　・<span style="font-style: italic; color: red">color</span>：<span style="text-decoration: line-through;">ggrks</span><br>
+                        　　　　　　　 カラーネーム；<span style="color: black;">黒ならblack</span>、<span style="color: red;">赤ならred</span>などその色の名前<br>
+                        　　　　　　　 RGB；#+16進数6桁　R(赤)、G(緑)、B(青)の表現したい色に含む値をそれぞれ16進数2桁で表現(ゾロ目は3桁に短縮可能#112233→#123)　<span style="color: #000;">黒#000</span>、<span style="color: #f00;">赤#f00</span>、<span style="color: #0f0;">緑#0f0</span><br>
+                        　　　　　　　 　　　rgb(<span style="font-style: italic;">r</span>, <span style="font-style: italic;">g</span>, <span style="font-style: italic;">b</span>)　それぞれの値を10進数で0～255または0～100%の範囲で指定　<span style="color: rgb(0, 0, 0);">黒rgb(0, 0, 0)</span>、<span style="color: rgb(255, 0, 0);">赤rgb(255, 0, 0)</span>、<span style="color: rgb(0%, 100%, 0%);">緑rgb(0%, 100%, 0%)</span><br>
+                        　　　　　　　 HSL；hsl(<span style="font-style: italic;">h</span>, <span style="font-style: italic;">s</span>, <span style="font-style: italic;">l</span>)　H(色相)、S(彩度)、L(明度)をそれぞれ<span style="font-style: italic;">h</span>は0～360、<span style="font-style: italic;">s</span>と<span style="font-style: italic;">l</span>は0～100%の範囲で指定　<span style="color: hsl(0, 0%, 0%);" v-tooltip.top-start="`<span style=&quot;font-style: italic;&quot;>l</span>の値を0%にすると他の値に拘らず黒になる`">黒hsl(0, 0%, 0%)</span>、<span style="color: hsl(0, 100%, 50%);">赤hsl(0, 100%, 50%)</span>、<span style="color: hsl(120, 100%, 50%);">緑hsl(120, 100%, 50%)</span><br>
+                        　　　　　　　 透過；RGB16進数は+2桁(00～ff)、rgb(<span style="font-style: italic;">r</span>, <span style="font-style: italic;">g</span>, <span style="font-style: italic;">b</span>)はrgba(<span style="font-style: italic;">r</span>, <span style="font-style: italic;">g</span>, <span style="font-style: italic;">b</span>, <span style="font-style: italic;">a</span>)、hsl(<span style="font-style: italic;">h</span>, <span style="font-style: italic;">s</span>, <span style="font-style: italic;">l</span>)はhsla(<span style="font-style: italic;">h</span>, <span style="font-style: italic;">s</span>, <span style="font-style: italic;">l</span>, <span style="font-style: italic;">a</span>)と<span style="font-style: italic;">a</span>(0～1)を追加　<span style="color: rgba(0, 0, 0, 1);">黒rgba(0, 0, 0, 1)</span>、<span style="color: hsla(0, 0%, 0%, 0.7);">黒hsla(0, 0%, 0%, 0.7)</span><br>
+                        　　(例)グラフの犬神ツムジの色をいい感じに透過したツムジカラーにしたい。<br>
+                        　　　　　(略)「vm.canvas.data["datasets"][12].borderColor='rgba(0, 238, 255, 0.7)'」(略)
+                    </div>
                 </details>
+                <div id="linkArea">
+                本家：<a href="http://pc-play.games.dmm.co.jp/play/aigis/" target="_blank">千年戦争アイギスR</a><br>
+                <span style="margin-left: 3em;"><a href="http://pc-play.games.dmm.com/play/aigisc/" target="_blank">千年戦争アイギス</a></span><br>
+                参考：<a href="https://wikiwiki.jp/aigiszuki/" target="_blank">千年戦争アイギス攻略 Wiki*</a><br>
+                <span style="margin-left: 3em;"><a href="https://aigis.fandom.com/wiki/Aigis_Wiki" target="_blank">Aigis Wiki | Fandom</a></span><br>
+                <span style="margin-left: 3em;"><a href="http://www116.sakura.ne.jp/~kuromoji/aigis.htm" target="_blank">くろもじ屋’</a></span>
+                </div>
             </div>
         </div>
 
