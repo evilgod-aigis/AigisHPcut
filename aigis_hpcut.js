@@ -1545,8 +1545,8 @@ var vm = new Vue({
         LimitAtkInterval(item, key, event) {
             let me = this;
             let value = parseInt(event.target.value);
-            if(Number.isNaN(value) || value < 2) {
-                value = 2;
+            if(Number.isNaN(value) || value < 1) {
+                value = 1;
             }
             item[key] = value;
             me.$forceUpdate();
@@ -1827,9 +1827,9 @@ var vm = new Vue({
             }
             //攻撃間隔
             for(let i = 0; i < 3; i++) {
-                if(unitInfo.atkInterval_uncurr[i].startup === null) fillAtkInterval |= true;
-                if(unitInfo.atkInterval_uncurr[i].remain === null) fillAtkInterval |= true;
-                if(unitInfo.atkInterval_uncurr[i].cooldown === null) fillAtkInterval |= true;
+                if(unitInfo.atkInterval_uncurr[i].startup < 2) fillAtkInterval |= true;
+                if(unitInfo.atkInterval_uncurr[i].remain < 2) fillAtkInterval |= true;
+                if(unitInfo.atkInterval_uncurr[i].cooldown < 2) fillAtkInterval |= true;
             }
             fillAtkInterval = !fillAtkInterval;
             if(!fillAtkInterval) {
@@ -1883,7 +1883,7 @@ var vm = new Vue({
                                 //Bの情報捨て
                                 skill.CT_uncurr[i].B = null;
                                 skill.dur_uncurr[i].B = null;
-                                skill.trigger[i] = '-';
+                                skill.trigger[i] = 'スキル中hit';
                             } else {
                                 //全部リセット
                                 skill.target[i] = null;
