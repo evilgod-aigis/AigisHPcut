@@ -1378,6 +1378,7 @@ var vm = new Vue({
                     if(HP < 0) HP = 0;
                     HPchanges.push(HP / me.maxHP.value * 100);
                     HP -= damage;
+                    if(HP > me.maxHP.value) HP = me.maxHP.value;
                 }
                 return HPchanges.slice()
             }
@@ -1457,6 +1458,7 @@ var vm = new Vue({
                     if(HP < 0) HP = 0;
                     HPchanges.push(HP / me.maxHP.value * 100);
                     HP -= damage;
+                    if(HP > me.maxHP.value) HP = me.maxHP.value;
                 }
                 return HPchanges.slice()
             }
