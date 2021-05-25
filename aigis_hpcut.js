@@ -111,7 +111,7 @@ var rCTlistElem = [
     }
 ];
 //スキル時間延長
-skillExtendListElem = [
+var skillExtendListElem = [
     {
         id: 0, extender: '時空魔法の優等生トワ(未覚醒)', rate: 10, disabled: false,
         AndOr: 'or', target: [ { 'deployType': [ '遠距離型' ] } ],
@@ -1628,7 +1628,7 @@ var vm = new Vue({
             if(alartText.length === 0) {
                 //必須事項全記入
                 //id付与
-                me.newUnitData_onSkillAct.id = me.unitsList_onSkillAct.length;
+                me.newUnitData_onSkillAct.id = me.unitsList_onSkillAct[me.unitsList_onSkillAct.length - 1].id + 1;
                 //属性詰め
                 unitInfo.attribution = unitInfo.attribution.filter(Boolean);
                 //スキル整形
@@ -1829,7 +1829,7 @@ var vm = new Vue({
             if(alartText.length === 0) {
                 //必須事項全記入
                 //id付与
-                me.newUnitData_onHit.id = me.unitsList_onHit.length;
+                me.newUnitData_onHit.id = me.unitsList_onHit[me.unitsList_onHit.length - 1].id + 1;
                 //属性詰め
                 unitInfo.attribution = unitInfo.attribution.filter(Boolean);
                 //スキル整形
