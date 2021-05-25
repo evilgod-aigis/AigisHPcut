@@ -774,7 +774,7 @@
                                                 </label>
                                             </div>
                                             <div class="box">
-                                                <span v-tooltip.top-start="`攻撃ヒット時+スキル変化のユニットが今のところいないので<br><span style=&quot;text-decoration: line-through;&quot;>実装するのﾒﾝﾄﾞｲ</span> 実装されてない`">
+                                                <span v-tooltip.top-start="`攻撃ヒット時+スキル変化のユニットが今のところいないので<br><span style=&quot;text-decoration: line-through;&quot;>実装するのﾒﾝﾄﾞｲ</span> 実装されてない<br>あとスキル中しか割合ダメージが発生しない`">
                                                     スキル遷移
                                                 </span>
                                                 <select v-model="newUnitData_onHit.skill.trans[n - 1]" :disabled="true"> <!--v-tooltip.top-start="`-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ensp;：A→A→A→A→･･･<br>交互&nbsp;&nbsp;：A→B→A→B→･･･<br>初回A：A→B→B→B→･･･`"-->
