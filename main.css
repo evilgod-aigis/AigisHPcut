@@ -261,6 +261,9 @@ input[type="checkbox"] {
 details div {
     margin-left: 10px;
 }
+#updated {
+    margin: 5px 0;
+}
 #linkArea {
     margin: 10px 0;
 }
