@@ -1,37 +1,20 @@
-html {
-    margin: 0;
-    padding: 0;
-}
-/*
-div {
-    border: solid 1px black;
-}
-*/
-#app {/**/
+#app {
     margin: 10px;
     padding: 0;
     font-size: 14px;
 }
-
 #header {
     margin: 10px 0;
     padding: 0;
     font-size: 18px;
 }
-#containts {/**/
-    margin: 0;
-    padding: 0;
-}
 
 /*設定部分*/
-#main {/**/
+#main {
     margin-bottom: 10px;
     padding: 0;
     height: auto;
     overflow: hidden;
-    /*
-    width: 1200px;
-    */
 }
 .opt1 {
     width:340px;
@@ -39,24 +22,6 @@ div {
 }
 .opt2 {
     overflow: hidden;
-}
-.optcap5em {
-    height: auto;
-    width: 5em;
-    float: left;
-    text-align: right;
-}
-.optcap6em {
-    height: auto;
-    width: 6em;
-    float: left;
-    text-align: right;
-}
-.optcap7em {
-    height: auto;
-    width: 7em;
-    float: left;
-    text-align: right;
 }
 .optcap8em {
     height: auto;
@@ -128,7 +93,7 @@ input[type="checkbox"] {
 #unitsTable td:nth-child(10) { width: 5em; text-align: right;}      /*間隔*/
 #unitsTable td:nth-child(11) { width: 3.5em; text-align: right;}    /*減少率*/
 #unitsTable td:nth-child(12) { width: 3em; text-align: center;}     /*特攻*/
-#unitsTable td:nth-child(13) { width: 3.5em; text-align: center;}     /*削除*/
+#unitsTable td:nth-child(13) { width: 3.5em; text-align: center;}   /*削除*/
 .delUnitBtn {
     width: 100%;
 }
@@ -286,11 +251,20 @@ input[type="checkbox"] {
 }
 /*グラフのところ　ここまで*/
 
+/*フッタ*/
 #footer {
     margin-top: 60px;
+    margin-bottom: 20px;
     padding: 0;
     font-size: 12px;
 }
+details div {
+    margin-left: 10px;
+}
+#linkArea {
+    margin: 10px 0;
+}
+/*フッタ　ここまで*/
 
 /*ツールチップ*/
 .tooltip {
