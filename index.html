@@ -925,6 +925,7 @@
                     <summary>簡単な内容変更(コンソール)</summary>
                     <div>
                         F12キーで開発ツールを開き、コンソール(Console)タグの入力ウィンドウに以下を参考にコードを入力し実行<br>
+                        ページを更新するとすべてリセットされる
                         ・初動短縮や再動短縮オプションのチェックボックスをアクティブにしたい。<br>
                         　　vm.<span style="font-style: italic; color: red;">list</span>[<span style="font-style: italic; color: red">i</span>].disable=false<br>
                         　　　・<span style="font-style: italic; color: red;">list</span>：初動短縮　rWTlist<br>
@@ -944,7 +945,7 @@
                         　　(例)<span v-tooltip.top-start="`製作者はコハル大好きだよ！`">スキル発動時発生型の猫又コハルのデータを消したい。</span><br>
                         　　　　　コンソールタグ(略)に「vm.unitsList_onSkillAct.splice(4,1)」と入力して(略)<br>
                         <br>
-                        ・グラフの色を変えたい。※実行した後、グラフにマウスオーバーすれば反映される<br>
+                        ・グラフの色を変えたい。※実行した後、グラフにマウスオーバーすれば反映される。なにかしらオプションを変えるだけでリセットされるので注意。<br>
                         　　vm.canvas.data["datasets"][<span style="font-style: italic; color: red">i</span>].borderColor='<span style="font-style: italic; color: red">color</span>'<br>
                         　　　・<span style="font-style: italic; color: red">i</span>　　：リストの番号(一番上が0、順に1、2、･･･；発生型の区別なく通し番号なので注意)<br>
                         　　　・<span style="font-style: italic; color: red">color</span>：<span style="text-decoration: line-through;">ggrks</span><br>
