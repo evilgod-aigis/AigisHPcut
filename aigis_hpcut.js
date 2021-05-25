@@ -881,6 +881,17 @@ var vm = new Vue({
                 let me = this;
                 let reduceRate = 0;
                 let reducerInfo;
+                //クラス・属性の初動短縮
+                //自身による効果
+                reducerInfo = me.rWTlist.find((elem) => elem.reducer === unit.unitInfo.unitName);
+                if(reducerInfo !== undefined) {
+                    reduceRate = Math.max(reduceRate, reducerInfo.rate);
+                }
+                reducerInfo = me.rWTlist.find((elem) => elem.reducer === unit.unitInfo.unitClass.selected);
+                if(reducerInfo !== undefined) {
+                    reduceRate = Math.max(reduceRate, reducerInfo.rate);
+                }
+                //選択したオプションによる効果
                 me.checked_rWT.forEach(function(reducer) {
                     reducerInfo = me.rWTlist.find((elem) => elem.reducer === reducer);
                     reduceRate = Math.max(reduceRate, reducerInfo.rate * me.IsTarget(unit, reducerInfo));
@@ -918,9 +929,20 @@ var vm = new Vue({
         //スキル時間延長
         SetExtend() {
             return function(unit) {
-                me = this;
+                let me = this;
                 let extendRate = 0;
                 let extenderInfo;
+                //クラス・属性のスキル属性延長
+                //自身による効果
+                extenderInfo = me.skillExtendList.find((elem) => elem.extender === unit.unitInfo.unitName);
+                if(extenderInfo !== undefined) {
+                    extendRate = Math.max(extendRate, extenderInfo.rate);
+                }
+                extenderInfo = me.skillExtendList.find((elem) => elem.extender === unit.unitInfo.unitClass.selected);
+                if(extenderInfo !== undefined) {
+                    extendRate = Math.max(extendRate, extenderInfo.rate);
+                }
+                //選択したオプションによる効果
                 me.checked_skillExtend.forEach(function(extender) {
                     extenderInfo = me.skillExtendList.find((elem) => elem.extender === extender);
                     extendRate = Math.max(extendRate, extenderInfo.rate * me.IsTarget(unit, extenderInfo));
@@ -934,6 +956,17 @@ var vm = new Vue({
                 let me = this;
                 let hasteRate = 0;
                 let hasterInfo;
+                //クラス・属性の硬直短縮(編成バフ)
+                //自身による効果
+                hasterInfo = me.hasteTeemList.find((elem) => elem.haster === unit.unitInfo.unitName);
+                if(hasterInfo !== undefined) {
+                    hasteRate = Math.max(hasteRate, hasterInfo.rate);
+                }
+                hasterInfo = me.hasteTeemList.find((elem) => elem.haster === unit.unitInfo.unitClass.selected);
+                if(hasterInfo !== undefined) {
+                    hasteRate = Math.max(hasteRate, hasterInfo.rate);
+                }
+                //選択したオプションによる効果
                 me.checked_hasteTeem.forEach(function(haster) {
                     hasterInfo = me.hasteTeemList.find((elem) => elem.haster === haster);
                     hasteRate = Math.max(hasteRate, hasterInfo.rate * me.IsTarget(unit, hasterInfo));
@@ -1202,6 +1235,16 @@ var vm = new Vue({
                     default:
                 }
                 //硬直短縮(スキル)
+                //自身による効果
+                hasterInfo = me.hasteSkillList.find((elem) => elem.haster === unit.unitInfo.unitName);
+                if(hasterInfo !== undefined) {
+                    atkCooldownBySkill = Math.max(atkCooldownBySkill, hasterInfo.atkCooldown);
+                }
+                hasterInfo = me.hasteSkillList.find((elem) => elem.haster === unit.unitInfo.unitClass.selected);
+                if(hasterInfo !== undefined) {
+                    atkCooldownBySkill = Math.max(atkCooldownBySkill, hasterInfo.atkCooldown);
+                }
+                //選択したオプションによる効果
                 me.checked_hasteSkill.forEach(function(haster) {
                     hasterInfo = me.hasteSkillList.find((elem) => elem.haster === haster);
                     atkCooldownBySkill = Math.max(atkCooldownBySkill, hasterInfo.atkCooldown * me.IsTarget(unit, hasterInfo));
