@@ -57,7 +57,7 @@ const rWTlistElem = [
     },
     {
         id: 8, buffer: '竜姫婚姻譚メリュジアナ', awaken: '未覚醒', showAwaken: true,
-        rate: 20, disabled: true,
+        rate: 20, disabled: false,
         AndOr: 'or', target: [
             { 'attribution': [ 'ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ', '竜族' ] },
             { 'note': [ 'ドラゴンライダー系' ] }
@@ -68,7 +68,7 @@ const rWTlistElem = [
     },
     {
         id: 9, buffer: '竜姫婚姻譚メリュジアナ', awaken: '覚醒', showAwaken: true,
-        rate: 25, disabled: true,
+        rate: 25, disabled: false,
         AndOr: 'or', target: [
             { 'attribution': [ 'ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ', '竜族' ] },
             { 'note': [ 'ドラゴンライダー系' ] }
