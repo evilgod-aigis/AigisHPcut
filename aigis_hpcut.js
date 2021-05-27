@@ -59,22 +59,22 @@ const rWTlistElem = [
         id: 8, buffer: '竜姫婚姻譚メリュジアナ', awaken: '未覚醒', showAwaken: true,
         rate: 20, disabled: false,
         AndOr: 'or', target: [
-            { 'attribution': [ 'ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ', '竜族' ] },
+            { 'attribution': [ 'ジューンブライド', '竜族' ] },
             { 'note': [ 'ドラゴンライダー系' ] }
         ],
         tooltip:
-        '[編成バフ] 属性：ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ・<br>\
+        '[編成バフ] 属性：ジューンブライド・<br>\
          　　　　　 竜族(ドラゴンライダー系含)の初動-20%'
     },
     {
         id: 9, buffer: '竜姫婚姻譚メリュジアナ', awaken: '覚醒', showAwaken: true,
         rate: 25, disabled: false,
         AndOr: 'or', target: [
-            { 'attribution': [ 'ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ', '竜族' ] },
+            { 'attribution': [ 'ジューンブライド', '竜族' ] },
             { 'note': [ 'ドラゴンライダー系' ] }
         ],
         tooltip:
-        '[編成バフ] 属性：ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ・<br>\
+        '[編成バフ] 属性：ジューンブライド・<br>\
          　　　　　 竜族(ドラゴンライダー系含)の初動-25%'
     }
 ];
@@ -136,7 +136,7 @@ const rCTlistElem = [
     {
         id: 4, buffer: '約束の花嫁ディエーラ', awaken: '覚醒', showAwaken: false,
         rate: 45, disabled: false,
-        AndOr: 'or', target: [ { 'attribution': [ 'ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ' ] } ],
+        AndOr: 'or', target: [ { 'attribution': [ 'ジューンブライド' ] } ],
         tooltip: '[配置バフ] 属性：ジューンブライドの再動-45%'
     },
     {
@@ -578,7 +578,7 @@ const unitsList_onSkillActElem = [
                 selectable: false, selected: 'ドラゴンライダー系',
                 options: [ 'ドラゴンライダー系' ]
             },
-            attribution: [ '人間', 'ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ' ],
+            attribution: [ '人間', 'ジューンブライド' ],
             affection: { percentage: null, bonus: 'その他', changeRate: null },
             note: [ '女性', 'ドラゴンライダー系' ]
         },
@@ -969,7 +969,7 @@ const unitDatatemplate_onHit = {
 };
 //属性一覧
 const array_attr1 = [ '', 'アンデッド', 'エルフ', 'オーク', 'ゴブリン', 'ダークエルフ', 'デーモン', 'ドワーフ', 'ハーフエルフ', 'ハーフデーモン', '魚人', '人間', '仙人', '天界人', '天使', '妖怪', '機械', '獣人', '神', '竜人', '聖霊', '鳥人', 'ねんどろいど', 'なし' ];
-const array_attr2 = [ '', 'ヴァンパイア', 'お正月', 'ちび', 'クリスマス', 'サマー', 'ｼﾞｭｰﾝﾌﾞﾗｲﾄﾞ', 'ハロウィン', 'バレンタイン', '学園', '弓兵', '東の国', '機械', '温泉', '白の帝国', '砂漠の国', '英傑', '魔術師', 'パルス王国', '七つの大罪' ];
+const array_attr2 = [ '', 'ヴァンパイア', 'お正月', 'ちび', 'クリスマス', 'サマー', 'ジューンブライド', 'ハロウィン', 'バレンタイン', '学園', '弓兵', '東の国', '機械', '温泉', '白の帝国', '砂漠の国', '英傑', '魔術師', 'パルス王国', '七つの大罪' ];
 const array_note = [ '', '女性', '男性', 'ドラゴンライダー系', 'HP回復不可', '魔界無効', '深海無効', '天界無効' ];
 
 const vm = new Vue({
