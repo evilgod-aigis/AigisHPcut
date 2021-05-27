@@ -1464,7 +1464,7 @@ const vm = new Vue({
                 const me = this;
                 const atkInterval = me.SetAtkIntervalSub(unit, index);
                 if(atkInterval.startup !== null) {
-                    return (atkInterval.startup + atkInterval.remain + atkInterval.cooldown) / 2;
+                    return `${(atkInterval.startup + atkInterval.remain + atkInterval.cooldown) / 2}f`;
                 } else {
                     return '-';
                 }
@@ -2217,8 +2217,6 @@ const vm = new Vue({
                     }
                 })
             }
-
-            //me.modal_onHit = false;
         },
         //グラフ作成
         Chart() {
