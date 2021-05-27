@@ -369,8 +369,8 @@
                                         </template>
                                     </td>
                                     <td>{{unit.skill.target[unit.skill.awaken.selected === '通常' ? 0 : 1]}}</td>
-                                    <td>{{SetAtkInterval(unit, 0)}}<span v-if="SetAtkInterval(unit, 0) !== '-'">f</span></td>
-                                    <td>{{SetAtkInterval(unit, 1)}}<span v-if="SetAtkInterval(unit, 1) !== '-'">f</span></td>
+                                    <td>{{SetAtkInterval(unit, 0)}}</td>
+                                    <td>{{SetAtkInterval(unit, 1)}}</td>
                                     <td>{{SetHPred(unit)}}%</td>
                                     <th>
                                         <template v-if="unit.skill.dmgMul.opt[unit.skill.awaken.selected === '通常' ? 0 : 1] !== '-'">
