@@ -1521,7 +1521,7 @@ const vm = new Vue({
                     atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown * me.IsTarget(unit, bufferInfo));
                 })
                 if(atkStartup !== null) {
-                    atkCooldown = Math.floor(((atkCooldownBySkill > 0 ? atkCooldownBySkill : atkCooldown) - 1) * (1 - hasteRate / 100) + 1);
+                    atkCooldown = Math.floor(((atkCooldownBySkill > 0 ? atkCooldownBySkill : atkCooldown) - 1) * (1 - hasteRate) + 1);
                     unit.unitInfo.atkInterval[index0].startup = atkStartup;
                     unit.unitInfo.atkInterval[index0].remain = atkRemain;
                     unit.unitInfo.atkInterval[index0].cooldown = atkCooldown;
