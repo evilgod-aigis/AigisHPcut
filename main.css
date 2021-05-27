@@ -81,8 +81,8 @@ input[type="checkbox"] {
     text-align: center;
     background-color: rgb(200, 200, 200);
 }
-#unitsTable td:nth-child(1) { width: 10.5em; text-align: left;}     /*名前*/
-#unitsTable td:nth-child(2) { width: 6em; text-align: left;}        /*属性*/
+#unitsTable td:nth-child(1) { width: 12em; text-align: left;}     /*名前*/
+#unitsTable td:nth-child(2) { width: 8.5em; text-align: left;}        /*属性*/
 #unitsTable td:nth-child(3) { width: 4.5em; text-align: center;}    /*タイプ*/
 #unitsTable td:nth-child(4) { width: 2.5em; text-align: center;}    /*レア*/
 #unitsTable td:nth-child(5) { width: 9.5em; text-align: left;}      /*クラス*/
@@ -179,7 +179,7 @@ input[type="checkbox"] {
     width: 12em;
 }
 .modalAttr {
-    width: 9em;
+    width: 10em;
 }
 .modalClass {
     margin-right: 5px;
