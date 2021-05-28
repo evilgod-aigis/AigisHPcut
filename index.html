@@ -969,7 +969,7 @@
                     <div id="graphArea">
                         <canvas id="charts" width="1200" height="600">ここにグラフが表示されるよ</canvas>
                     </div>
-                    <!--まとめて表示/非表示-->
+                    <!--グラフオプション-->
                     <div class="opt1" style="float: right;">
                         <div class="opt2">
                             <div class="optcap10em">
@@ -1001,6 +1001,16 @@
                                         <span v-if="!graphHidden_onHit">全部非表示</span>
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="opt2">
+                            <div class="optcap10em">
+                                <span v-tooltip.bottom="`ONにするとグラフのツールチップが<br>HPが昇順にソートされた状態で表示される`">
+                                    ツールチップソート：
+                                </span>
+                            </div>
+                            <div class="optset">
+                                <label><input type="checkbox" v-model="sortGraphTooltip"></label>
                             </div>
                         </div>
                     </div>
@@ -1066,7 +1076,8 @@
                                 </div>
                                 <div class="detail">
                                     ・「攻撃硬直増加」を追加<br>
-                                    ・項目「その他」に「状態異常無効」を追加
+                                    ・項目「その他」に「状態異常無効」を追加<br>
+                                    ・グラフのツールチップをHPが昇順にソートされた状態で表示できる機能を追加
                                 </div>
                             </div>
                             <div class="updateElem">
