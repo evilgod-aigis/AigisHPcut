@@ -970,7 +970,7 @@ const unitDatatemplate_onHit = {
 //属性一覧
 const array_attr1 = [ '', 'アンデッド', 'エルフ', 'オーク', 'ゴブリン', 'ダークエルフ', 'デーモン', 'ドワーフ', 'ハーフエルフ', 'ハーフデーモン', '魚人', '人間', '仙人', '天界人', '天使', '妖怪', '機械', '獣人', '神', '竜人', '聖霊', '鳥人', 'ねんどろいど', 'なし' ];
 const array_attr2 = [ '', 'ヴァンパイア', 'お正月', 'ちび', 'クリスマス', 'サマー', 'ジューンブライド', 'ハロウィン', 'バレンタイン', '学園', '弓兵', '東の国', '機械', '温泉', '白の帝国', '砂漠の国', '英傑', '魔術師', 'パルス王国', '七つの大罪' ];
-const array_note = [ '', '女性', '男性', 'ドラゴンライダー系', 'HP回復不可', '魔界無効', '深海無効', '天界無効' ];
+const array_note = [ '', '女性', '男性', 'ドラゴンライダー系', '状態異常無効', 'HP回復不可', '魔界無効', '深海無効', '天界無効' ];
 
 const vm = new Vue({
     el: '#app',
@@ -1018,6 +1018,16 @@ const vm = new Vue({
                 max: 10000000
             },
             DPS: 0,
+            incAtkCooldown_status: {
+                value: 0,
+                min: 0,
+                max: 1000
+            },
+            incAtkCooldown_env: {
+                value: 0,
+                min: 0,
+                max: 1000
+            },
             plotScaling: 0,
             datasets: [],
             graphHidden_onSkillAct: false,
@@ -1522,6 +1532,10 @@ const vm = new Vue({
                 })
                 if(atkStartup !== null) {
                     atkCooldown = Math.floor(((atkCooldownBySkill > 0 ? atkCooldownBySkill : atkCooldown) - 1) * (1 - hasteRate) + 1);
+                    if(unit.unitInfo.note.indexOf('状態異常無効') === -1) {
+                        atkCooldown += me.incAtkCooldown_status.value * 2;
+                    }
+                    atkCooldown += me.incAtkCooldown_env.value * 2;
                     unit.unitInfo.atkInterval[index0].startup = atkStartup;
                     unit.unitInfo.atkInterval[index0].remain = atkRemain;
                     unit.unitInfo.atkInterval[index0].cooldown = atkCooldown;
@@ -1825,14 +1839,14 @@ const vm = new Vue({
             me.$forceUpdate();
         },
         //空以外の選択済みの値と同じ時falseを返す
-        isUndeplicated(selecter, index, option) {
+        IsUndeplicated(selecter, index, option) {
             const isSelected = selecter.some(elem => {
                 return elem === option;
             });
             return !isSelected || selecter[index] === option || option === '';
         },
         //ユニットデータ追加用モーダル(スキル発動時発生型)
-        openModal_onSkillAct() {
+        OpenModal_onSkillAct() {
             const me = this;
             me.newUnitData_onSkillAct = {
                 id: null,
@@ -1867,7 +1881,7 @@ const vm = new Vue({
             me.modal_onSkillAct = true;
         },
         //ユニットデータ整形追加(スキル発動時発生型)
-        addUnit_onSkillAct() {
+        AddUnit_onSkillAct() {
             const me = this;
             const alartText = [];
             const fillSkill = [false, false];
@@ -2015,7 +2029,7 @@ const vm = new Vue({
             }
         },
         //ユニットデータ追加用モーダル(攻撃ヒット時発生型)
-        openModal_onHit() {
+        OpenModal_onHit() {
             const me = this;
             me.newUnitData_onHit = {
                 id: null,
@@ -2059,7 +2073,7 @@ const vm = new Vue({
             me.modal_onHit = true;
         },
         //ユニットデータ整形追加(攻撃ヒット発生型)
-        addUnit_onHit() {
+        AddUnit_onHit() {
             const me = this;
             const alartText = [];
             let fillAtkInterval = false;
