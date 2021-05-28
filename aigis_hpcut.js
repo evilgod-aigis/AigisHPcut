@@ -1031,7 +1031,8 @@ const vm = new Vue({
             plotScaling: 0,
             datasets: [],
             graphHidden_onSkillAct: false,
-            graphHidden_onHit: false
+            graphHidden_onHit: false,
+            sortGraphTooltip: false
         }
     },
     mounted() {
@@ -2319,6 +2320,9 @@ const vm = new Vue({
                                 }
                                 return tooltipLabel;
                             }
+                        },
+                        itemSort: function(item0, item1) {
+                            return me.sortGraphTooltip ? item0.yLabel - item1.yLabel : 0;
                         }
                     },
                     scales: {
