@@ -63,6 +63,11 @@ input[type="checkbox"] {
     margin-right: 3px;
     vertical-align: -2px;
 }
+#main button {
+    vertical-align: 0;
+    height: 20px;
+    line-height: 1;
+}
 /*設定部分　ここまで*/
 
 /*ユニットデータテーブル*/
@@ -281,15 +286,20 @@ input[type="checkbox"] {
     border: 1px solid black;
     overflow-y: scroll;
 }
+.updateElem {
+    width: 100%;
+    overflow: hidden;
+}
 .date {
     margin: 0;
     padding: 0;
-    width: 9em;
+    width: 100%;
     float: left;
 }
 .detail {
-    width: auto;
-    float: left;
+    margin-left: 1em;
+    width: 100%;
+    overflow: hidden;
 }
 #linkArea {
     margin: 10px 0;
