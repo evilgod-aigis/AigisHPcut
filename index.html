@@ -195,6 +195,40 @@
                                 </div>
                             </div>
                         </div>
+                        <!--攻撃硬直増加(状態異常)-->
+                        <div class="opt2">
+                            <div class="optcap8em">
+                                <span v-tooltip.bottom-start="`クモの魔物等の攻撃による攻撃硬直増加(30fps)`">
+                                    鈍化(状態異常)：
+                                </span>
+                            </div>
+                            <div class="optset">
+                                <div class="box">
+                                    <label v-tooltip.bottom-start="`${incAtkCooldown_status.min}～${incAtkCooldown_status.max}f`">
+                                        <input type="number" class="number1" :value="incAtkCooldown_status.value" @input="LimitNumInt(incAtkCooldown_status, incAtkCooldown_status.min, incAtkCooldown_status.max, $event)">
+                                        f
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--攻撃硬直増加(マップ効果)-->
+                        <div class="opt2">
+                            <div class="optcap8em">
+                                <span v-tooltip.bottom-start="`深海等のマップ効果による攻撃硬直増加(30fps)`">
+                                    鈍化(マップ)：
+                                </span>
+                            </div>
+                            <div class="optset">
+                                <div class="box">
+                                    <label v-tooltip.bottom-start="`${incAtkCooldown_env.min}～${incAtkCooldown_env.max}f`">
+                                        <input type="number" class="number1" :value="incAtkCooldown_env.value" @input="LimitNumInt(incAtkCooldown_env, incAtkCooldown_env.min, incAtkCooldown_env.max, $event)">
+                                        f
+                                    </label>
+                                    <button type="button" @click="incAtkCooldown_env.value = 23" v-tooltip.bottom-start="`23f`">深海</button>
+                                    <button type="button" @click="incAtkCooldown_env.value = 45" v-tooltip.bottom-start="`45f`">深海(強)</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -287,7 +321,7 @@
                             </template>
                             <tr>
                                 <td colspan="12">
-                                    <button type="button" class="unitAddBtn" @click="openModal_onSkillAct">追加</button>
+                                    <button type="button" class="unitAddBtn" @click="OpenModal_onSkillAct">追加</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -387,7 +421,7 @@
                             </template>
                             <tr>
                                 <td colspan="12">
-                                    <button type="button" class="unitAddBtn" @click="openModal_onHit">追加</button>
+                                    <button type="button" class="unitAddBtn" @click="OpenModal_onHit">追加</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -425,17 +459,17 @@
                                         <div class="box">
                                             <select class="modalAttr" v-model="newUnitData_onSkillAct.unitInfo.attribution[0]" v-tooltip.top-start="`種族`">
                                                 <template v-for="attrOpt in options_attr1">
-                                                    <option v-if="isUndeplicated(newUnitData_onSkillAct.unitInfo.attribution, 0, attrOpt)" :key="`attr0-${attrOpt}`">{{attrOpt}}</option>
+                                                    <option v-if="IsUndeplicated(newUnitData_onSkillAct.unitInfo.attribution, 0, attrOpt)" :key="`attr0-${attrOpt}`">{{attrOpt}}</option>
                                                 </template>
                                             </select>
                                             <select class="modalAttr" v-model="newUnitData_onSkillAct.unitInfo.attribution[1]" v-tooltip.top-start="`種族以外`">
                                                 <template v-for="attrOpt in options_attr2">
-                                                    <option v-if="isUndeplicated(newUnitData_onSkillAct.unitInfo.attribution, 1, attrOpt)" :key="`attr1-${attrOpt}`">{{attrOpt}}</option>
+                                                    <option v-if="IsUndeplicated(newUnitData_onSkillAct.unitInfo.attribution, 1, attrOpt)" :key="`attr1-${attrOpt}`">{{attrOpt}}</option>
                                                 </template>
                                             </select>
                                             <select class="modalAttr" v-model="newUnitData_onSkillAct.unitInfo.attribution[2]" v-tooltip.top-start="`種族以外`">
                                                 <template v-for="attrOpt in options_attr2">
-                                                    <option v-if="isUndeplicated(newUnitData_onSkillAct.unitInfo.attribution, 2, attrOpt)" :key="`attr2-${attrOpt}`">{{attrOpt}}</option>
+                                                    <option v-if="IsUndeplicated(newUnitData_onSkillAct.unitInfo.attribution, 2, attrOpt)" :key="`attr2-${attrOpt}`">{{attrOpt}}</option>
                                                 </template>
                                             </select>
                                         </div>
@@ -519,7 +553,7 @@
                                             <template v-for="(item, index) in newUnitData_onSkillAct.unitInfo.note">
                                                 <select class="modalNote" v-model="newUnitData_onSkillAct.unitInfo.note[index]" :key="`newUnitNote-${index}`">
                                                     <template v-for="option in options_note">
-                                                        <option v-if="isUndeplicated(newUnitData_onSkillAct.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
+                                                        <option v-if="IsUndeplicated(newUnitData_onSkillAct.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
                                                     </template>
                                                 </select>
                                             </template>
@@ -637,7 +671,7 @@
                                 <span v-html="addUnitAlart.replace(/\n/g, '<br>')" style="color: red;"></span>
                             </div>
                             <div class="buttonArea">
-                                <button type="button" @click="addUnit_onSkillAct">追加</button>
+                                <button type="button" @click="AddUnit_onSkillAct">追加</button>
                                 <button type="button" @click="modal_onSkillAct = false">キャンセル</button>
                             </div>
                         </div>
@@ -675,17 +709,17 @@
                                         <div class="box">
                                             <select class="modalAttr" v-model="newUnitData_onHit.unitInfo.attribution[0]" v-tooltip.top-start="`種族`">
                                                 <template v-for="attrOpt in options_attr1">
-                                                    <option v-if="isUndeplicated(newUnitData_onHit.unitInfo.attribution, 0, attrOpt)" :key="`attr0-${attrOpt}`">{{attrOpt}}</option>
+                                                    <option v-if="IsUndeplicated(newUnitData_onHit.unitInfo.attribution, 0, attrOpt)" :key="`attr0-${attrOpt}`">{{attrOpt}}</option>
                                                 </template>
                                             </select>
                                             <select class="modalAttr" v-model="newUnitData_onHit.unitInfo.attribution[1]" v-tooltip.top-start="`種族以外`">
                                                 <template v-for="attrOpt in options_attr2">
-                                                    <option v-if="isUndeplicated(newUnitData_onHit.unitInfo.attribution, 1, attrOpt)" :key="`attr1-${attrOpt}`">{{attrOpt}}</option>
+                                                    <option v-if="IsUndeplicated(newUnitData_onHit.unitInfo.attribution, 1, attrOpt)" :key="`attr1-${attrOpt}`">{{attrOpt}}</option>
                                                 </template>
                                             </select>
                                             <select class="modalAttr" v-model="newUnitData_onHit.unitInfo.attribution[2]" v-tooltip.top-start="`種族以外`">
                                                 <template v-for="attrOpt in options_attr2">
-                                                    <option v-if="isUndeplicated(newUnitData_onHit.unitInfo.attribution, 2, attrOpt)" :key="`attr2-${attrOpt}`">{{attrOpt}}</option>
+                                                    <option v-if="IsUndeplicated(newUnitData_onHit.unitInfo.attribution, 2, attrOpt)" :key="`attr2-${attrOpt}`">{{attrOpt}}</option>
                                                 </template>
                                             </select>
                                         </div>
@@ -770,7 +804,7 @@
                                             <template v-for="(item, index) in newUnitData_onHit.unitInfo.note">
                                                 <select class="modalNote" v-model="newUnitData_onHit.unitInfo.note[index]" :key="`newUnitNote-${index}`">
                                                     <template v-for="option in options_note">
-                                                        <option v-if="isUndeplicated(newUnitData_onHit.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
+                                                        <option v-if="IsUndeplicated(newUnitData_onHit.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
                                                     </template>
                                                 </select>
                                             </template>
@@ -922,7 +956,7 @@
                                 <span v-html="addUnitAlart.replace(/\n/g, '<br>')" style="color: red;"></span>
                             </div>
                             <div class="buttonArea">
-                                <button type="button" @click="addUnit_onHit">追加</button>
+                                <button type="button" @click="AddUnit_onHit">追加</button>
                                 <button type="button" @click="modal_onHit = false">キャンセル</button>
                             </div>
                         </div>
@@ -1026,6 +1060,15 @@
                     <details>
                         <summary>更新：詳細</summary>
                         <div id="updateContent">
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/05/28(金)：
+                                </div>
+                                <div class="detail">
+                                    ・「攻撃硬直増加」を追加<br>
+                                    ・項目「その他」に「状態異常無効」を追加
+                                </div>
+                            </div>
                             <div class="updateElem">
                                 <div class="date">
                                     2021/05/27(木)：
