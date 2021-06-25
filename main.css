@@ -23,6 +23,18 @@
 .opt2 {
     overflow: hidden;
 }
+.optcap6em {
+    height: auto;
+    width: 6em;
+    float: left;
+    text-align: right;
+}
+.optcap7em {
+    height: auto;
+    width: 7em;
+    float: left;
+    text-align: right;
+}
 .optcap8em {
     height: auto;
     width: 8em;
@@ -86,19 +98,20 @@ input[type="checkbox"] {
     text-align: center;
     background-color: rgb(200, 200, 200);
 }
-#unitsTable td:nth-child(1) { width: 12em; text-align: left;}     /*名前*/
-#unitsTable td:nth-child(2) { width: 8.5em; text-align: left;}        /*属性*/
-#unitsTable td:nth-child(3) { width: 4.5em; text-align: center;}    /*タイプ*/
-#unitsTable td:nth-child(4) { width: 2.5em; text-align: center;}    /*レア*/
-#unitsTable td:nth-child(5) { width: 9.5em; text-align: left;}      /*クラス*/
-#unitsTable td:nth-child(6) { width: 8.5em; text-align: left;}      /*好感度*/
-#unitsTable td:nth-child(7) { width: 3.5em; text-align: center;}    /*スキル*/
-#unitsTable td:nth-child(8) { width: 3.5em; text-align: center;}    /*対象*/
-#unitsTable td:nth-child(9) { width: 5em; text-align: right;}       /*初回*/
-#unitsTable td:nth-child(10) { width: 5em; text-align: right;}      /*間隔*/
-#unitsTable td:nth-child(11) { width: 3.5em; text-align: right;}    /*減少率*/
-#unitsTable td:nth-child(12) { width: 3em; text-align: center;}     /*特攻*/
-#unitsTable td:nth-child(13) { width: 3.5em; text-align: center;}   /*削除*/
+#unitsTable td:nth-child(1) { width: 12em; text-align: left;}       /*名前*/
+#unitsTable td:nth-child(2) { width: 8.5em; text-align: left;}      /*属性*/
+#unitsTable td:nth-child(3) { width: 9.5em; text-align: left;}    /*その他*/
+#unitsTable td:nth-child(4) { width: 4.5em; text-align: center;}    /*配置型*/
+#unitsTable td:nth-child(5) { width: 2.5em; text-align: center;}    /*レア*/
+#unitsTable td:nth-child(6) { width: 9.5em; text-align: left;}      /*クラス*/
+#unitsTable td:nth-child(7) { width: 8.5em; text-align: left;}      /*好感度*/
+#unitsTable td:nth-child(8) { width: 3.5em; text-align: center;}    /*スキル*/
+#unitsTable td:nth-child(9) { width: 3.5em; text-align: center;}    /*対象*/
+#unitsTable td:nth-child(10) { width: 5em; text-align: right;}      /*初回*/
+#unitsTable td:nth-child(11) { width: 5em; text-align: right;}      /*間隔*/
+#unitsTable td:nth-child(12) { width: 3.5em; text-align: right;}    /*減少率*/
+#unitsTable td:nth-child(13) { width: 3em; text-align: center;}     /*特攻*/
+#unitsTable td:nth-child(14) { width: 3.5em; text-align: center;}   /*削除*/
 .delUnitBtn {
     width: 100%;
 }
@@ -128,7 +141,7 @@ input[type="checkbox"] {
     min-height: auto;
     max-height: 95%;
     min-width: min-content;
-    max-width: 800px;
+    max-width: 840px;
     padding: 1em;
     border: 2px solid orange;
     border-radius: 5px;
@@ -144,6 +157,18 @@ input[type="checkbox"] {
     padding: 0;
     overflow: hidden;
 }
+.inactive{
+    position: relative;
+}
+.inactive:after{
+    content: "";
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(255,255,255,.5);
+}
 .modalOpt1 {
     margin-bottom: 10px;
     padding: 0;
@@ -157,7 +182,7 @@ input[type="checkbox"] {
     overflow: hidden;
 }
 .modalOpt3 {
-    margin: 0;
+    margin: 0 10px 10px 0;
     padding: 0;
     float: left;
 }
@@ -178,12 +203,13 @@ input[type="checkbox"] {
 .modal .box {
     margin: 0;
     padding: 0;
+    display: flex;
 }
 .modalName {
-    margin-right: 5px;
     width: 12em;
 }
 .modalAttr {
+    margin-right: 5px;
     width: 10em;
 }
 .modalClass {
@@ -207,7 +233,7 @@ input[type="checkbox"] {
 }
 .addUnitAlart {
     margin: 10px 0;
-    height: 3em;
+    min-height: 3em;
     overflow: hidden;
 }
 .modalFooter {
