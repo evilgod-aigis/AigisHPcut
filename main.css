@@ -100,7 +100,7 @@ input[type="checkbox"] {
 }
 #unitsTable td:nth-child(1) { width: 12em; text-align: left;}       /*名前*/
 #unitsTable td:nth-child(2) { width: 8.5em; text-align: left;}      /*属性*/
-#unitsTable td:nth-child(3) { width: 9.5em; text-align: left;}    /*その他*/
+#unitsTable td:nth-child(3) { width: 9.5em; text-align: left;}      /*その他*/
 #unitsTable td:nth-child(4) { width: 4.5em; text-align: center;}    /*配置型*/
 #unitsTable td:nth-child(5) { width: 2.5em; text-align: center;}    /*レア*/
 #unitsTable td:nth-child(6) { width: 9.5em; text-align: left;}      /*クラス*/
