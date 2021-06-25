@@ -296,7 +296,11 @@ const hasteTeemListElem = [
         id: 6, buffer: '恋慕の堕天使ソフィー', awaken: '覚醒', showAwaken: false,
         rate: 40, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ '王子', '王子【神器装備】', '王子【ケラウノス】', '王子【砂漠】', '王子【獣装】', '王子【巨像】', '王子【風護】', '王子【英魂】', '王子【ダーク】', '王子【英雄王】', '王子【四神】', '王子【神槍】', '王子【ナンディ】', '王子【幼少】', 'ちび王子' ] }
+            { 'unitClass': [
+                '王子', '王子【神器装備】', '王子【ケラウノス】', '王子【砂漠】', '王子【獣装】',
+                '王子【巨像】', '王子【風護】', '王子【英魂】', '王子【ダーク】', '王子【英雄王】',
+                '王子【四神】', '王子【神槍】', '王子【ナンディ】', '王子【海鎮】', '王子【幼少】', 'ちび王子'
+            ] }
         ],
         tooltip: '[編成バフ] 自身と王子の攻撃硬直-40%'
     }
@@ -493,7 +497,7 @@ const unitsList_onSkillActElem = [
             },
             attribution: [ '人間', 'お正月' ],
             affection: { percentage: 150, bonus: '再動短縮', changeRate: null },
-            note: [ '女性' ]
+            note: [ '女性', '状態異常無効' ]
         },
         skill: {
             awaken: {
@@ -638,7 +642,7 @@ const unitsList_onSkillActElem = [
             },
             attribution: [ 'ハロウィン' ],
             affection: { percentage: null, bonus: 'その他', changeRate: null },
-            note: [ '女性', 'HP回復不可' ]
+            note: [ '女性', 'HP回復不可', '魔界適応' ]
         },
         skill: {
             awaken: {
@@ -667,7 +671,7 @@ const unitsList_onSkillActElem = [
             },
             attribution: [ 'なし' ],
             affection: { percentage: 100, bonus: '時間延長', changeRate: null },
-            note: [ '女性', 'HP回復不可' ]
+            note: [ '女性', 'HP回復不可', '魔界適応' ]
         },
         skill: {
             awaken: {
@@ -696,7 +700,7 @@ const unitsList_onSkillActElem = [
             },
             attribution: [ 'なし' ],
             affection: { percentage: null, bonus: 'その他', changeRate: null },
-            note: [ '女性', 'HP回復不可' ]
+            note: [ '女性', 'HP回復不可', '魔界適応' ]
         },
         skill: {
             awaken: {
@@ -725,7 +729,7 @@ const unitsList_onSkillActElem = [
             },
             attribution: [ 'なし' ],
             affection: { percentage: null, bonus: 'その他', changeRate: null },
-            note: [ '女性', 'HP回復不可' ]
+            note: [ '女性', 'HP回復不可', '魔界適応' ]
         },
         skill: {
             awaken: {
@@ -832,7 +836,7 @@ const unitsList_onHitElem = [
             },
             attribution: [ '人間', 'お正月' ],
             affection: { percentage: 150, bonus: '再動短縮', changeRate: null },
-            note: [ '女性' ],
+            note: [ '女性', '状態異常無効' ],
             atkInterval: [
                 { startup: null, remain: null, cooldown: null },
                 { startup: null, remain: null, cooldown: null }
@@ -900,7 +904,7 @@ const unitsList_onHitElem = [
     }
 ];
 //テンプレ
-const unitDatatemplate_onSkillAct = {
+const unitDataTemplate_onSkillAct = {
     id: null,
     unitInfo: {
         unitName: '', deployType: '', rarity: '',
@@ -929,7 +933,7 @@ const unitDatatemplate_onSkillAct = {
         dmgMul: { opt: [ false, false ], mul: [ 1, 1 ], target: [ null, null ] }
     }
 };
-const unitDatatemplate_onHit = {
+const unitDataTemplate_onHit = {
     id: null,
     unitInfo: {
         unitName: '', deployType: '', rarity: '',
@@ -968,9 +972,20 @@ const unitDatatemplate_onHit = {
     }
 };
 //属性一覧
-const array_attr1 = [ '', 'アンデッド', 'エルフ', 'オーク', 'ゴブリン', 'ダークエルフ', 'デーモン', 'ドワーフ', 'ハーフエルフ', 'ハーフデーモン', '魚人', '人間', '仙人', '天界人', '天使', '妖怪', '機械', '獣人', '神', '竜人', '聖霊', '鳥人', 'ねんどろいど', 'なし' ];
-const array_attr2 = [ '', 'ヴァンパイア', 'お正月', 'ちび', 'クリスマス', 'サマー', 'ジューンブライド', 'ハロウィン', 'バレンタイン', '学園', '弓兵', '東の国', '機械', '温泉', '白の帝国', '砂漠の国', '英傑', '魔術師', 'パルス王国', '七つの大罪' ];
-const array_note = [ '', '女性', '男性', 'ドラゴンライダー系', '状態異常無効', 'HP回復不可', '魔界無効', '深海無効', '天界無効' ];
+const array_attr1 = [
+    '', 'アンデッド', 'エルフ', 'オーク', 'ゴブリン', 'ダークエルフ', 'デーモン', 'ドワーフ',
+    'ハーフエルフ', 'ハーフデーモン', '魚人', '人間', '仙人', '天界人', '天使', '妖怪', '機械',
+    '獣人', '神', '竜人', '聖霊', '鳥人', 'ねんどろいど'
+];
+const array_attr2 = [
+    '', 'ヴァンパイア', 'お正月', 'ちび', 'クリスマス', 'サマー', 'ジューンブライド',
+    'ハロウィン','バレンタイン', '学園', '弓兵', '東の国', '機械', '温泉', '白の帝国',
+    '砂漠の国', '英傑', '魔術師', 'パルス王国', '七つの大罪'
+];
+//その他一覧
+const array_note = [
+    '', '女性', '男性', 'ドラゴンライダー系', '状態異常無効', 'GG持ち', 'HP回復不可', '魔界適応', '深海適応', '天界適応'
+];
 
 const vm = new Vue({
     el: '#app',
@@ -987,20 +1002,28 @@ const vm = new Vue({
             checked_hasteTeem: [],
             hasteSkillList: hasteSkillListElem,
             checked_hasteSkill: [],
+
             self_rWTlist: self_rWTlistElem,
             self_rCTlist: self_rCTlistElem,
             self_skillExtendList: self_skillExtendListElem,
             self_hasteTeemList: self_hasteTeemListElem,
+
             unitsList_onSkillAct: unitsList_onSkillActElem,
             modal_onSkillAct: false,
-            newUnitData_onSkillAct: unitDatatemplate_onSkillAct,        
+            newUnitData_onSkillAct: unitDataTemplate_onSkillAct,
+
             unitsList_onHit: unitsList_onHitElem,
             modal_onHit: false,
-            newUnitData_onHit: unitDatatemplate_onHit,        
+            newUnitData_onHit: unitDataTemplate_onHit,
+
+            modal_skillAwaken: [ true, true ],
+            modal_atkSpeed: [ false, true, true ],
             addUnitAlart: '',
+
             options_attr1: array_attr1,
             options_attr2: array_attr2,
             options_note: array_note,
+
             redeployInterval: {
                 use: false,
                 value: 30,
@@ -1028,6 +1051,7 @@ const vm = new Vue({
                 min: 0,
                 max: 1000
             },
+
             plotScaling: 0,
             datasets: [],
             graphHidden_onSkillAct: false,
@@ -1536,7 +1560,9 @@ const vm = new Vue({
                     if(unit.unitInfo.note.indexOf('状態異常無効') === -1) {
                         atkCooldown += me.incAtkCooldown_status.value * 2;
                     }
-                    atkCooldown += me.incAtkCooldown_env.value * 2;
+                    if(unit.unitInfo.note.indexOf('深海適応') === -1) {
+                        atkCooldown += me.incAtkCooldown_env.value * 2;
+                    }
                     unit.unitInfo.atkInterval[index0].startup = atkStartup;
                     unit.unitInfo.atkInterval[index0].remain = atkRemain;
                     unit.unitInfo.atkInterval[index0].cooldown = atkCooldown;
@@ -1840,11 +1866,25 @@ const vm = new Vue({
             me.$forceUpdate();
         },
         //空以外の選択済みの値と同じ時falseを返す
-        IsUndeplicated(selecter, index, option) {
-            const isSelected = selecter.some(elem => {
+        IsUndeplicated(selected, index, option) {
+            const isSelected = selected.some(elem => {
                 return elem === option;
             });
-            return !isSelected || selecter[index] === option || option === '';
+            return !isSelected || selected[index] === option || option === '';
+        },
+        //空以外の選択済みの値と同じ時falseを返す(その他用)
+        IsUndeplicated_note(selected, index, option) {
+            if(option === '女性' || option === '男性') {
+                const isSelected = selected.some(elem => {
+                    return elem === '女性' || elem === '男性';
+                });
+                return !isSelected || selected[index] === '女性' || selected[index] === '男性';
+            } else {
+                const isSelected = selected.some(elem => {
+                    return elem === option;
+                });
+                return !isSelected || selected[index] === option || option === '';
+            }
         },
         //ユニットデータ追加用モーダル(スキル発動時発生型)
         OpenModal_onSkillAct() {
@@ -1880,6 +1920,8 @@ const vm = new Vue({
             };
             me.addUnitAlart = '';
             me.modal_onSkillAct = true;
+            me.modal_skillAwaken[0] = true;
+            me.modal_skillAwaken[1] = true;
         },
         //ユニットデータ整形追加(スキル発動時発生型)
         AddUnit_onSkillAct() {
@@ -1892,13 +1934,9 @@ const vm = new Vue({
             if(unitInfo.unitName.length === 0) {
                 alartText.push('ユニット名');
             }
-            //属性
-            if(unitInfo.attribution.filter(Boolean).length === 0) {
-                alartText.push('属性');
-            }
-            //タイプ
+            //配置型
             if(unitInfo.deployType === '') {
-                alartText.push('タイプ');
+                alartText.push('配置型');
             }
             //レアリティ
             if(unitInfo.rarity === '') {
@@ -1910,10 +1948,8 @@ const vm = new Vue({
             if(unitInfo.unitClass.options.length === 0) {
                 alartText.push('クラス');
                 unitInfo.unitClass.options.push('');
-            } else if(unitInfo.unitClass.options.length === 1) {
-                unitInfo.unitClass.selectable = false;
             } else {
-                unitInfo.unitClass.selectable = true;
+                unitInfo.unitClass.selectable = unitInfo.unitClass.options.length > 1;
             }
             //好感度ボーナス
             if(unitInfo.affection.bonus === '') {
@@ -1932,85 +1968,69 @@ const vm = new Vue({
             }
             //スキル情報
             for(let i = 0; i < 2; i++) {
+                if(!me.modal_skillAwaken[i]) continue;
                 switch(skill.trans[i]) {
                     case '-':
-                        if(skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null) {
-                            fillSkill[i] = true;
-                        }
+                        fillSkill[i] = skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null;
                         break;
                     case '交互':
                     case '初回A':
-                        if(skill.trigger[i] === null) {
-                            alartText.push(`${i === 0 ? '通常' : '覚醒'}スキルのHP減少発生`);
-                        } else {
-                            if(skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null
-                            && skill.CT_uncurr[i].B !== null && skill.dur_uncurr[i].B !== null) {
-                                fillSkill[i] = true;
-                            }
-                        }
+                        fillSkill[i] = !skill.trigger[i]
+                                    && skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null
+                                    && skill.CT_uncurr[i].B !== null && skill.dur_uncurr[i].B !== null;
                         break;
                     default:
                 }
+                if(!fillSkill[i]) {
+                    alartText.push(`${i === 0 ? '通常' : '覚醒'}スキル`)
+                }
             }
-            if(fillSkill[0] && fillSkill[1]) {
-                skill.awaken.selectable = true;
-            } else if(fillSkill[0] && !fillSkill[1]) {
-                skill.awaken.selectable = false;
-                skill.awaken.selected = '通常';
-            } else if(!fillSkill[0] && fillSkill[1]) {
-                skill.awaken.selectable = false;
-                skill.awaken.selected = '覚醒';
-            } else {
-                alartText.push('通常スキルか覚醒スキルのどちらか');
-            }
+            skill.awaken.selectable = fillSkill[0] && fillSkill[1];
+            skill.awaken.selected = fillSkill[0] ? '通常' : '覚醒';
 
             if(alartText.length === 0) {
                 //必須事項全記入
                 //id付与
                 me.newUnitData_onSkillAct.id = me.unitsList_onSkillAct[me.unitsList_onSkillAct.length - 1].id + 1;
-                //属性詰め
+                //属性詰め&整形
                 unitInfo.attribution = unitInfo.attribution.filter(Boolean);
+                if(unitInfo.attribution.length === 0) {
+                    unitInfo.attribution.push('なし');
+                }
                 //その他詰め
                 unitInfo.note = unitInfo.note.filter(Boolean);
                 //スキル整形
                 for(let i = 0; i < 2; i++) {
-                    switch(skill.trans[i]) {
-                        case '-':
-                            if(fillSkill[i]) {
+                    if(fillSkill[i]) {
+                        switch(skill.trans[i]) {
+                            case '-':
                                 //Bの情報捨て
                                 skill.CT_uncurr[i].B = null;
                                 skill.dur_uncurr[i].B = null;
                                 skill.trigger[i] = '-';
-                            } else {
-                                //全部リセット
-                                skill.target[i] = null;
-                                skill.CT_uncurr[i].A = null;
-                                skill.CT_uncurr[i].B = null;
-                                skill.dur_uncurr[i].A = null;
-                                skill.dur_uncurr[i].B = null;
-                                skill.trigger[i] = null;
-                                skill.mulByNum[i] = [ 1 ];
-                            }
-                            break;
-                        case '交互':
-                        case '初回A':
-                            if(!fillSkill[i]) {
-                                //全部リセット
-                                skill.target[i] = null;
-                                skill.CT_uncurr[i].A = null;
-                                skill.CT_uncurr[i].B = null;
-                                skill.dur_uncurr[i].A = null;
-                                skill.dur_uncurr[i].B = null;
-                                skill.trigger[i] = null;
-                                skill.mulByNum[i] = [ 1 ];
-                            }
-                            break;
-                        default:
-                    }
-                    //特攻整形
-                    if(skill.dmgMul.opt[i]) {
-                        skill.dmgMul.opt[i] = 'あり';
+                                break;
+                            case '交互':
+                            case '初回A':
+                                break;
+                            default:
+                        }
+                        //特攻整形
+                        if(skill.dmgMul.opt[i]) {
+                            skill.dmgMul.opt[i] = 'あり';
+                        } else {
+                            skill.dmgMul.opt[i] = '-';
+                            skill.dmgMul.mul[i] = 1;
+                            skill.dmgMul.target[i] = null;
+                        }
                     } else {
+                        //全部リセット
+                        skill.target[i] = null;
+                        skill.CT_uncurr[i].A = null;
+                        skill.CT_uncurr[i].B = null;
+                        skill.dur_uncurr[i].A = null;
+                        skill.dur_uncurr[i].B = null;
+                        skill.trigger[i] = null;
+                        skill.mulByNum[i] = [ 1 ];
                         skill.dmgMul.opt[i] = '-';
                         skill.dmgMul.mul[i] = 1;
                         skill.dmgMul.target[i] = null;
@@ -2072,12 +2092,17 @@ const vm = new Vue({
             };
             me.addUnitAlart = '';
             me.modal_onHit = true;
+            me.modal_skillAwaken[0] = true;
+            me.modal_skillAwaken[1] = true;
+            me.modal_atkSpeed[0] = false;
+            me.modal_atkSpeed[1] = true;
+            me.modal_atkSpeed[2] = true;
         },
         //ユニットデータ整形追加(攻撃ヒット発生型)
         AddUnit_onHit() {
             const me = this;
             const alartText = [];
-            let fillAtkInterval = false;
+            const fillAtkInterval = [false, false, false];
             const fillSkill = [false, false];
             const unitInfo = me.newUnitData_onHit.unitInfo;
             const skill = me.newUnitData_onHit.skill;
@@ -2085,13 +2110,9 @@ const vm = new Vue({
             if(unitInfo.unitName.length === 0) {
                 alartText.push('ユニット名');
             }
-            //属性
-            if(unitInfo.attribution.filter(Boolean).length === 0) {
-                alartText.push('属性');
-            }
-            //タイプ
+            //配置型
             if(unitInfo.deployType === '') {
-                alartText.push('タイプ');
+                alartText.push('配置型');
             }
             //レアリティ
             if(unitInfo.rarity === '') {
@@ -2103,10 +2124,8 @@ const vm = new Vue({
             if(unitInfo.unitClass.options.length === 0) {
                 alartText.push('クラス');
                 unitInfo.unitClass.options.push('');
-            } else if(unitInfo.unitClass.options.length === 1) {
-                unitInfo.unitClass.selectable = false;
             } else {
-                unitInfo.unitClass.selectable = true;
+                unitInfo.unitClass.selectable = unitInfo.unitClass.options.length > 1;
             }
             //好感度ボーナス
             if(unitInfo.affection.bonus === '') {
@@ -2126,95 +2145,86 @@ const vm = new Vue({
             }
             //攻撃間隔
             for(let i = 0; i < 3; i++) {
-                if(unitInfo.atkInterval_uncurr[i].startup < 2) fillAtkInterval |= true;
-                if(unitInfo.atkInterval_uncurr[i].remain < 2) fillAtkInterval |= true;
-                if(unitInfo.atkInterval_uncurr[i].cooldown < 2) fillAtkInterval |= true;
-            }
-            fillAtkInterval = !fillAtkInterval;
-            if(!fillAtkInterval) {
-                alartText.push('攻撃間隔のどれか');
+                if(!me.modal_atkSpeed[i])   continue;
+                fillAtkInterval[i] = unitInfo.atkInterval_uncurr[i].startup > 1
+                                    && unitInfo.atkInterval_uncurr[i].remain > 1
+                                    && unitInfo.atkInterval_uncurr[i].cooldown > 1;
+                if(!fillAtkInterval[i]) {
+                    alartText.push(`${i === 0 ? '非' : i === 1 ? '通常' : '覚醒'}スキル中の攻撃速度`)
+                }
             }
             //スキル情報
             for(let i = 0; i < 2; i++) {
+                if(!me.modal_skillAwaken[i]) continue;
                 switch(skill.trans[i]) {
                     case '-':
-                        if(skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null) {
-                            fillSkill[i] = true;
-                        }
+                        fillSkill[i] = skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null;
                         break;
                     case '交互':
                     case '初回A':
-                        if(skill.trigger[i] === null) {
-                            alartText.push(`${i === 0 ? '通常' : '覚醒'}スキルのHP減少発生`);
-                        } else {
-                            if(skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null
-                            && skill.CT_uncurr[i].B !== null && skill.dur_uncurr[i].B !== null) {
-                                fillSkill[i] = true;
-                            }
-                        }
+                        fillSkill[i] = !skill.trigger[i]
+                                    && skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null
+                                    && skill.CT_uncurr[i].B !== null && skill.dur_uncurr[i].B !== null;
                         break;
                     default:
                 }
+                if(!fillSkill[i]) {
+                    alartText.push(`${i === 0 ? '通常' : '覚醒'}スキル`)
+                }
             }
-            if(fillSkill[0] && fillSkill[1]) {
-                skill.awaken.selectable = true;
-            } else if(fillSkill[0] && !fillSkill[1]) {
-                skill.awaken.selectable = false;
-                skill.awaken.selected = '通常';
-            } else if(!fillSkill[0] && fillSkill[1]) {
-                skill.awaken.selectable = false;
-                skill.awaken.selected = '覚醒';
-            } else {
-                alartText.push('通常スキルか覚醒スキルのどちらか');
-            }
+            skill.awaken.selectable = fillSkill[0] && fillSkill[1];
+            skill.awaken.selected = fillSkill[0] ? '通常' : '覚醒';
 
             if(alartText.length === 0) {
                 //必須事項全記入
                 //id付与
                 me.newUnitData_onHit.id = me.unitsList_onHit[me.unitsList_onHit.length - 1].id + 1;
-                //属性詰め
+                //属性詰め&整形
                 unitInfo.attribution = unitInfo.attribution.filter(Boolean);
+                if(unitInfo.attribution.length === 0) {
+                    unitInfo.attribution.push('なし');
+                }
                 //その他詰め
                 unitInfo.note = unitInfo.note.filter(Boolean);
+                //攻撃速度整形
+                for(let i = 0; i < 3; i++) {
+                    if(fillAtkInterval[i])  continue;
+                    unitInfo.atkInterval_uncurr[i].startup = null;
+                    unitInfo.atkInterval_uncurr[i].remain = null;
+                    unitInfo.atkInterval_uncurr[i].cooldown = null;
+                }
                 //スキル整形
                 for(let i = 0; i < 2; i++) {
-                    switch(skill.trans[i]) {
-                        case '-':
-                            if(fillSkill[i]) {
+                    if(fillSkill[i]) {
+                        switch(skill.trans[i]) {
+                            case '-':
                                 //Bの情報捨て
                                 skill.CT_uncurr[i].B = null;
                                 skill.dur_uncurr[i].B = null;
-                                skill.trigger[i] = 'スキル中hit';
-                            } else {
-                                //全部リセット
-                                skill.target[i] = null;
-                                skill.CT_uncurr[i].A = null;
-                                skill.CT_uncurr[i].B = null;
-                                skill.dur_uncurr[i].A = null;
-                                skill.dur_uncurr[i].B = null;
-                                skill.trigger[i] = null;
-                                skill.mulByNum[i] = [ 1 ];
-                            }
-                            break;
-                        case '交互':
-                        case '初回A':
-                            if(!fillSkill[i]) {
-                                //全部リセット
-                                skill.target[i] = null;
-                                skill.CT_uncurr[i].A = null;
-                                skill.CT_uncurr[i].B = null;
-                                skill.dur_uncurr[i].A = null;
-                                skill.dur_uncurr[i].B = null;
-                                skill.trigger[i] = null;
-                                skill.mulByNum[i] = [ 1 ];
-                            }
-                            break;
-                        default:
-                    }
-                    //特攻整形
-                    if(skill.dmgMul.opt[i]) {
-                        skill.dmgMul.opt[i] = 'あり';
+                                skill.trigger[i] = '-';
+                                break;
+                            case '交互':
+                            case '初回A':
+                                break;
+                            default:
+                        }
+                        //特攻整形
+                        if(skill.dmgMul.opt[i]) {
+                            skill.dmgMul.opt[i] = 'あり';
+                        } else {
+                            skill.dmgMul.opt[i] = '-';
+                            skill.dmgMul.mul[i] = 1;
+                            skill.dmgMul.target[i] = null;
+                        }
                     } else {
+                        //全部リセット
+                        skill.target[i] = null;
+                        skill.CT_uncurr[i].A = null;
+                        skill.CT_uncurr[i].B = null;
+                        skill.dur_uncurr[i].A = null;
+                        skill.dur_uncurr[i].B = null;
+                        skill.trigger[i] = null;
+                        skill.mulByNum[i] = [ 1 ];
                         skill.dmgMul.opt[i] = '-';
                         skill.dmgMul.mul[i] = 1;
                         skill.dmgMul.target[i] = null;
