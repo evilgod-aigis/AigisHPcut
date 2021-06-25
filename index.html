@@ -143,8 +143,7 @@
                                 <div class="box">
                                     <label><input type="checkbox" v-model="redeployInterval.use"></label>
                                     <label v-tooltip.bottom-start="`${redeployInterval.min}～${redeployInterval.max}秒`">
-                                        <input type="number" class="number1" :value="redeployInterval.value" @input="LimitNumInt(redeployInterval, redeployInterval.min, redeployInterval.max, $event)" :disabled="!redeployInterval.use">
-                                        秒
+                                        <input type="number" class="number1" :value="redeployInterval.value" @input="LimitNumInt(redeployInterval, redeployInterval.min, redeployInterval.max, $event)" :disabled="!redeployInterval.use">秒
                                     </label>
                                 </div>
                             </div>
@@ -159,8 +158,7 @@
                             <div class="optset">
                                 <div class="box">
                                     <label v-tooltip.bottom-start="`${timeCap.min}～${timeCap.max}秒`">
-                                        <input type="number" class="number1" :value="timeCap.value" @input="LimitNumInt(timeCap, timeCap.min, timeCap.max, $event)">
-                                        秒
+                                        <input type="number" class="number1" :value="timeCap.value" @input="LimitNumInt(timeCap, timeCap.min, timeCap.max, $event)">秒
                                     </label>
                                 </div>
                             </div>
@@ -205,27 +203,29 @@
                             <div class="optset">
                                 <div class="box">
                                     <label v-tooltip.bottom-start="`${incAtkCooldown_status.min}～${incAtkCooldown_status.max}f`">
-                                        <input type="number" class="number1" :value="incAtkCooldown_status.value" @input="LimitNumInt(incAtkCooldown_status, incAtkCooldown_status.min, incAtkCooldown_status.max, $event)">
-                                        f
+                                        <input type="number" class="number1" :value="incAtkCooldown_status.value" @input="LimitNumInt(incAtkCooldown_status, incAtkCooldown_status.min, incAtkCooldown_status.max, $event)">f
                                     </label>
                                 </div>
                             </div>
                         </div>
-                        <!--攻撃硬直増加(マップ効果)-->
+                        <!--攻撃硬直増加(地形効果)-->
                         <div class="opt2">
                             <div class="optcap8em">
-                                <span v-tooltip.bottom-start="`深海等のマップ効果による攻撃硬直増加(30fps)`">
-                                    鈍化(マップ)：
+                                <span v-tooltip.bottom-start=
+                                    "`深海等の地形効果による攻撃硬直増加(30fps)<br>
+                                    　深海(弱)　：15f (&ensp;8f) (括弧内は海鎮王子配置中)<br>
+                                    　深海　　　：23f (12f)<br>
+                                    　深海(強)　：45f (23f)<br>
+                                    　深海(超強)：60f (30f)`"
+                                >
+                                    鈍化(地形)：
                                 </span>
                             </div>
                             <div class="optset">
                                 <div class="box">
                                     <label v-tooltip.bottom-start="`${incAtkCooldown_env.min}～${incAtkCooldown_env.max}f`">
-                                        <input type="number" class="number1" :value="incAtkCooldown_env.value" @input="LimitNumInt(incAtkCooldown_env, incAtkCooldown_env.min, incAtkCooldown_env.max, $event)">
-                                        f
+                                        <input type="number" class="number1" :value="incAtkCooldown_env.value" @input="LimitNumInt(incAtkCooldown_env, incAtkCooldown_env.min, incAtkCooldown_env.max, $event)">f
                                     </label>
-                                    <button type="button" @click="incAtkCooldown_env.value = 23" v-tooltip.bottom-start="`23f`">深海</button>
-                                    <button type="button" @click="incAtkCooldown_env.value = 45" v-tooltip.bottom-start="`45f`">深海(強)</button>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +240,10 @@
                             <tr class="unitsHead">
                                 <th>名前</th>
                                 <th>属性</th>
-                                <th>タイプ</th>
+                                <th v-tooltip.top="`何かいいネーミングがないものか･･･`">
+                                    その他
+                                </th>
+                                <th>配置型</th>
                                 <th>レア</th>
                                 <th>クラス</th>
                                 <th>好感度150%<br>ボーナス</th>
@@ -261,6 +264,7 @@
                                 <tr :key="`unit-${unit.id}`" class="unitsBody">
                                     <td>{{unit.unitInfo.unitName}}</td>
                                     <td><template v-for="attr in unit.unitInfo.attribution">{{attr}}<br></template></td>
+                                    <td><template v-for="note in unit.unitInfo.note">{{note}}<br></template></td>
                                     <td>{{unit.unitInfo.deployType}}</td>
                                     <td>{{unit.unitInfo.rarity}}</td>
                                     <td>
@@ -286,8 +290,7 @@
                                                 <option>130</option>
                                                 <option>140</option>
                                                 <option>150</option>
-                                            </select>
-                                            %
+                                            </select>%
                                         </template>
                                     </td>
                                     <td>
@@ -320,7 +323,7 @@
                                 </tr>
                             </template>
                             <tr>
-                                <td colspan="12">
+                                <td colspan="13">
                                     <button type="button" class="unitAddBtn" @click="OpenModal_onSkillAct">追加</button>
                                 </td>
                             </tr>
@@ -330,13 +333,14 @@
                             <tr class="unitsHead">
                                 <th rowspan="2">名前</th>
                                 <th rowspan="2">属性</th>
-                                <th rowspan="2">タイプ</th>
+                                <th rowspan="2">その他</th>
+                                <th rowspan="2">配置型</th>
                                 <th rowspan="2">レア</th>
                                 <th rowspan="2">クラス</th>
                                 <th rowspan="2">好感度150%<br>ボーナス</th>
                                 <th rowspan="2">スキル</th>
                                 <th rowspan="2">対象</th>
-                                <th colspan="2" v-tooltip.top="`海外版wikiの60fpsの値を元に算出したから<br>もしかしたら実際とは違うかもしれないから注意`">
+                                <th colspan="2" v-tooltip.top="`海外版wikiの60fpsの値を元に算出したから<br>もしかしたら実際とは違うかもしれない`">
                                     攻撃間隔(30fps)
                                 </th>
                                 <th style="display:none"></th>
@@ -355,6 +359,7 @@
                                 <tr :key="`unit-${unit.id}`" class="unitsBody">
                                     <td>{{unit.unitInfo.unitName}}</td>
                                     <td><template v-for="attr in unit.unitInfo.attribution">{{attr}}<br></template></td>
+                                    <td><template v-for="note in unit.unitInfo.note">{{note}}<br></template></td>
                                     <td>{{unit.unitInfo.deployType}}</td>
                                     <td>{{unit.unitInfo.rarity}}</td>
                                     <td>
@@ -381,8 +386,7 @@
                                                     <option>130</option>
                                                     <option>140</option>
                                                     <option>150</option>
-                                                </select>
-                                                %
+                                                </select>%
                                             </template>
                                             <template v-else>
                                                 {{unit.unitInfo.affection.bonus}} {{unit.unitInfo.affection.changeRate}}%<br>
@@ -420,7 +424,7 @@
                                 </tr>
                             </template>
                             <tr>
-                                <td colspan="12">
+                                <td colspan="13">
                                     <button type="button" class="unitAddBtn" @click="OpenModal_onHit">追加</button>
                                 </td>
                             </tr>
@@ -432,13 +436,15 @@
                     <div class="modalContent">
                         <div class="modalHeader">
                             <span>スキル発動時発生型 ユニットデータ入力</span>
+                            <span style="color: red; font-size: 14px;">&nbsp;*必須</span>
                         </div>
                         <div class="modalBody">
                             <div class="modalOpt1">
+                                <!--ユニット名-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            ユニット名：
+                                            ユニット名<span v-if="newUnitData_onSkillAct.unitInfo.unitName.length === 0" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -449,8 +455,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--属性-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
                                             属性：
                                         </span>
@@ -475,10 +482,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--配置型-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            タイプ：
+                                            配置型<span v-if="!newUnitData_onSkillAct.unitInfo.deployType" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -491,10 +499,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--レアリティ-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            レアリティ：
+                                            レアリティ<span v-if="!newUnitData_onSkillAct.unitInfo.rarity" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -511,10 +520,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--クラス-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            クラス：
+                                            クラス<span v-if="newUnitData_onSkillAct.unitInfo.unitClass.options.filter(Boolean).length === 0" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ[未CC(覚醒)クラス名+系]と入力すればおｋ`">
@@ -526,10 +536,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--好感度ボーナス-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            好感度ボーナス：
+                                            好感度ボーナス<span v-if="!newUnitData_onSkillAct.unitInfo.affection.bonus" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -542,8 +553,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--その他-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
                                             その他：
                                         </span>
@@ -553,11 +565,11 @@
                                             <template v-for="(item, index) in newUnitData_onSkillAct.unitInfo.note">
                                                 <select class="modalNote" v-model="newUnitData_onSkillAct.unitInfo.note[index]" :key="`newUnitNote-${index}`">
                                                     <template v-for="option in options_note">
-                                                        <option v-if="IsUndeplicated(newUnitData_onSkillAct.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
+                                                        <option v-if="IsUndeplicated_note(newUnitData_onSkillAct.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
                                                     </template>
                                                 </select>
                                             </template>
-                                            <template v-if="newUnitData_onSkillAct.unitInfo.note.length < options_note.length - 1">
+                                            <template v-if="newUnitData_onSkillAct.unitInfo.note.length < options_note.length - 2">
                                                 <button type="button" @click="newUnitData_onSkillAct.unitInfo.note.push('')">追加</button>
                                             </template>
                                         </div>
@@ -568,21 +580,24 @@
                                 <template v-for="n in 2">
                                     <div class="modalOpt3" :key="`newSkillAW-${n - 1}`">
                                         <div class="optcap8em">
-                                            <span v-tooltip.top-start="`通常スキルか覚醒スキルの<br>どちらかは全て設定必須`">
-                                                {{newUnitData_onSkillAct.skill.awaken.options[n - 1]}}スキル：
-                                            </span>
+                                            <label v-tooltip.top-start="`ONにしたスキル情報の必須事項を全て記入<br>OFFにすると記入してあっても反映されなくなる`">
+                                                {{newUnitData_onSkillAct.skill.awaken.options[n - 1]}}スキル
+                                                <input type="checkbox" style="margin: 0;" v-model="modal_skillAwaken[n - 1]" @change="modal_skillAwaken[2 - n] = true">：
+                                            </label>
                                         </div>
-                                        <div class="modalOptset2">
+                                        <div class="modalOptset2" :class='{inactive:!modal_skillAwaken[n - 1]}'>
+                                            <!--対象-->
                                             <div class="box">
-                                                <span>
+                                                <span style="margin-right: 5px;">
                                                     対象
                                                 </span>
                                                 <label v-tooltip.top-start="`全敵とか射程内とか･･･<br>でも特に設定する必要なし<br>ユニットテーブルに表示されるだけ`">
                                                     <input type="text" class="modalTarget" :value="newUnitData_onSkillAct.skill.target[n - 1]">
                                                 </label>
                                             </div>
+                                            <!--スキル遷移-->
                                             <div class="box">
-                                                <span>
+                                                <span style="margin-right: 5px;">
                                                     スキル遷移
                                                 </span>
                                                 <select v-model="newUnitData_onSkillAct.skill.trans[n - 1]" v-tooltip.top-start="`-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ensp;：A→A→A→A→･･･<br>交互&nbsp;&nbsp;：A→B→A→B→･･･<br>初回A：A→B→B→B→･･･`">
@@ -590,76 +605,93 @@
                                                     <option>交互</option>
                                                     <option>初回A</option>
                                                 </select>
-                                                <span style="margin-left: 5px;">HP減少発生</span>
+                                                <span style="margin: 0 5px 0 10px;">HP減少発生</span>
+                                                <span v-if="modal_skillAwaken[n - 1] && newUnitData_onSkillAct.skill.trans[n - 1] !== '-' && !newUnitData_onSkillAct.skill.trigger[n - 1]" style="color: red;">*</span>
                                                 <select v-model="newUnitData_onSkillAct.skill.trigger[n - 1]" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">
                                                     <option>A</option>
                                                     <option>B</option>
                                                 </select>
                                             </div>
+                                            <!--再動-->
                                             <div class="box">
                                                 <span>
                                                     再動
                                                 </span>
-                                                <span style="margin-left: 5px;">A</span>
+                                                <span style="margin-left: 10px;">
+                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onSkillAct.skill.CT_uncurr[n - 1].A" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`1～1000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'A', 1, 1000, $event)">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'A', 1, 1000, $event)">秒
                                                 </label>
-                                                <span style="margin-left: 5px;">B</span>
+                                                <span style="margin-left: 10px;">
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onSkillAct.skill.trans[n - 1] !== '-' && !newUnitData_onSkillAct.skill.CT_uncurr[n - 1].B" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`1～1000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'B', 1, 1000, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'B', 1, 1000, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
+                                            <!--継続-->
                                             <div class="box">
                                                 <span>
                                                     継続
                                                 </span>
-                                                <span style="margin-left: 5px;">A</span>
+                                                <span style="margin-left: 10px;">
+                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onSkillAct.skill.dur_uncurr[n - 1].A" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'A', 0, timeCap.value, $event)">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'A', 0, timeCap.value, $event)">秒
                                                 </label>
-                                                <span style="margin-left: 5px;">B</span>
+                                                <span style="margin-left: 10px;">
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onSkillAct.skill.trans[n - 1] !== '-' && !newUnitData_onSkillAct.skill.dur_uncurr[n - 1].B" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'B', 0, timeCap.value, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'B', 0, timeCap.value, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
+                                            <!--減少率-->
                                             <div class="box">
-                                                <span>
+                                                <span style="margin-right: 5px;">
                                                     減少率
                                                 </span>
                                                 <label v-tooltip.top-start="`0～100%<br>補正なしのベースの数値(%)を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.HPred[n - 1]" @input="LimitHPred(newUnitData_onSkillAct.skill, n - 1, $event)">
-                                                    %
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.HPred[n - 1]" @input="LimitHPred(newUnitData_onSkillAct.skill, n - 1, $event)">%
                                                 </label>
                                             </div>
+                                            <!--特攻-->
                                             <div class="box">
                                                 <label>
-                                                    <span style="margin-left: 5px;">特攻</span>
+                                                    <span>特攻</span>
                                                     <input type="checkbox" v-model="newUnitData_onSkillAct.skill.dmgMul.opt[n - 1]">
                                                 </label>
-                                                <label v-tooltip.top-start="`0以上`">
+                                                <label style="margin-left: 10px;" v-tooltip.top-start="`0以上`">
                                                     倍率
                                                     <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dmgMul.mul[n - 1]" @input="LimitDmgMul(newUnitData_onSkillAct.skill.dmgMul, n - 1, $event)" :disabled="!newUnitData_onSkillAct.skill.dmgMul.opt[n - 1]">
                                                 </label>
-                                                <label v-tooltip.top-start="`特に設定する必要なし<br>ツールチップに反映されるだけ`">
+                                                <label style="margin-left: 10px;" v-tooltip.top-start="`特に設定する必要なし<br>ツールチップに反映されるだけ`">
                                                     対象
                                                     <input type="text" class="modalTarget" :value="newUnitData_onSkillAct.skill.dmgMul.target[n - 1]" :disabled="!newUnitData_onSkillAct.skill.dmgMul.opt[n - 1]">
                                                 </label>
                                             </div>
+                                            <!--スキル回数倍率-->
                                             <div class="box">
-                                                <span v-tooltip.top-start="`アクアマリーの覚醒スキルみたいに<br>回数ごとにHP減少率が変わるとき用`">
-                                                    スキル回数倍率
-                                                </span>
-                                                <template v-for="(item, index) in newUnitData_onSkillAct.skill.mulByNum[n - 1]">
-                                                    <label v-tooltip.top-start="`0以上`">
-                                                        {{index + 1}}回目<span v-if="index === newUnitData_onSkillAct.skill.mulByNum[n - 1].length - 1">以降</span>
-                                                        <input type="number" class="modalNumber" v-model="newUnitData_onSkillAct.skill.mulByNum[n - 1][index]" :key="`newUnitMulByNum-${n - 1}-${index}`" @input="LimitMulByNum(newUnitData_onSkillAct.skill, n - 1, index, $event)">
-                                                    </label>
-                                                </template>
-                                                <button type="button" @click="newUnitData_onSkillAct.skill.mulByNum[n - 1].push('')">追加</button>
+                                                <div>
+                                                    <span v-tooltip.top-start="`アクアマリーの覚醒スキルみたいに<br>回数ごとにHP減少率が変わるとき用`">
+                                                        スキル回数倍率
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <template v-for="(item, index) in newUnitData_onSkillAct.skill.mulByNum[n - 1]">
+                                                        <label style="margin-left: 10px;" v-tooltip.top-start="`0以上`">
+                                                            <span v-if="index !== newUnitData_onSkillAct.skill.mulByNum[n - 1].length - 1">{{index + 1}}回目　　</span>
+                                                            <span v-if="index === newUnitData_onSkillAct.skill.mulByNum[n - 1].length - 1">{{index + 1}}回目以降</span>
+                                                            <input type="number" class="modalNumber" v-model="newUnitData_onSkillAct.skill.mulByNum[n - 1][index]" :key="`newUnitMulByNum-${n - 1}-${index}`" @input="LimitMulByNum(newUnitData_onSkillAct.skill, n - 1, index, $event)">
+                                                        </label>
+                                                        <template v-if="index === newUnitData_onSkillAct.skill.mulByNum[n - 1].length - 1">
+                                                            <button type="button" style="margin-left: 5px;" @click="newUnitData_onSkillAct.skill.mulByNum[n - 1].push('')">追加</button>
+                                                        </template>
+                                                        <br>
+                                                    </template>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -682,13 +714,15 @@
                     <div class="modalContent">
                         <div class="modalHeader">
                             <span>攻撃ヒット時発生型 ユニットデータ入力</span>
+                            <span style="color: red; font-size: 14px;">&nbsp;*必須</span>
                         </div>
                         <div class="modalBody">
                             <div class="modalOpt1">
+                                <!--ユニット名-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            ユニット名：
+                                            ユニット名<span v-if="newUnitData_onHit.unitInfo.unitName.length === 0" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -699,8 +733,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--属性-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
                                             属性：
                                         </span>
@@ -725,10 +760,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--配置型-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            タイプ：
+                                            配置型<span v-if="!newUnitData_onHit.unitInfo.deployType" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -741,10 +777,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--レアリティ-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            レアリティ：
+                                            レアリティ<span v-if="!newUnitData_onHit.unitInfo.rarity" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -761,10 +798,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--クラス-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            クラス：
+                                            クラス<span v-if="newUnitData_onHit.unitInfo.unitClass.options.filter(Boolean).length === 0" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ[未CC(覚醒)クラス名+系]と入力すればおｋ`">
@@ -776,10 +814,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--好感度ボーナス-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
-                                            好感度ボーナス：
+                                            好感度ボーナス<span v-if="!newUnitData_onHit.unitInfo.affection.bonus" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -793,18 +832,19 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--その他-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
+                                    <div class="optcap9em">
                                         <span>
                                             その他：
                                         </span>
                                     </div>
                                     <div class="modalOptset1" v-tooltip.top-start="``">
-                                        <div class="box" >
+                                        <div class="box">
                                             <template v-for="(item, index) in newUnitData_onHit.unitInfo.note">
                                                 <select class="modalNote" v-model="newUnitData_onHit.unitInfo.note[index]" :key="`newUnitNote-${index}`">
                                                     <template v-for="option in options_note">
-                                                        <option v-if="IsUndeplicated(newUnitData_onHit.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
+                                                        <option v-if="IsUndeplicated_note(newUnitData_onHit.unitInfo.note, index, option)" :key="`newUnitNote-${index}-${option}`">{{option}}</option>
                                                     </template>
                                                 </select>
                                             </template>
@@ -814,36 +854,49 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--攻撃間隔-->
                                 <div class="modalOpt2">
-                                    <div class="optcap8em">
-                                        <span v-tooltip.top-start="`海外版wikiのGuides > Attack Speedを参照`">
+                                    <div class="optcap9em">
+                                        <span v-tooltip.top-start="`海外版wikiのGuides > Attack Speedを参照<br>ONにした攻撃速度情報を全て記入<br>OFFにすると記入してあっても反映されなくなる`">
                                             攻撃間隔：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
                                         <template v-for="(item, index) in newUnitData_onHit.unitInfo.atkInterval_uncurr">
                                             <div class="box">
-                                                <span v-if="index === 0">非スキル中　</span>
-                                                <span v-if="index === 1">通常スキル中</span>
-                                                <span v-if="index === 2">覚醒スキル中</span>
-                                                <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーションの内、近接攻撃のダメージ発生<br>または遠距離攻撃の飛び道具発生までのフレーム数(60fps)`">
-                                                    攻撃発生
-                                                </span>
-                                                <label v-tooltip.top-start="`2フレーム以上`">
-                                                    <input type="number" class="modalNumber" :value="item.startup" @input="LimitAtkInterval(item, 'startup', $event)">
-                                                </label>
-                                                <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーションの内、攻撃発生後のフレーム数(60fps)`">
-                                                    発生後
-                                                </span>
-                                                <label v-tooltip.top-start="`2フレーム以上`">
-                                                    <input type="number" class="modalNumber" :value="item.remain" @input="LimitAtkInterval(item, 'remain', $event)">
-                                                </label>
-                                                <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーション終了後、次の攻撃モーションを<br>始めるまでの待機フレーム数(60fps)`">
-                                                    攻撃硬直
-                                                </span>
-                                                <label v-tooltip.top-start="`2フレーム以上`">
-                                                    <input type="number" class="modalNumber" :value="item.cooldown" @input="LimitAtkInterval(item, 'cooldown', $event)">
-                                                </label>
+                                                <div>
+                                                    <label style="margin-right: 5px;">
+                                                        <span v-if="index === 0" v-tooltip.top-start="`今のところ設定する意味はない`">非スキル中　</span>
+                                                        <span v-if="index === 1">通常スキル中</span>
+                                                        <span v-if="index === 2">覚醒スキル中</span>
+                                                        <template v-if="index === 0">
+                                                            <input type="checkbox" style="margin: 0;" v-model="modal_atkSpeed[index]">
+                                                        </template>
+                                                        <template v-if="index !== 0">
+                                                            <input type="checkbox" style="margin: 0;" v-model="modal_atkSpeed[index]" @change="modal_atkSpeed[3 - index] = true">
+                                                        </template>
+                                                    </label>
+                                                </div>
+                                                <div :class='{inactive:!modal_atkSpeed[index]}'>
+                                                    <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーションの内、近接攻撃のダメージ発生<br>または遠距離攻撃の飛び道具発生までのフレーム数(60fps)`">
+                                                        攻撃発生<span v-if="modal_atkSpeed[index] && item.startup < 2" style="color: red;">*</span>
+                                                    </span>
+                                                    <label v-tooltip.top-start="`2フレーム以上`">
+                                                        <input type="number" class="modalNumber" :value="item.startup" @input="LimitAtkInterval(item, 'startup', $event)">
+                                                    </label>
+                                                    <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーションの内、攻撃発生後のフレーム数(60fps)`">
+                                                        発生後<span v-if="modal_atkSpeed[index] && item.remain < 2" style="color: red;">*</span>
+                                                    </span>
+                                                    <label v-tooltip.top-start="`2フレーム以上`">
+                                                        <input type="number" class="modalNumber" :value="item.remain" @input="LimitAtkInterval(item, 'remain', $event)">
+                                                    </label>
+                                                    <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーション終了後、次の攻撃モーションを<br>始めるまでの待機フレーム数(60fps)`">
+                                                        攻撃硬直<span v-if="modal_atkSpeed[index] && item.cooldown < 2" style="color: red;">*</span>
+                                                    </span>
+                                                    <label v-tooltip.top-start="`2フレーム以上`">
+                                                        <input type="number" class="modalNumber" :value="item.cooldown" @input="LimitAtkInterval(item, 'cooldown', $event)">
+                                                    </label>
+                                                </div>
                                             </div>
                                         </template>
                                     </div>
@@ -853,21 +906,24 @@
                                 <template v-for="n in 2">
                                     <div class="modalOpt3" :key="`newSkillAW-${n - 1}`">
                                         <div class="optcap8em">
-                                            <span v-tooltip.top-start="`通常スキルか覚醒スキルの<br>どちらかは全て設定必須`">
-                                                {{newUnitData_onHit.skill.awaken.options[n - 1]}}スキル：
-                                            </span>
+                                            <label v-tooltip.top-start="`ONにしたスキル情報の必須事項を全て記入<br>OFFにすると記入してあっても反映されなくなる`">
+                                                {{newUnitData_onHit.skill.awaken.options[n - 1]}}スキル
+                                                <input type="checkbox" style="margin: 0;" v-model="modal_skillAwaken[n - 1]" @change="modal_skillAwaken[2 - n] = true">：
+                                            </label>
                                         </div>
-                                        <div class="modalOptset2">
+                                        <div class="modalOptset2" :class='{inactive:!modal_skillAwaken[n - 1]}'>
+                                            <!--対象-->
                                             <div class="box">
-                                                <span>
+                                                <span style="margin-right: 5px;">
                                                     対象
                                                 </span>
                                                 <label v-tooltip.top-start="`全敵とか射程内とか･･･<br>でも特に設定する必要なし<br>ユニットテーブルに表示されるだけ`">
                                                     <input type="text" class="modalTarget" :value="newUnitData_onHit.skill.target[n - 1]">
                                                 </label>
                                             </div>
+                                            <!--スキル遷移-->
                                             <div class="box">
-                                                <span v-tooltip.top-start="`攻撃ヒット時+スキル変化のユニットが今のところいないので<br><span style=&quot;text-decoration: line-through;&quot;>実装するのﾒﾝﾄﾞｲ</span> 実装されてない<br>あとスキル中しか割合ダメージが発生しない`">
+                                                <span style="margin-right: 5px;" v-tooltip.top-start="`攻撃ヒット時+スキル変化のユニットが今のところいないので<br><span style=&quot;text-decoration: line-through;&quot;>実装するのﾒﾝﾄﾞｲ</span> 実装されてない<br>あとスキル中しか割合ダメージが発生しない`">
                                                     スキル遷移
                                                 </span>
                                                 <select v-model="newUnitData_onHit.skill.trans[n - 1]" :disabled="true"> <!--v-tooltip.top-start="`-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ensp;：A→A→A→A→･･･<br>交互&nbsp;&nbsp;：A→B→A→B→･･･<br>初回A：A→B→B→B→･･･`"-->
@@ -875,76 +931,93 @@
                                                     <option>交互</option>
                                                     <option>初回A</option>
                                                 </select>
-                                                <span style="margin-left: 5px;">HP減少発生</span>
+                                                <span style="margin: 0 5px 0 10px;">HP減少発生</span>
+                                                <span v-if="modal_skillAwaken[n - 1] && newUnitData_onHit.skill.trans[n - 1] !== '-' && !newUnitData_onHit.skill.trigger[n - 1]" style="color: red;">*</span>
                                                 <select v-model="newUnitData_onHit.skill.trigger[n - 1]" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">
                                                     <option>A</option>
                                                     <option>B</option>
                                                 </select>
                                             </div>
+                                            <!--再動-->
                                             <div class="box">
                                                 <span>
                                                     再動
                                                 </span>
-                                                <span style="margin-left: 5px;">A</span>
+                                                <span style="margin-left: 10px;">
+                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onHit.skill.CT_uncurr[n - 1].A" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`1～1000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'A', 1, 1000, $event)">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'A', 1, 1000, $event)">秒
                                                 </label>
-                                                <span style="margin-left: 5px;">B</span>
+                                                <span style="margin-left: 10px;">
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onHit.skill.trans[n - 1] !== '-' && !newUnitData_onHit.skill.CT_uncurr[n - 1].B" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`1～1000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'B', 1, 1000, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'B', 1, 1000, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
+                                            <!--継続-->
                                             <div class="box">
                                                 <span>
                                                     継続
                                                 </span>
-                                                <span style="margin-left: 5px;">A</span>
+                                                <span style="margin-left: 10px;">
+                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onHit.skill.dur_uncurr[n - 1].A" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'A', 0, timeCap.value, $event)">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'A', 0, timeCap.value, $event)">秒
                                                 </label>
-                                                <span style="margin-left: 5px;">B</span>
+                                                <span style="margin-left: 10px;">
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onHit.skill.trans[n - 1] !== '-' && !newUnitData_onHit.skill.dur_uncurr[n - 1].B" style="color: red;">*</span>
+                                                </span>
                                                 <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'B', 0, timeCap.value, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">
-                                                    秒
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'B', 0, timeCap.value, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
+                                            <!--減少率-->
                                             <div class="box">
-                                                <span>
+                                                <span style="margin-right: 5px;">
                                                     減少率
                                                 </span>
                                                 <label v-tooltip.top-start="`0～100%<br>補正なしのベースの数値(%)を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.HPred[n - 1]" @input="LimitHPred(newUnitData_onHit.skill, n - 1, $event)">
-                                                    %
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.HPred[n - 1]" @input="LimitHPred(newUnitData_onHit.skill, n - 1, $event)">%
                                                 </label>
                                             </div>
+                                            <!--特攻-->
                                             <div class="box">
                                                 <label>
-                                                    <span style="margin-left: 5px;">特攻</span>
+                                                    <span>特攻</span>
                                                     <input type="checkbox" v-model="newUnitData_onHit.skill.dmgMul.opt[n - 1]">
                                                 </label>
-                                                <label v-tooltip.top-start="`0以上`">
+                                                <label style="margin-left: 10px;" v-tooltip.top-start="`0以上`">
                                                     倍率
                                                     <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dmgMul.mul[n - 1]" @input="LimitDmgMul(newUnitData_onHit.skill.dmgMul, n - 1, $event)" :disabled="!newUnitData_onHit.skill.dmgMul.opt[n - 1]">
                                                 </label>
-                                                <label v-tooltip.top-start="`特に設定する必要なし<br>ツールチップに反映されるだけ`">
+                                                <label style="margin-left: 10px;" v-tooltip.top-start="`特に設定する必要なし<br>ツールチップに反映されるだけ`">
                                                     対象
                                                     <input type="text" class="modalTarget" :value="newUnitData_onHit.skill.dmgMul.target[n - 1]" :disabled="!newUnitData_onHit.skill.dmgMul.opt[n - 1]">
                                                 </label>
                                             </div>
+                                            <!--スキル回数倍率-->
                                             <div class="box">
-                                                <span v-tooltip.top-start="`アクアマリーの覚醒スキルみたいに<br>回数ごとにHP減少率が変わるとき用`">
-                                                    スキル回数倍率
-                                                </span>
-                                                <template v-for="(item, index) in newUnitData_onHit.skill.mulByNum[n - 1]">
-                                                    <label v-tooltip.top-start="`0以上`">
-                                                        {{index + 1}}回目<span v-if="index === newUnitData_onHit.skill.mulByNum[n - 1].length - 1">以降</span>
-                                                        <input type="number" class="modalNumber" v-model="newUnitData_onHit.skill.mulByNum[n - 1][index]" :key="`newUnitMulByNum-${n - 1}-${index}`" @input="LimitMulByNum(newUnitData_onHit.skill, n - 1, index, $event)">
-                                                    </label>
-                                                </template>
-                                                <button type="button" @click="newUnitData_onHit.skill.mulByNum[n - 1].push('')">追加</button>
+                                                <div>
+                                                    <span v-tooltip.top-start="`アクアマリーの覚醒スキルみたいに<br>回数ごとにHP減少率が変わるとき用`">
+                                                        スキル回数倍率
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <template v-for="(item, index) in newUnitData_onHit.skill.mulByNum[n - 1]">
+                                                        <label style="margin-left: 10px;" v-tooltip.top-start="`0以上`">
+                                                            <span v-if="index !== newUnitData_onHit.skill.mulByNum[n - 1].length - 1">{{index + 1}}回目　　</span>
+                                                            <span v-if="index === newUnitData_onHit.skill.mulByNum[n - 1].length - 1">{{index + 1}}回目以降</span>
+                                                            <input type="number" class="modalNumber" v-model="newUnitData_onHit.skill.mulByNum[n - 1][index]" :key="`newUnitMulByNum-${n - 1}-${index}`" @input="LimitMulByNum(newUnitData_onHit.skill, n - 1, index, $event)">
+                                                        </label>
+                                                        <template v-if="index === newUnitData_onHit.skill.mulByNum[n - 1].length - 1">
+                                                            <button type="button" style="margin-left: 5px;" @click="newUnitData_onHit.skill.mulByNum[n - 1].push('')">追加</button>
+                                                        </template>
+                                                        <br>
+                                                    </template>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -962,7 +1035,7 @@
                         </div>
                     </div>
                 </div>
-                <!--ユニットデータ追加用モーダルが一番行数使ってるの草-->
+                <!--ユニットデータ追加用モーダルが一番記述量多いの草-->
 
                 <div id="graph">
                     <!--グラフ-->
@@ -1069,8 +1142,22 @@
                 <div id="updated">
                     公開日：2021/05/25(火)<br>
                     <details>
-                        <summary>更新：詳細</summary>
+                        <summary>更新(折り畳み)</summary>
                         <div id="updateContent">
+                            <!--2021/06/25(金)-->
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/06/25(金)：
+                                </div>
+                                <div class="detail">
+                                    ・「深海適応」によって鈍化(地形効果)が無効となるよう修正<br>
+                                    ・「迎春の呪姫オロチヒメ」に「状態異常無効」を追加<br>
+                                    ・イビルプリンセス系ユニットに「魔界適応」を追加<br>
+                                    ・項目「その他」に「GG持ち」を追加<br>
+                                    ・レイアウトを若干変更(特にモーダル)
+                                </div>
+                            </div>
+                            <!--2021/05/28(金)-->
                             <div class="updateElem">
                                 <div class="date">
                                     2021/05/28(金)：
@@ -1082,6 +1169,7 @@
                                     ・投稿フォームを追加
                                 </div>
                             </div>
+                            <!--2021/05/27(木)-->
                             <div class="updateElem">
                                 <div class="date">
                                     2021/05/27(木)：
