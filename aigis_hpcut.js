@@ -424,8 +424,8 @@ const self_hasteTeemListElem = [
     { id: 0, buffer: '鉄泉の守護者レアン', rate: 40 },
     { id: 1, buffer: '晴着の看板娘ジュノン', rate: 40 },
     { id: 2, buffer: '恋慕の堕天使ソフィー', rate: 40 },
-    { id: 3, buffer: '水龍騎士スイレン', rate: 60 },
-    { id: 4, buffer: '屍骸道士ランファ', rate: 50 }
+    { id: 3, buffer: '水龍騎士スイレン', rate: 50 },
+    { id: 4, buffer: '屍骸道士ランファ', rate: 60 }
 ];
 //ユニットリスト
 const unitsList_onSkillActElem = [
@@ -1017,7 +1017,7 @@ const vm = new Vue({
             newUnitData_onHit: unitDataTemplate_onHit,
 
             modal_skillAwaken: [ true, true ],
-            modal_atkSpeed: [ false, true, true ],
+            modal_atkInterval: [ false, true, true ],
             addUnitAlart: '',
 
             options_attr1: array_attr1,
@@ -1499,7 +1499,9 @@ const vm = new Vue({
                 const me = this;
                 const atkInterval = me.SetAtkIntervalSub(unit, index);
                 if(atkInterval.startup !== null) {
-                    return `${(atkInterval.startup + atkInterval.remain + atkInterval.cooldown) / 2}f`;
+                    const atkMotion = Math.floor((atkInterval.startup + atkInterval.remain - 1) / 2);
+                    const atkCooldown = Math.floor((atkInterval.cooldown - 1) / 2);
+                    return `${atkMotion + 1 + atkCooldown + 1}f`;
                 } else {
                     return '-';
                 }
@@ -1556,6 +1558,7 @@ const vm = new Vue({
                     atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown * me.IsTarget(unit, bufferInfo));
                 })
                 if(atkStartup !== null) {
+                    //                 ↓ceil?
                     atkCooldown = Math.floor(((atkCooldownBySkill > 0 ? atkCooldownBySkill : atkCooldown) - 1) * (1 - hasteRate) + 1);
                     if(unit.unitInfo.note.indexOf('状態異常無効') === -1) {
                         atkCooldown += me.incAtkCooldown_status.value * 2;
@@ -1713,9 +1716,15 @@ const vm = new Vue({
                 let skillTimeLapse = 0;
                 let hit = 0;
                 //const atkStartup = unit.unitInfo.atkInterval[0].startup;
+                //const atkRemain = unit.unitInfo.atkInterval[0].remain;
+                //const atkMotion = Math.floor((atkStartup + atkRemain - 1) / 2);
+                //const atkCooldown = Math.floor((unit.unitInfo.atkInterval[0].cooldown - 1) / 2);
+                //const atkInterval = atkMotion + 1 + atkCooldown + 1;
                 const atkStartupSkill = unit.unitInfo.atkInterval[1].startup;
-                //const atkInterval = atkStartup + unit.unitInfo.atkInterval[0].remain + unit.unitInfo.atkInterval[0].cooldown;
-                const atkIntervalSkill = atkStartupSkill + unit.unitInfo.atkInterval[1].remain + unit.unitInfo.atkInterval[1].cooldown
+                const atkRemainSkill = unit.unitInfo.atkInterval[1].remain;
+                const atkMotionSkill = Math.floor((atkStartupSkill + atkRemainSkill - 1) / 2);
+                const atkCooldownSkill = Math.floor((unit.unitInfo.atkInterval[1].cooldown - 1) / 2);
+                const atkIntervalSkill = atkMotionSkill + 1 + atkCooldownSkill + 1;
                 const damage = me.DPS * deltaTime;
                 //スキル時間設定
                 if(unit.skill.trigger[index] === 'B') {
@@ -1737,8 +1746,8 @@ const vm = new Vue({
                             //mul *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
                             mul *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
                             //前回プロット時からのヒット数
-                            hit = Math.floor((skillTimeLapse * 60 - atkStartupSkill) / atkIntervalSkill + 1)
-                                - Math.floor(((skillTimeLapse - deltaTime) * 60 - atkStartupSkill) / atkIntervalSkill + 1);
+                            hit = Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
+                                - Math.floor(((skillTimeLapse - deltaTime) * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
                             if(unit.skill.dmgMul.opt[index] === 'あり') {
                                 HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * unit.skill.dmgMul.mul[index] * mul) ** hit);
                             } else {
@@ -1757,8 +1766,8 @@ const vm = new Vue({
                                 //mul *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
                                 mul *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
                                 //最小プロット間隔が1/30秒ではない時にはみ出す分の計算
-                                hit = Math.floor((dur * 60 - atkStartupSkill) / atkIntervalSkill + 1)
-                                    - Math.floor((skillTimeLapse * 60 - atkStartupSkill) / atkIntervalSkill + 1);
+                                hit = Math.floor((dur * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
+                                    - Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
                                 if(unit.skill.dmgMul.opt[index] === 'あり') {
                                     HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * unit.skill.dmgMul.mul[index] * mul) ** hit);
                                 } else {
@@ -2094,9 +2103,9 @@ const vm = new Vue({
             me.modal_onHit = true;
             me.modal_skillAwaken[0] = true;
             me.modal_skillAwaken[1] = true;
-            me.modal_atkSpeed[0] = false;
-            me.modal_atkSpeed[1] = true;
-            me.modal_atkSpeed[2] = true;
+            me.modal_atkInterval[0] = false;
+            me.modal_atkInterval[1] = true;
+            me.modal_atkInterval[2] = true;
         },
         //ユニットデータ整形追加(攻撃ヒット発生型)
         AddUnit_onHit() {
@@ -2145,7 +2154,7 @@ const vm = new Vue({
             }
             //攻撃間隔
             for(let i = 0; i < 3; i++) {
-                if(!me.modal_atkSpeed[i])   continue;
+                if(!me.modal_atkInterval[i])   continue;
                 fillAtkInterval[i] = unitInfo.atkInterval_uncurr[i].startup > 1
                                     && unitInfo.atkInterval_uncurr[i].remain > 1
                                     && unitInfo.atkInterval_uncurr[i].cooldown > 1;
