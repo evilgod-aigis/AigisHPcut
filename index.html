@@ -213,10 +213,10 @@
                             <div class="optcap8em">
                                 <span v-tooltip.bottom-start=
                                     "`深海等の地形効果による攻撃硬直増加(30fps)<br>
-                                    　深海(弱)　：15f (&ensp;8f) (括弧内は海鎮王子配置中)<br>
-                                    　深海　　　：23f (12f)<br>
-                                    　深海(強)　：45f (23f)<br>
-                                    　深海(超強)：60f (30f)`"
+                                    　深海（弱）　：15f (&ensp;8f) (括弧内は海鎮王子配置中)<br>
+                                    　深海　　　　：23f (12f)<br>
+                                    　深海（強）　：45f (23f)<br>
+                                    　深海（超強）：60f (30f)`"
                                 >
                                     鈍化(地形)：
                                 </span>
@@ -870,28 +870,28 @@
                                                         <span v-if="index === 1">通常スキル中</span>
                                                         <span v-if="index === 2">覚醒スキル中</span>
                                                         <template v-if="index === 0">
-                                                            <input type="checkbox" style="margin: 0;" v-model="modal_atkSpeed[index]">
+                                                            <input type="checkbox" style="margin: 0;" v-model="modal_atkInterval[index]">
                                                         </template>
                                                         <template v-if="index !== 0">
-                                                            <input type="checkbox" style="margin: 0;" v-model="modal_atkSpeed[index]" @change="modal_atkSpeed[3 - index] = true">
+                                                            <input type="checkbox" style="margin: 0;" v-model="modal_atkInterval[index]" @change="modal_atkInterval[3 - index] = true">
                                                         </template>
                                                     </label>
                                                 </div>
-                                                <div :class='{inactive:!modal_atkSpeed[index]}'>
+                                                <div :class='{inactive:!modal_atkInterval[index]}'>
                                                     <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーションの内、近接攻撃のダメージ発生<br>または遠距離攻撃の飛び道具発生までのフレーム数(60fps)`">
-                                                        攻撃発生<span v-if="modal_atkSpeed[index] && item.startup < 2" style="color: red;">*</span>
+                                                        攻撃発生<span v-if="modal_atkInterval[index] && item.startup < 2" style="color: red;">*</span>
                                                     </span>
                                                     <label v-tooltip.top-start="`2フレーム以上`">
                                                         <input type="number" class="modalNumber" :value="item.startup" @input="LimitAtkInterval(item, 'startup', $event)">
                                                     </label>
                                                     <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーションの内、攻撃発生後のフレーム数(60fps)`">
-                                                        発生後<span v-if="modal_atkSpeed[index] && item.remain < 2" style="color: red;">*</span>
+                                                        発生後<span v-if="modal_atkInterval[index] && item.remain < 2" style="color: red;">*</span>
                                                     </span>
                                                     <label v-tooltip.top-start="`2フレーム以上`">
                                                         <input type="number" class="modalNumber" :value="item.remain" @input="LimitAtkInterval(item, 'remain', $event)">
                                                     </label>
                                                     <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーション終了後、次の攻撃モーションを<br>始めるまでの待機フレーム数(60fps)`">
-                                                        攻撃硬直<span v-if="modal_atkSpeed[index] && item.cooldown < 2" style="color: red;">*</span>
+                                                        攻撃硬直<span v-if="modal_atkInterval[index] && item.cooldown < 2" style="color: red;">*</span>
                                                     </span>
                                                     <label v-tooltip.top-start="`2フレーム以上`">
                                                         <input type="number" class="modalNumber" :value="item.cooldown" @input="LimitAtkInterval(item, 'cooldown', $event)">
@@ -1054,8 +1054,8 @@
                                 <div class="wrap_checkbox">
                                     <label>
                                         <input type="checkbox" v-model="graphHidden_onSkillAct">
-                                        <span v-if="graphHidden_onSkillAct">全部表示</span>
-                                        <span v-if="!graphHidden_onSkillAct">全部非表示</span>
+                                        <span v-if="graphHidden_onSkillAct">全部非表示</span>
+                                        <span v-if="!graphHidden_onSkillAct">全部表示</span>
                                     </label>
                                 </div>
                             </div>
@@ -1070,8 +1070,8 @@
                                 <div class="wrap_checkbox">
                                     <label>
                                         <input type="checkbox" v-model="graphHidden_onHit">
-                                        <span v-if="graphHidden_onHit">全部表示</span>
-                                        <span v-if="!graphHidden_onHit">全部非表示</span>
+                                        <span v-if="graphHidden_onHit">全部非表示</span>
+                                        <span v-if="!graphHidden_onHit">全部表示</span>
                                     </label>
                                 </div>
                             </div>
@@ -1123,7 +1123,7 @@
                         　　　・<span style="font-style: italic; color: red;">i</span>　　：リストの番号(一番上が0、順に1、2、･･･)<br>
                         　　　　　　　&thinsp;「vm.unitsList_<span style="font-style: italic; color: red;">type</span>[<span style="font-style: italic; color: red;">i</span>].unitInfo.unitName」で名前確認可能<br>
                         　　(例)<span v-tooltip.top-start="`製作者はコハル大好きだよ！`">スキル発動時発生型の猫又コハルのデータを消したい。</span><br>
-                        　　　　→コンソールタグ(略)に「vm.unitsList_onSkillAct.splice(4,1)」と入力して(略)<br>
+                        　　　　→コンソールタグ(略)に「vm.unitsList_onSkillAct.splice(4, 1)」と入力して(略)<br>
                         <br>
                         ・グラフの色を変えたい。※実行した後、グラフにマウスオーバーすれば反映される。なにかしらオプションを変えるだけでリセットされるので注意。<br>
                         　　vm.canvas.data["datasets"][<span style="font-style: italic; color: red;">i</span>].borderColor='<span style="font-style: italic; color: red;">color</span>'<br>
@@ -1144,6 +1144,16 @@
                     <details>
                         <summary>更新(折り畳み)</summary>
                         <div id="updateContent">
+                            <!--2021/06/27(日)-->
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/06/27(日)：
+                                </div>
+                                <div class="detail">
+                                    ・攻撃間隔の60fpsから30fpsへの変換方法を修正<br>
+                                    ・レイアウトを一部修正
+                                </div>
+                            </div>
                             <!--2021/06/25(金)-->
                             <div class="updateElem">
                                 <div class="date">
