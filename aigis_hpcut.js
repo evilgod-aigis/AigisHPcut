@@ -687,7 +687,7 @@ const unitsList_onSkillActElem = [
             firstTime: null, interval: null,
             trigger: [ '-', '-' ], trans: [ '-', '-' ], HPred: [ 10, 10 ],
             mulByNum: [ [ 1 ], [ 1 ] ],
-            dmgMul: { opt: [ 'あり', 'あり' ], mul: [ 1.5, 2.5 ], target: [ '魔法敵', '魔法敵' ] }
+            dmgMul: { opt: [ 'なし', 'なし' ], mul: [ 1.5, 2.5 ], target: [ '魔法敵', '魔法敵' ] }
         }
     },
     {
@@ -912,7 +912,7 @@ const unitDataTemplate_onSkillAct = {
             selectable: false, selected: '',
             options: [ '' ]
         },
-        attribution: [ '', '', '' ],
+        attribution: [ '', '', '', '' ],
         affection: { percentage: null, bonus: '', changeRate: null },
         note: [ '' ]
     },
@@ -941,7 +941,7 @@ const unitDataTemplate_onHit = {
             selectable: false, selected: '',
             options: [ '' ]
         },
-        attribution: [ '', '', '' ],
+        attribution: [ '', '', '', '' ],
         affection: { percentage: null, bonus: '', changeRate: null },
         note: [ '' ],
         atkInterval: [
@@ -1040,6 +1040,18 @@ const vm = new Vue({
                 min: 1,
                 max: 10000000
             },
+            linkedHP: {
+                use: false,
+                value: 10000,
+                min: 1,
+                max: 10000000
+            },
+            simultHit: {
+                use: false,
+                value: 2,
+                min: 1,
+                max: 1001
+            },
             DPS: 0,
             incAtkCooldown_status: {
                 value: 0,
@@ -1052,7 +1064,7 @@ const vm = new Vue({
                 max: 1000
             },
 
-            plotScaling: 0,
+            plotNum: 0,
             datasets: [],
             graphHidden_onSkillAct: false,
             graphHidden_onHit: false,
@@ -1671,29 +1683,61 @@ const vm = new Vue({
                 //const unitName = unit.unitInfo.unitName;
                 const AW = unit.skill.awaken.selected;
                 const index = AW === '通常' ? 0 : 1;
-                const deltaTime = me.timeCap.value / me.plotScaling;
+                const deltaTime = me.timeCap.value / me.plotNum;
+                const target = unit.skill.target[index];
                 let HP = me.maxHP.value;
+                let linkedHP = me.linkedHP.value;
+                let simultHit = me.simultHit.value;
                 const HPchanges = [];
-                let mul;
+                const mul = [];
                 let count = 0;
                 const damage = me.DPS * deltaTime;
                 for(let time = 0; time <= me.timeCap.value; time += deltaTime) {
-                    mul = 1.0;
+                    mul[0] = 1.0;
+                    mul[1] = 1.0;
                     //HP減少発生時の処理
                     if(time >= (unit.skill.firstTime + count * unit.skill.interval)) {
-                        mul *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
-                        mul *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                        mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
+                        mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
+                        mul[0] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                        mul[1] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
                         if(unit.skill.dmgMul.opt[index] === 'あり') {
-                            HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * unit.skill.dmgMul.mul[index] * mul));
+                            mul[0] *= unit.skill.dmgMul.mul[index];
+                            mul[1] *= unit.skill.dmgMul.mul[index];
+                        }
+                        if(target === '全員' || target === '全敵') {    //全員・全敵
+                            if(me.linkedHP.use) {   //HPリンクあり
+                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                                HP -= (linkedHP - Math.floor(linkedHP * (1 - unit.skill.HPred[index] / 100 * mul[1])));
+                                linkedHP = Math.floor(linkedHP * (1 - unit.skill.HPred[index] / 100 * mul[1]));
+                            } else {                //HPリンクなし
+                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                            }
+                        } else if(target === '射程内') {   //射程内制限なし
+                            if(me.simultHit.use) {  //引き付け(敵)あり
+                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** simultHit);
+                            } else {                //引き付け(敵)なし
+                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                            }
+                        } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
+                            if(me.simultHit.use) {  //引き付け(敵)あり
+                                simultHit = Math.min(simultHit, parseInt(target));
+                                 HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** simultHit);
+                            } else {                //引き付け(敵)なし
+                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                            }
                         } else {
-                            HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul));
+                            HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
                         }
                         count++;
                     }
                     if(HP < 0) HP = 0;
+                    if(linkedHP < 0) linkedHP = 0;
                     HPchanges.push(HP / me.maxHP.value * 100);
                     HP -= damage;
+                    linkedHP -= damage;
                     if(HP > me.maxHP.value) HP = me.maxHP.value;
+                    if(linkedHP > me.linkedHP.value) linkedHP = me.linkedHP.value;
                 }
                 return HPchanges.slice()
             }
@@ -1707,10 +1751,14 @@ const vm = new Vue({
                 const AW = unit.skill.awaken.selected;
                 const index = AW === '通常' ? 0 : 1;
                 const trigger = unit.skill.trigger[index];
-                const deltaTime = me.timeCap.value / me.plotScaling;
+                const deltaTime = me.timeCap.value / me.plotNum;
+                const target = unit.skill.target[index];
                 let HP = me.maxHP.value;
+                //let linkedHP = me.linkedHP.value;
+                let simultHit = me.simultHit.value;
                 const HPchanges = [];
-                let dur, mul;
+                const mul = [];
+                let dur;
                 let count = 0;
                 let isActive = false;
                 let skillTimeLapse = 0;
@@ -1733,29 +1781,45 @@ const vm = new Vue({
                     dur = unit.skill.dur.A * (1 + extend);
                 }
                 for(let time = 0; time <= me.timeCap.value; time += deltaTime) {
-                    mul = 1.0;
-                    if(time >= (unit.skill.firstTime + count * (dur + unit.skill.interval))
+                    mul[0] = 1.0;
+                    mul[1] = 1.0;
+                    if(time >= (unit.skill.firstTime + count * (dur + unit.skill.interval)) //スキル中
                     && time <= (unit.skill.firstTime + dur + count * (unit.skill.interval + dur))) {
-                        //スキル中
                         skillTimeLapse += deltaTime;
-                        if(!isActive) {     //スキル点火時に一度だけ処理
+                        if(!isActive) {     //スキル発動時に一度だけ処理
                             isActive = true;
                             skillTimeLapse = time - (unit.skill.firstTime + count * (dur + unit.skill.interval));
                         }
                         if(trigger !== '非スキル中hit') {
-                            //mul *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
-                            mul *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                            //mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
+                            //mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
+                            mul[0] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                            //mul[1] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                            if(unit.skill.dmgMul.opt[index] === 'あり') {
+                                mul[0] *= unit.skill.dmgMul.mul[index];
+                                //mul[1] *= unit.skill.dmgMul.mul[index];
+                            }
                             //前回プロット時からのヒット数
                             hit = Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
                                 - Math.floor(((skillTimeLapse - deltaTime) * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
-                            if(unit.skill.dmgMul.opt[index] === 'あり') {
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * unit.skill.dmgMul.mul[index] * mul) ** hit);
-                            } else {
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul) ** hit);
+                            if(target === '射程内') {   //射程内制限なし
+                                if(me.simultHit.use) {  //引き付け(敵)あり
+                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
+                                } else {                //引き付け(敵)なし
+                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
+                                }
+                            } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
+                                if(me.simultHit.use) {  //引き付け(敵)あり
+                                    simultHit = Math.min(simultHit, parseInt(target));
+                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
+                                } else {                //引き付け(敵)なし
+                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
+                                }
+                            } else {    //他
+                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
                             }
                         }
-                    } else {
-                        //非スキル中
+                    } else {    //非スキル中
                         if(trigger !== 'スキル中hit') {
                             //非スキル中も割合ダメージを生じるユニット用
                         }
@@ -1763,23 +1827,43 @@ const vm = new Vue({
                             count++;
                             isActive = false;
                             if(trigger !== '非スキル中hit') {
-                                //mul *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
-                                mul *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                                //mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
+                                //mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
+                                mul[0] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                                //mul[1] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                                if(unit.skill.dmgMul.opt[index] === 'あり') {
+                                    mul[0] *= unit.skill.dmgMul.mul[index];
+                                    //mul[1] *= unit.skill.dmgMul.mul[index];
+                                }
                                 //最小プロット間隔が1/30秒ではない時にはみ出す分の計算
                                 hit = Math.floor((dur * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
                                     - Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
-                                if(unit.skill.dmgMul.opt[index] === 'あり') {
-                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * unit.skill.dmgMul.mul[index] * mul) ** hit);
-                                } else {
-                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul) ** hit);
+                                if(target === '射程内') {   //射程内制限なし
+                                    if(me.simultHit.use) {  //引き付け(敵)あり
+                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
+                                    } else {                //引き付け(敵)なし
+                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
+                                    }
+                                } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
+                                    if(me.simultHit.use) {  //引き付け(敵)あり
+                                        simultHit = Math.min(simultHit, parseInt(target));
+                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
+                                    } else {                //引き付け(敵)なし
+                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
+                                    }
+                                } else {    //他
+                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
                                 }
                             }
                         }
                     }
                     if(HP < 0) HP = 0;
+                    //if(linkedHP < 0) linkedHP = 0;
                     HPchanges.push(HP / me.maxHP.value * 100);
                     HP -= damage;
+                    //linkedHP -= damage;
                     if(HP > me.maxHP.value) HP = me.maxHP.value;
+                    //if(linkedHP > me.linkedHP.value) linkedHP = me.linkedHP.value;
                 }
                 return HPchanges.slice()
             }
@@ -1906,7 +1990,7 @@ const vm = new Vue({
                         selectable: false, selected: '',
                         options: [ '' ]
                     },
-                    attribution: [ '', '', '' ],
+                    attribution: [ '', '', '', '' ],
                     affection: { percentage: null, bonus: '', changeRate: null },
                     note: [ '' ]
                 },
@@ -2069,7 +2153,7 @@ const vm = new Vue({
                         selectable: false, selected: '',
                         options: [ '' ]
                     },
-                    attribution: [ '', '', '' ],
+                    attribution: [ '', '', '', '' ],
                     affection: { percentage: null, bonus: '', changeRate: null },
                     note: [ '' ],
                     atkInterval: [
@@ -2255,8 +2339,8 @@ const vm = new Vue({
         //グラフ作成
         Chart() {
             const me = this;
-            //プロット間隔
-            me.plotScaling = Math.min(me.timeCap.value * 30, Math.floor(window.innerWidth / 100) * 300);
+            //プロット数
+            me.plotNum = Math.min(me.timeCap.value * 30, Math.floor(window.innerWidth / 100) * 300);
             //グラフデータ作成
             me.SetGraphData;
             //グラフの枠線の色
@@ -2290,7 +2374,7 @@ const vm = new Vue({
             me.canvas = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: [...Array(me.plotScaling + 1)].map((_, i) => i * me.timeCap.value / me.plotScaling),
+                    labels: [...Array(me.plotNum + 1)].map((_, i) => i * me.timeCap.value / me.plotNum),
                     datasets: me.datasets
                 },
                 options: {
