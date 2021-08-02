@@ -1,5 +1,6 @@
 //1000行超えるとは思わなんだ_:(´ཀ`」∠):_
 //2000行超えちゃったよ･･･0(:3　)～ ('､3_ヽ)_
+
 //初動短縮リスト
 const rWTlistElem = [
     {
@@ -367,21 +368,39 @@ const hasteSkillListElem = [
         tooltip: '[スキルバフ] 属性：クリスマスの攻撃硬直8f化'
     }
 ];
+//鈍化(マップ)軽減リスト
+const redMapEffListElem = [
+    {
+        id: 0, buffer: '王子【海鎮】', awaken: null, showAwaken: false,
+        map: '深海', rate: 50, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[配置] 全味方の深海の影響を50%軽減'
+    },
+    {
+        id: 1, buffer: '紫鱗の海巫女ハルフゥ', awaken: '覚醒', showAwaken: false,
+        map: '深海', rate: 30, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[編成] 全味方の深海の影響を30%軽減'
+    }
+];
+
 //自己バフ
 //初動短縮リスト
 const self_rWTlistElem = [
-    { id: 0, buffer: '雷光の魔剣士タラニア', rate: 50 },
-    { id: 1, buffer: '主天使セフィーレ', rate: 60 },
-    { id: 2, buffer: '堕天系お掃除当番クロエ', rate: 50 },
-    { id: 3, buffer: '帝国機甲士クリスタ', rate: 30 },
-    { id: 4, buffer: '封機の剣士エレカ', rate: 60 },
-    { id: 5, buffer: '信仰の槍士コルム', rate: 50 },
-    { id: 6, buffer: '炎のサンタ召喚士ソラノ', rate: 40 },
-    { id: 7, buffer: '甘美な踊り子マーニー', rate: 60 },
-    { id: 8, buffer: '恋の応援団シャルキー', rate: 70 },
-    { id: 9, buffer: '氷霊応援団ユキヒメ', rate: 60 },
-    { id: 10, buffer: '妖狸スズネ', rate: 20 },
-    { id: 11, buffer: '筆頭飛行士オヴェリー', rate: 40 }
+    { id: 0, buffer: 'ナイトアサシン', rate: 50 },
+    { id: 1, buffer: 'エンフォーサー', rate: 50 },
+    { id: 2, buffer: '雷光の魔剣士タラニア', rate: 50 },
+    { id: 3, buffer: '主天使セフィーレ', rate: 60 },
+    { id: 4, buffer: '堕天系お掃除当番クロエ', rate: 50 },
+    { id: 5, buffer: '帝国機甲士クリスタ', rate: 30 },
+    { id: 6, buffer: '封機の剣士エレカ', rate: 60 },
+    { id: 7, buffer: '信仰の槍士コルム', rate: 50 },
+    { id: 8, buffer: '炎のサンタ召喚士ソラノ', rate: 40 },
+    { id: 9, buffer: '甘美な踊り子マーニー', rate: 60 },
+    { id: 10, buffer: '恋の応援団シャルキー', rate: 70 },
+    { id: 11, buffer: '氷霊応援団ユキヒメ', rate: 60 },
+    { id: 12, buffer: '妖狸スズネ', rate: 20 },
+    { id: 13, buffer: '筆頭飛行士オヴェリー', rate: 40 }
 ];
 //再動短縮リスト
 const self_rCTlistElem = [
@@ -427,6 +446,23 @@ const self_hasteTeemListElem = [
     { id: 3, buffer: '水龍騎士スイレン', rate: 50 },
     { id: 4, buffer: '屍骸道士ランファ', rate: 60 }
 ];
+//鈍化(マップ)軽減リスト
+const self_redMapEffListElem = [
+    { id: 0, buffer: 'セーラー系', map: '深海', rate: 50 },
+    { id: 1, buffer: 'セーラー', map: '深海', rate: 50 },
+    { id: 2, buffer: 'セーラーチーフ', map: '深海', rate: 50 },
+    { id: 3, buffer: 'セーラーエリート', map: '深海', rate: 50 },
+    { id: 4, buffer: 'アドミラル', map: '深海', rate: 50 },
+    { id: 5, buffer: 'ドレッドノート', map: '深海', rate: 50 },
+    { id: 6, buffer: 'パイレーツ系', map: '深海', rate: 50 },
+    { id: 7, buffer: '下級パイレーツ', map: '深海', rate: 50 },
+    { id: 8, buffer: 'パイレーツ', map: '深海', rate: 50 },
+    { id: 9, buffer: 'キャプテン', map: '深海', rate: 50 },
+    { id: 10, buffer: 'キングオブパイレーツ', map: '深海', rate: 50 },
+    { id: 11, buffer: 'ネプチューン', map: '深海', rate: 50 },
+    { id: 12, buffer: 'エル・ドラゴ', map: '深海', rate: 50 }
+];
+
 //ユニットリスト
 const unitsList_onSkillActElem = [
     {
@@ -971,6 +1007,7 @@ const unitDataTemplate_onHit = {
         dmgMul: { opt: [ false, false ], mul: [ 1, 1 ], target: [ null, null ] }
     }
 };
+
 //属性一覧
 const array_attr1 = [
     '', 'アンデッド', 'エルフ', 'オーク', 'ゴブリン', 'ダークエルフ', 'デーモン', 'ドワーフ',
@@ -1002,11 +1039,14 @@ const vm = new Vue({
             checked_hasteTeem: [],
             hasteSkillList: hasteSkillListElem,
             checked_hasteSkill: [],
+            redMapEffList: redMapEffListElem,
+            checked_redMapEff: [],
 
             self_rWTlist: self_rWTlistElem,
             self_rCTlist: self_rCTlistElem,
             self_skillExtendList: self_skillExtendListElem,
             self_hasteTeemList: self_hasteTeemListElem,
+            self_redMapEffList: self_redMapEffListElem,
 
             unitsList_onSkillAct: unitsList_onSkillActElem,
             modal_onSkillAct: false,
@@ -1053,12 +1093,16 @@ const vm = new Vue({
                 max: 1001
             },
             DPS: 0,
-            incAtkCooldown_status: {
+            incAtkCooldown_enemy: {
                 value: 0,
                 min: 0,
                 max: 1000
             },
-            incAtkCooldown_env: {
+            incAtkCooldown_map: {
+                map: {
+                    selected: '深海',
+                    options: [ '深海' ]
+                },
                 value: 0,
                 min: 0,
                 max: 1000
@@ -1530,6 +1574,7 @@ const vm = new Vue({
                 let atkCooldown = unit.unitInfo.atkInterval_uncurr[index1].cooldown;
                 let curr = 0;
                 let atkCooldownBySkill = 0;
+                let redMapEffRate = 0;
                 let bufferInfo;
                 //150%ボーナスの補正値
                 switch(unit.unitInfo.rarity) {
@@ -1569,14 +1614,41 @@ const vm = new Vue({
                     bufferInfo = me.hasteSkillList.find((elem) => elem.buffer === buffer);
                     atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown * me.IsTarget(unit, bufferInfo));
                 })
+                //鈍化(マップ)軽減
+                //自身による効果
+                bufferInfo = me.redMapEffList.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                if(bufferInfo !== undefined) {
+                    if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
+                        redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
+                    }
+                }
+                bufferInfo = me.redMapEffList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                if(bufferInfo !== undefined) {
+                    if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
+                        redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
+                    }
+                }
+                bufferInfo = me.self_redMapEffList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                if(bufferInfo !== undefined) {
+                    if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
+                        redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
+                    }
+                }
+                //選択したオプションによる効果
+                me.checked_redMapEff.forEach(function(buffer) {
+                    bufferInfo = me.redMapEffList.find((elem) => elem.buffer === buffer);
+                    if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
+                        redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate * me.IsTarget(unit, bufferInfo));
+                    }
+                })
                 if(atkStartup !== null) {
                     //                 ↓ceil?
                     atkCooldown = Math.floor(((atkCooldownBySkill > 0 ? atkCooldownBySkill : atkCooldown) - 1) * (1 - hasteRate) + 1);
                     if(unit.unitInfo.note.indexOf('状態異常無効') === -1) {
-                        atkCooldown += me.incAtkCooldown_status.value * 2;
+                        atkCooldown += me.incAtkCooldown_enemy.value * 2;
                     }
                     if(unit.unitInfo.note.indexOf('深海適応') === -1) {
-                        atkCooldown += me.incAtkCooldown_env.value * 2;
+                        atkCooldown += Math.ceil(me.incAtkCooldown_map.value * (1 - redMapEffRate / 100)) * 2;
                     }
                     unit.unitInfo.atkInterval[index0].startup = atkStartup;
                     unit.unitInfo.atkInterval[index0].remain = atkRemain;
@@ -1726,7 +1798,7 @@ const vm = new Vue({
                             } else {                //引き付け(敵)なし
                                 HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
                             }
-                        } else {
+                        } else {    //他
                             HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
                         }
                         count++;
