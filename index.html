@@ -254,32 +254,49 @@
                             </div>
                             <div class="optset">
                                 <div class="box">
-                                    <label v-tooltip.bottom-start="`${incAtkCooldown_status.min.toLocaleString()}～${incAtkCooldown_status.max.toLocaleString()}f (30fps)`">
-                                        <input type="number" class="number1" :value="incAtkCooldown_status.value" @input="LimitNumInt(incAtkCooldown_status, incAtkCooldown_status.min, incAtkCooldown_status.max, $event)">f
+                                    <label v-tooltip.bottom-start="`${incAtkCooldown_enemy.min.toLocaleString()}～${incAtkCooldown_enemy.max.toLocaleString()}f (30fps)`">
+                                        <input type="number" class="number1" :value="incAtkCooldown_enemy.value" @input="LimitNumInt(incAtkCooldown_enemy, incAtkCooldown_enemy.min, incAtkCooldown_enemy.max, $event)">f
                                     </label>
                                 </div>
                             </div>
                         </div>
-                        <!--攻撃硬直増加(地形効果)-->
+                        <!--攻撃硬直増加(マップ効果)-->
                         <div class="opt2">
                             <div class="optcap8em">
                                 <span v-tooltip.bottom-start=
-                                    "`深海等の地形効果による攻撃硬直増加(30fps)<br>
-                                    　深海（弱）　：15f (&ensp;8f) (括弧内は海鎮王子配置中)<br>
-                                    　深海　　　　：23f (12f)<br>
-                                    　深海（強）　：45f (23f)<br>
-                                    　深海（超強）：60f (30f)`"
+                                    "`深海等のマップ効果による攻撃硬直増加(30fps)<br>
+                                    　深海（弱）　：15f<br>
+                                    　深海　　　　：23f<br>
+                                    　深海（強）　：45f<br>
+                                    　深海（超強）：60f`"
                                 >
-                                    鈍化(地形)：
+                                    鈍化(マップ)：
                                 </span>
                             </div>
                             <div class="optset">
                                 <div class="box">
-                                    <label v-tooltip.bottom-start="`${incAtkCooldown_env.min.toLocaleString()}～${incAtkCooldown_env.max.toLocaleString()}f (30fps)`">
-                                        <input type="number" class="number1" :value="incAtkCooldown_env.value" @input="LimitNumInt(incAtkCooldown_env, incAtkCooldown_env.min, incAtkCooldown_env.max, $event)">f
+                                    <label v-tooltip.bottom-start="`${incAtkCooldown_map.min.toLocaleString()}～${incAtkCooldown_map.max.toLocaleString()}f (30fps)`">
+                                        <input type="number" class="number1" :value="incAtkCooldown_map.value" @input="LimitNumInt(incAtkCooldown_map, incAtkCooldown_map.min, incAtkCooldown_map.max, $event)">f
                                     </label>
                                 </div>
                             </div>
+                            <br>
+                            <div class="optcap7em">
+                                <span v-tooltip.bottom-start="`編成/配置による鈍化(マップ)の軽減<br><br>今のところ軽減率が一番高いものを適用<br>競合の有無の情報求ム`">
+                                    └&thinsp;軽減：
+                                </span>
+                            </div>
+                            <div class="optset">
+                                <template v-for="item in redMapEffList">
+                                    <div :key="`redMapEff-${item.id}`" class="box">
+                                        <label v-tooltip.bottom-start="`${item.tooltip}`">
+                                            <input type="checkbox" v-model="checked_redMapEff" :value="item.buffer" :disabled="item.disabled">
+                                            {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
+                                        </label>
+                                    </div>
+                                </template>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -576,7 +593,7 @@
                                             クラス<span v-if="newUnitData_onSkillAct.unitInfo.unitClass.options.filter(Boolean).length === 0" style="color: red;">*</span>：
                                         </span>
                                     </div>
-                                    <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ[未CC(覚醒)クラス名+系]と入力すればおｋ`">
+                                    <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ「[未CC(未覚醒)クラス名]系」と入力すればおｋ`">
                                         <div class="box" >
                                             <template v-for="(item, index) in newUnitData_onSkillAct.unitInfo.unitClass.options">
                                                 <input type="text" class="modalClass" v-model="newUnitData_onSkillAct.unitInfo.unitClass.options[index]" :key="`newUnitClass-${index}`">
@@ -860,7 +877,7 @@
                                             クラス<span v-if="newUnitData_onHit.unitInfo.unitClass.options.filter(Boolean).length === 0" style="color: red;">*</span>：
                                         </span>
                                     </div>
-                                    <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ[未CC(覚醒)クラス名+系]と入力すればおｋ`">
+                                    <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ「[未CC(未覚醒)クラス名]系」と入力すればおｋ`">
                                         <div class="box" >
                                             <template v-for="(item, index) in newUnitData_onHit.unitInfo.unitClass.options">
                                                 <input type="text" class="modalClass" v-model="newUnitData_onHit.unitInfo.unitClass.options[index]" :key="`newUnitClass-${index}`">
@@ -1203,6 +1220,18 @@
                     <details>
                         <summary>更新(折り畳み)</summary>
                         <div id="updateContent">
+                            <!--2021/08/02(月)-->
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/08/02(月)：
+                                </div>
+                                <div class="detail">
+                                    ・鈍化(マップ)の軽減オプションを追加<br>
+                                    ・鈍化(マップ)の軽減オプションに「紫鱗の海巫女ハルフゥ」を追加<br>
+                                    ・セーラー系・パイレーツ系に深海の悪影響を軽減する効果を適用<br>
+                                    ・ナイトアサシン・エンフォーサーに初動短縮を適用
+                                </div>
+                            </div>
                             <!--2021/07/18(日)-->
                             <div class="updateElem">
                                 <div class="date">
@@ -1230,7 +1259,7 @@
                                     2021/06/25(金)：
                                 </div>
                                 <div class="detail">
-                                    ・「深海適応」によって鈍化(地形効果)が無効となるよう修正<br>
+                                    ・「深海適応」によって鈍化(マップ効果)が無効となるよう修正<br>
                                     ・「迎春の呪姫オロチヒメ」に「状態異常無効」を追加<br>
                                     ・イビルプリンセス系ユニットに「魔界適応」を追加<br>
                                     ・項目「その他」に「GG持ち」を追加<br>
@@ -1278,7 +1307,7 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-crosshair@1"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-crosshair@1.1.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://unpkg.com/v-tooltip"></script>
         <script src="aigis_hpcut.js"></script>
