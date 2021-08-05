@@ -20,49 +20,51 @@
                     <div class="opt1">
                         <!--初動短縮-->
                         <div class="opt2">
-                                    <div class="optcap8em">
-                                        <span>
-                                            初動短縮：
-                                        </span>
+                            <div class="optcap8em">
+                                <span v-tooltip.bottom-start="`短縮率が最大のものを適用`">
+                                    初動短縮：
+                                </span>
+                            </div>
+                            <div class="optset">
+                                <template v-for="item in rWTlist">
+                                    <div :key="`rWT-${item.id}`" class="box">
+                                        <label v-tooltip.bottom-start="`${item.tooltip}`">
+                                            <input type="checkbox" v-model="checked_rWT" :value="{buffer: item.buffer, awaken: item.awaken}" :disabled="item.disabled">
+                                            {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
+                                        </label>
                                     </div>
-                                    <div class="optset">
-                                        <template v-for="item in rWTlist">
-                                            <div :key="`rWT-${item.id}`" class="box">
-                                                <label v-tooltip.bottom-start="`${item.tooltip}`">
-                                                    <input type="checkbox" v-model="checked_rWT" :value="item.buffer" :disabled="item.disabled">
-                                                    {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
-                                                </label>
-                                            </div>
-                                        </template>
-                                    </div>
+                                </template>
+                            </div>
                         </div>
                         <!--再動短縮-->
                         <div class="opt2">
                             <div class="optcap8em">
-                                <span>
+                                <span v-tooltip.bottom-start="`短縮率が最大のものを適用`">
                                     再動短縮：
                                 </span>
                             </div>
                             <div class="optset">
-                                <template v-for="item in rCTdepType">
-                                    <div :key="`rCTdepType-${item.id}`" class="box">
-                                        {{item.deployType}}
-                                        <select v-model="item.rate">
-                                            <option>0</option>
-                                            <option>25</option>
-                                            <option>30</option>
-                                            <option>35</option>
-                                            <option>40</option>
-                                            <option v-if="item.deployType !== '遠近両型'">45</option>
-                                            <option>50</option>
-                                            <option>60</option>
-                                        </select>%
-                                    </div>
-                                </template>
+                                <div class="box" v-tooltip.bottom-start="`対象の配置タイプにのみ適用<br><br>例えば近接型を50%にしてもスカウト系クラスには適用されない`">
+                                    <template v-for="item in rCTdepType">
+                                        <div :key="`rCTdepType-${item.id}`" class="box">
+                                            {{item.deployType}}
+                                            <select v-model="item.rate">
+                                                <option>0</option>
+                                                <option>25</option>
+                                                <option>30</option>
+                                                <option>35</option>
+                                                <option>40</option>
+                                                <option v-if="item.deployType !== '遠近両型'">45</option>
+                                                <option>50</option>
+                                                <option>60</option>
+                                            </select>%
+                                        </div>
+                                    </template>
+                                </div>
                                 <template v-for="item in rCTlist">
                                     <div :key="`rCT-${item.id}`" class="box">
                                         <label v-tooltip.bottom-start="`${item.tooltip}`">
-                                            <input type="checkbox" v-model="checked_rCT" :value="item.buffer" :disabled="item.disabled">
+                                            <input type="checkbox" v-model="checked_rCT" :value="{buffer: item.buffer, awaken: item.awaken}" :disabled="item.disabled">
                                             {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
                                         </label>
                                     </div>
@@ -74,7 +76,7 @@
                         <!--スキル時間延長-->
                         <div class="opt2">
                             <div class="optcap8em">
-                                <span>
+                                <span v-tooltip.bottom-start="`延長率が最大のものを適用`">
                                     スキル時間延長：
                                 </span>
                             </div>
@@ -82,7 +84,7 @@
                                 <template v-for="item in skillExtendList">
                                     <div :key="`skillExtend-${item.id}`" class="box">
                                         <label v-tooltip.bottom-start="`${item.tooltip}`">
-                                            <input type="checkbox" v-model="checked_skillExtend" :value="item.buffer" :disabled="item.disabled">
+                                            <input type="checkbox" v-model="checked_skillExtend" :value="{buffer: item.buffer, awaken: item.awaken}" :disabled="item.disabled">
                                             {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
                                         </label>
                                     </div>
@@ -94,7 +96,7 @@
                         <!--硬直短縮(編成バフ)-->
                         <div class="opt2">
                             <div class="optcap8em">
-                                <span>
+                                <span v-tooltip.bottom-start="`短縮率が最大のものを適用`">
                                     硬直短縮：<br>
                                     (編成バフ)&nbsp;&nbsp;
                                 </span>
@@ -103,7 +105,7 @@
                                 <template v-for="item in hasteTeemList">
                                     <div :key="`hasteTeem-${item.id}`" class="box">
                                         <label v-tooltip.bottom-start="`${item.tooltip}`">
-                                            <input type="checkbox" v-model="checked_hasteTeem" :value="item.buffer" :disabled="item.disabled">
+                                            <input type="checkbox" v-model="checked_hasteTeem" :value="{buffer: item.buffer, awaken: item.awaken}" :disabled="item.disabled">
                                             {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
                                         </label>
                                     </div>
@@ -113,7 +115,12 @@
                         <!--硬直短縮(スキル)-->
                         <div class="opt2">
                             <div class="optcap8em">
-                                <span v-tooltip.bottom-start="`各ツールチップ内のフレーム数は30fpsでの値<br>海外版wikiの60fpsの値を元に算出<br><span style=&quot;text-decoration: line-through;&quot;>設定が面倒なので</span>常時適用`">
+                                <span v-tooltip.bottom-start="`
+                                    各ツールチップ内のフレーム数は30fpsでの値<br>
+                                    海外版wikiの60fpsの値を元に算出<br>
+                                    <span style=&quot;text-decoration: line-through;&quot;>設定が面倒なので</span>常時適用<br><br>
+                                    フレーム数が最大のものを適用`"
+                                >
                                     硬直短縮：<br>
                                     (スキル)&nbsp;&nbsp;&nbsp;
                                 </span>
@@ -122,7 +129,7 @@
                                 <template v-for="item in hasteSkillList">
                                     <div :key="`hasteSkill-${item.id}`" class="box">
                                         <label v-tooltip.bottom-start="`${item.tooltip}`">
-                                            <input type="checkbox" v-model="checked_hasteSkill" :value="item.buffer" :disabled="item.disabled">
+                                            <input type="checkbox" v-model="checked_hasteSkill" :value="{buffer: item.buffer, awaken: item.awaken}" :disabled="item.disabled">
                                             {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
                                         </label>
                                     </div>
@@ -282,7 +289,7 @@
                             </div>
                             <br>
                             <div class="optcap7em">
-                                <span v-tooltip.bottom-start="`編成/配置による鈍化(マップ)の軽減<br><br>今のところ軽減率が一番高いものを適用<br>競合の有無の情報求ム`">
+                                <span v-tooltip.bottom-start="`編成/配置による鈍化(マップ)の軽減<br><br>軽減率が最大のものを適用`">
                                     └&thinsp;軽減：
                                 </span>
                             </div>
@@ -290,7 +297,7 @@
                                 <template v-for="item in redMapEffList">
                                     <div :key="`redMapEff-${item.id}`" class="box">
                                         <label v-tooltip.bottom-start="`${item.tooltip}`">
-                                            <input type="checkbox" v-model="checked_redMapEff" :value="item.buffer" :disabled="item.disabled">
+                                            <input type="checkbox" v-model="checked_redMapEff" :value="{buffer: item.buffer, awaken: item.awaken}" :disabled="item.disabled">
                                             {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
                                         </label>
                                     </div>
@@ -348,7 +355,10 @@
                                         </template>
                                     </td>
                                     <td>
-                                        <template v-if="unit.unitInfo.affection.bonus !== 'その他'">
+                                        <template v-if="_.isEmpty(unit.unitInfo.affection.bonus)">
+                                            不明
+                                        </template>
+                                        <template v-else-if="unit.unitInfo.affection.bonus !== 'その他'">
                                             {{unit.unitInfo.affection.bonus}} {{unit.unitInfo.affection.changeRate}}%<br>
                                             好感度
                                             <select v-model.number="unit.unitInfo.affection.percentage">
@@ -385,7 +395,7 @@
                                             </select>
                                         </template>
                                     </td>
-                                    <td v-if="unit.id > 10">
+                                    <td v-if="unit.id > 11">
                                         <button type="button" class="delUnitBtn" @click="unitsList_onSkillAct.splice(unit.id, 1)">削除</button>
                                     </td>
                                 </tr>
@@ -443,7 +453,10 @@
                                         </template>
                                     </td>
                                     <td>
-                                        <template v-if="unit.unitInfo.affection.bonus !== 'その他'">
+                                        <template v-if="_.isEmpty(unit.unitInfo.affection.bonus)">
+                                            不明
+                                        </template>
+                                        <template v-else-if="unit.unitInfo.affection.bonus !== 'その他'">
                                             <template v-if="unit.unitInfo.affection.percentage !== 0">
                                                 {{unit.unitInfo.affection.bonus}} {{unit.unitInfo.affection.changeRate}}%<br>
                                                 好感度
@@ -512,7 +525,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            ユニット名<span v-if="newUnitData_onSkillAct.unitInfo.unitName.length === 0" style="color: red;">*</span>：
+                                            ユニット名<span v-if="_.isEmpty(newUnitData_onSkillAct.unitInfo.unitName)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -551,7 +564,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            配置型<span v-if="!newUnitData_onSkillAct.unitInfo.deployType" style="color: red;">*</span>：
+                                            配置型<span v-if="_.isEmpty(newUnitData_onSkillAct.unitInfo.deployType)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -568,7 +581,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            レアリティ<span v-if="!newUnitData_onSkillAct.unitInfo.rarity" style="color: red;">*</span>：
+                                            レアリティ<span v-if="_.isEmpty(newUnitData_onSkillAct.unitInfo.rarity)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -589,7 +602,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            クラス<span v-if="newUnitData_onSkillAct.unitInfo.unitClass.options.filter(Boolean).length === 0" style="color: red;">*</span>：
+                                            クラス<span v-if="_.isEmpty(_.compact(newUnitData_onSkillAct.unitInfo.unitClass.options))" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ「[未CC(未覚醒)クラス名]系」と入力すればおｋ`">
@@ -605,7 +618,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            好感度ボーナス<span v-if="!newUnitData_onSkillAct.unitInfo.affection.bonus" style="color: red;">*</span>：
+                                            好感度ボーナス<span v-if="_.isEmpty(newUnitData_onSkillAct.unitInfo.affection.bonus)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -796,7 +809,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            ユニット名<span v-if="newUnitData_onHit.unitInfo.unitName.length === 0" style="color: red;">*</span>：
+                                            ユニット名<span v-if="_.isEmpty(newUnitData_onHit.unitInfo.unitName)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -835,7 +848,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            配置型<span v-if="!newUnitData_onHit.unitInfo.deployType" style="color: red;">*</span>：
+                                            配置型<span v-if="_.isEmpty(newUnitData_onHit.unitInfo.deployType)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -852,7 +865,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            レアリティ<span v-if="!newUnitData_onHit.unitInfo.rarity" style="color: red;">*</span>：
+                                            レアリティ<span v-if="_.isEmpty(newUnitData_onHit.unitInfo.rarity)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -873,7 +886,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            クラス<span v-if="newUnitData_onHit.unitInfo.unitClass.options.filter(Boolean).length === 0" style="color: red;">*</span>：
+                                            クラス<span v-if="_.isEmpty(_.compact(newUnitData_onHit.unitInfo.unitClass.options))" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1" v-tooltip.top-start="`正確に入力しないとバフが反映されない<br>特にこだわりがなければ「[未CC(未覚醒)クラス名]系」と入力すればおｋ`">
@@ -889,7 +902,7 @@
                                 <div class="modalOpt2">
                                     <div class="optcap9em">
                                         <span>
-                                            好感度ボーナス<span v-if="!newUnitData_onHit.unitInfo.affection.bonus" style="color: red;">*</span>：
+                                            好感度ボーナス<span v-if="_.isEmpty(newUnitData_onHit.unitInfo.affection.bonus)" style="color: red;">*</span>：
                                         </span>
                                     </div>
                                     <div class="modalOptset1">
@@ -1119,6 +1132,7 @@
                     </div>
                     <!--グラフオプション-->
                     <div class="opt1" style="float: right;">
+                        <!--グラフライン表示/非表示(スキル発動時発生型)-->
                         <div class="opt2">
                             <div class="optcap10em">
                                 <span v-tooltip.bottom="`${unitsList_onSkillAct[0].unitInfo.unitName}～${unitsList_onSkillAct[unitsList_onSkillAct.length - 1].unitInfo.unitName}`">
@@ -1130,11 +1144,12 @@
                                     <label>
                                         <input type="checkbox" v-model="graphHidden_onSkillAct">
                                         <span v-if="graphHidden_onSkillAct">全部非表示</span>
-                                        <span v-if="!graphHidden_onSkillAct">全部表示</span>
+                                        <span v-else>全部表示</span>
                                     </label>
                                 </div>
                             </div>
                         </div>
+                        <!--グラフライン表示/非表示(攻撃ヒット時発生型)-->
                         <div class="opt2">
                             <div class="optcap10em">
                                 <span v-tooltip.bottom="`${unitsList_onHit[0].unitInfo.unitName}～${unitsList_onHit[unitsList_onHit.length - 1].unitInfo.unitName}`">
@@ -1146,11 +1161,12 @@
                                     <label>
                                         <input type="checkbox" v-model="graphHidden_onHit">
                                         <span v-if="graphHidden_onHit">全部非表示</span>
-                                        <span v-if="!graphHidden_onHit">全部表示</span>
+                                        <span v-else>全部表示</span>
                                     </label>
                                 </div>
                             </div>
                         </div>
+                        <!--ツールチップソート-->
                         <div class="opt2">
                             <div class="optcap10em">
                                 <span v-tooltip.bottom="`ONにするとグラフのツールチップが<br>HPソート(昇順)で表示される`">
@@ -1164,6 +1180,7 @@
                     </div>
                 </div>
             </div>
+            <br>
 
             <div id="footer">
                 概要：いろいろチェック付けたり選択したりしてHPの変化を楽しんでね<br>
@@ -1220,6 +1237,20 @@
                     <details>
                         <summary>更新(折り畳み)</summary>
                         <div id="updateContent">
+                            <!--2021/08/05(木)-->
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/08/05(木)：
+                                </div>
+                                <div class="detail">
+                                    ・「ちびコハル」を追加<br>
+                                    ・一部遠近両型ユニットの強化対象としての扱いを反映<br>
+                                    ・HP計算を修正(ダメージの小数処理、最小ダメージ保証など)<br>
+                                    ・グラフのツールチップの表示位置を調整<br>
+                                    ・コードを少し最適化(できてたらいいな)<br>
+                                    ・ツールチップの文言などを少し調整
+                                </div>
+                            </div>
                             <!--2021/08/02(月)-->
                             <div class="updateElem">
                                 <div class="date">
@@ -1228,8 +1259,8 @@
                                 <div class="detail">
                                     ・鈍化(マップ)の軽減オプションを追加<br>
                                     ・鈍化(マップ)の軽減オプションに「紫鱗の海巫女ハルフゥ」を追加<br>
-                                    ・セーラー系・パイレーツ系に深海の悪影響を軽減する効果を適用<br>
-                                    ・ナイトアサシン・エンフォーサーに初動短縮を適用
+                                    ・セーラー系・パイレーツ系に深海の悪影響を50%軽減する効果を適用<br>
+                                    ・ナイトアサシン・エンフォーサーに50%初動短縮を適用
                                 </div>
                             </div>
                             <!--2021/07/18(日)-->
@@ -1306,6 +1337,7 @@
             </div>
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-crosshair@1.1.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
