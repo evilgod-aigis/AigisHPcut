@@ -4,52 +4,52 @@
 //初動短縮リスト
 const rWTlistElem = [
     {
-        id: 0, buffer: 'エンプレス', awaken: '未覚醒', showAwaken: false,
+        id: null, buffer: 'エンプレス', awaken: '未覚醒', showAwaken: false,
         rate: 15, disabled: false,
         AndOr: 'or', target: [ { '-': [] } ],
         tooltip: '[編成バフ] 全味方の初動-15%'
     },
     {
-        id: 1, buffer: 'アウトクラトール', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: 'アウトクラトール', awaken: '覚醒', showAwaken: false,
         rate: 20, disabled: false,
         AndOr: 'or', target: [ { '-': [] } ],
         tooltip: '[編成バフ] 全味方の初動-20%'
     },
     {
-        id: 2, buffer: '発明家', awaken: '未覚醒', showAwaken: false,
+        id: null, buffer: '発明家', awaken: '未覚醒', showAwaken: false,
         rate: 20, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ '機械' ] } ],
         tooltip: '[編成バフ] 属性：機械の初動-20%'
     },
     {
-        id: 3, buffer: '大発明家', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '大発明家', awaken: '覚醒', showAwaken: false,
         rate: 30, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ '機械' ] } ],
         tooltip: '[編成バフ] 属性：機械の初動-30%'
     },
     {
-        id: 4, buffer: '白浴衣の弓乙女ナナリー', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '白浴衣の弓乙女ナナリー', awaken: '覚醒', showAwaken: false,
         rate: 15, disabled: false,
         AndOr: 'or', target: [ { 'rarity': [ '白', '青', '金', '銀', '銅' ] } ],
         tooltip: '[編成バフ] レアリティ：白以下の初動-15%'
     },
     {
-        id: 5, buffer: '陰陽師タマミ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '陰陽師タマミ', awaken: '覚醒', showAwaken: false,
         rate: 25, disabled: false,
         AndOr: 'or', target: [ { 'rarity': [ '白' ] } ],
         tooltip: '[編成バフ] レアリティ：白の初動-25%'
     },
     {
-        id: 6, buffer: 'ロゼット', awaken: '未覚醒', showAwaken: false,
+        id: null, buffer: 'ロゼット', awaken: '未覚醒', showAwaken: false,
         rate: 30, disabled: true,
         AndOr: 'or', target: [ { 'rarity': [ '銀' ] } ],
         tooltip: '[編成バフ] レアリティ：銀の初動-30%'
     },
     {
-        id: 7, buffer: '波斬りの剣士サンドラ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '波斬りの剣士サンドラ', awaken: '覚醒', showAwaken: false,
         rate: 30, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'ソードマスター系', 'ソードマスター', '剣聖', 'デッドリーエッジ', '剣神' ] },
+            { 'unitClass': [ 'ソードマスター系', 'ちびソードマスター', 'ちび剣聖', 'ソードマスター', '剣聖', 'デッドリーエッジ', '剣神' ] },
             { 'attribution': [ 'サマー' ] }
         ],
         tooltip:
@@ -57,7 +57,7 @@ const rWTlistElem = [
          　　　　　 属性：サマーの初動-30%'
     },
     {
-        id: 8, buffer: '竜姫婚姻譚メリュジアナ', awaken: '未覚醒', showAwaken: true,
+        id: null, buffer: '竜姫婚姻譚メリュジアナ', awaken: '未覚醒', showAwaken: true,
         rate: 20, disabled: false,
         AndOr: 'or', target: [
             { 'attribution': [ 'ジューンブライド', '竜族' ] },
@@ -68,7 +68,7 @@ const rWTlistElem = [
          　　　　　 竜族(ドラゴンライダー系含)の初動-20%'
     },
     {
-        id: 9, buffer: '竜姫婚姻譚メリュジアナ', awaken: '覚醒', showAwaken: true,
+        id: null, buffer: '竜姫婚姻譚メリュジアナ', awaken: '覚醒', showAwaken: true,
         rate: 25, disabled: false,
         AndOr: 'or', target: [
             { 'attribution': [ 'ジューンブライド', '竜族' ] },
@@ -82,37 +82,37 @@ const rWTlistElem = [
 //再動短縮(近・遠・両)
 const rCTdepTypeElem = [
     {
-        id: 0, deployType: '近接型', rate: 0
+        id: null, deployType: '近接型', rate: 0
     },
     {
-        id: 1, deployType: '遠距離型', rate: 0
+        id: null, deployType: '遠距離型', rate: 0
     },
     {
-        id: 2, deployType: '遠近両型', rate: 0
+        id: null, deployType: '遠近両型', rate: 0
     }
 ];
 //再動短縮リスト
 const rCTlistElem = [
     {
-        id: 0, buffer: '妖狐絢爛', awaken: '覚2a', showAwaken: false,
+        id: null, buffer: '妖狐絢爛', awaken: '覚2a', showAwaken: false,
         rate: 50, disabled: false,
         AndOr: 'or', target: [ { 'attribution': [ '妖怪' ] } ],
         tooltip: '[配置バフ] 属性：妖怪の再動-50%'
     },
     {
-        id: 1, buffer: 'メイガスアデプト', awaken: '覚2a', showAwaken: false,
+        id: null, buffer: 'メイガスアデプト', awaken: '覚2a', showAwaken: false,
         rate: 50, disabled: false,
         AndOr: 'or', target: [ { 'attribution': [ '魔術師' ] } ],
         tooltip: '[配置バフ] 属性：魔術師の再動-50%'
     },
     {
-        id: 2, buffer: '天穿の槍士フィロ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '天穿の槍士フィロ', awaken: '覚醒', showAwaken: false,
         rate: 50, disabled: true,
         AndOr: 'or', target: [
             { 'unitClass': [
-                'ランスマスター系', 'ランスマスター', '槍聖',
-                'ワルキューレ系', 'ワルキューレ', 'ユニコーンナイト', 'ブリュンヒルデ', 'レギンレイヴ', 'ゲイレルル',
-                'ロイヤルガード系', 'ロイヤルガード', 'ロイヤルオーダー', 'ロードオブロイヤルズ', 'セイクリッドガード'
+                'ランスマスター系', 'ちびランスマスター', 'ちび槍聖', 'ランスマスター', '槍聖',
+                'ワルキューレ系', 'ちびワルキューレ', 'ちびブリュンヒルデ', 'ワルキューレ', 'ユニコーンナイト', 'ブリュンヒルデ', 'レギンレイヴ', 'ゲイレルル',
+                'ロイヤルガード系', 'ちびロイヤルガード', 'ちびロイヤルオーダー', 'ロイヤルガード', 'ロイヤルオーダー', 'ロードオブロイヤルズ', 'セイクリッドガード'
             ] }
         ],
         tooltip:
@@ -120,14 +120,14 @@ const rCTlistElem = [
          　　　　　 ワルキューレ系・ロイヤルガード系の再動-50%'
     },
     {
-        id: 3, buffer: '犬神ツムジ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '犬神ツムジ', awaken: '覚醒', showAwaken: false,
         rate: 50, disabled: false,
         AndOr: 'or', target: [
             { 'unitClass': [
-                '犬神系', '犬神', '犬神頭',
-                '陰陽師系', '陰陽師', '陰陽頭', '悟徳陰陽頭', '召鬼陰陽頭',
-                '邪仙系', '邪仙', '大邪仙',
-                '呪術使い系', '呪術使い', '呪術師', '大呪術師長', '大呪術師祖', '妖厄神'
+                '犬神系', 'ちび犬神', 'ちび犬神頭', '犬神', '犬神頭',
+                '陰陽師系', 'ちび陰陽師', 'ちび陰陽頭', '陰陽師', '陰陽頭', '悟徳陰陽頭', '召鬼陰陽頭',
+                '邪仙系', 'ちび邪仙', 'ちび大邪仙', '邪仙', '大邪仙',
+                '呪術使い系', 'ちび呪術使い', 'ちび大呪術師長', '呪術使い', '呪術師', '大呪術師長', '大呪術師祖', '妖厄神'
             ] }
         ],
         tooltip:
@@ -135,13 +135,13 @@ const rCTlistElem = [
          　　　　　 邪仙系・呪術使い系の再動-50%'
     },
     {
-        id: 4, buffer: '約束の花嫁ディエーラ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '約束の花嫁ディエーラ', awaken: '覚醒', showAwaken: false,
         rate: 45, disabled: false,
         AndOr: 'or', target: [ { 'attribution': [ 'ジューンブライド' ] } ],
         tooltip: '[配置バフ] 属性：ジューンブライドの再動-45%'
     },
     {
-        id: 5, buffer: 'ねこみみ購買部ミネット', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: 'ねこみみ購買部ミネット', awaken: '覚醒', showAwaken: false,
         rate: 40, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ '学園' ] } ],
         tooltip: '[配置バフ] 属性：学園の再動-40%'
@@ -150,94 +150,94 @@ const rCTlistElem = [
 //スキル時間延長リスト
 const skillExtendListElem = [
     {
-        id: 0, buffer: '時空魔法の優等生トワ', awaken: '未覚醒', showAwaken: true,
+        id: null, buffer: '時空魔法の優等生トワ', awaken: '未覚醒', showAwaken: true,
         rate: 10, disabled: false,
         AndOr: 'or', target: [ { 'deployType': [ '遠距離型' ] } ],
         tooltip: '[編成バフ] 遠距離ユニットのスキル時間+10%'
     },
     {
-        id: 1, buffer: '時空魔法の優等生トワ', awaken: '覚醒', showAwaken: true,
+        id: null, buffer: '時空魔法の優等生トワ', awaken: '覚醒', showAwaken: true,
         rate: 15, disabled: false,
         AndOr: 'or', target: [ { 'deployType': [ '遠距離型' ] } ],
         tooltip: '[編成バフ] 遠距離ユニットのスキル時間+15%'
     },
     {
-        id: 2, buffer: '天馬騎士団長エスタ', awaken: '未覚醒', showAwaken: true,
+        id: null, buffer: '天馬騎士団長エスタ', awaken: '未覚醒', showAwaken: true,
         rate: 20, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'ペガサスライダー系', 'ペガサスライダー', 'ペガサスナイト', 'ペガサスロード', 'スカイキャバリア', 'ペガサスマスター' ] }
+            { 'unitClass': [ 'ペガサスライダー系', 'ちびペガサスライダー', 'ちびペガサスロード', 'ペガサスライダー', 'ペガサスナイト', 'ペガサスロード', 'スカイキャバリア', 'ペガサスマスター' ] }
         ],
         tooltip: '[編成バフ] クラス：ペガサスライダー系のスキル時間+20%'
     },
     {
-        id: 3, buffer: '天馬騎士団長エスタ', awaken: '覚醒', showAwaken: true,
+        id: null, buffer: '天馬騎士団長エスタ', awaken: '覚醒', showAwaken: true,
         rate: 50, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'ペガサスライダー系', 'ペガサスライダー', 'ペガサスナイト', 'ペガサスロード', 'スカイキャバリア', 'ペガサスマスター' ] }
+            { 'unitClass': [ 'ペガサスライダー系', 'ちびペガサスライダー', 'ちびペガサスロード', 'ペガサスライダー', 'ペガサスナイト', 'ペガサスロード', 'スカイキャバリア', 'ペガサスマスター' ] }
         ],
         tooltip: '[編成バフ] クラス：ペガサスライダー系のスキル時間+50%'
     },
     {
-        id: 4, buffer: '暗黒騎士', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '暗黒騎士', awaken: '覚醒', showAwaken: false,
         rate: 30, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'ダークファイター系', 'ダークファイター', 'ダークナイト', 'パラディン', 'マスターパラディン', 'カオスナイト' ] }
+            { 'unitClass': [ 'ダークファイター系', 'ちびダークファイター', 'ちびパラディン', 'ダークファイター', 'ダークナイト', 'パラディン', 'マスターパラディン', 'カオスナイト' ] }
         ],
         tooltip: '[編成バフ] クラス：ダークファイター系のスキル時間+30%'
     },
     {
-        id: 5, buffer: '提督リーンベル', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '提督リーンベル', awaken: '覚醒', showAwaken: false,
         rate: 30, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'セーラー系', 'セーラー', 'セーラーチーフ', 'セーラーエリート', 'アドミラル', 'ドレッドノート' ] }
+            { 'unitClass': [ 'セーラー系', 'ちびセーラー', 'ちびセーラーエリート', 'セーラー', 'セーラーチーフ', 'セーラーエリート', 'アドミラル', 'ドレッドノート' ] }
         ],
         tooltip: '[編成バフ] クラス：セーラー系のスキル時間+30%'
     },
     {
-        id: 6, buffer: '弓騎兵カティナ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '弓騎兵カティナ', awaken: '覚醒', showAwaken: false,
         rate: 20, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'ボウライダー系', 'ボウライダー', 'ボウライダーチーフ', 'ボウライダーエリート', 'ボウライダーマスター', 'ボウストームキャバリア' ] }
+            { 'unitClass': [ 'ボウライダー系', 'ちびボウライダー', 'ちびボウライダーエリート', 'ボウライダー', 'ボウライダーチーフ', 'ボウライダーエリート', 'ボウライダーマスター', 'ボウストームキャバリア' ] }
         ],
         tooltip: '[編成バフ] クラス：ボウライダー系のスキル時間+20%'
     },
     {
-        id: 7, buffer: '術士女官シャーリー', awaken: '未覚醒', showAwaken: true,
+        id: null, buffer: '術士女官シャーリー', awaken: '未覚醒', showAwaken: true,
         rate: 20, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'メイジ系', '下級メイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト' ] }
+            { 'unitClass': [ 'メイジ系', '下級メイジ', 'ちびメイジ', 'ちびアークメイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト' ] }
         ],
         tooltip: '[編成バフ] クラス：メイジ系のスキル時間+20%'
     },
     {
-        id: 8, buffer: '術士女官シャーリー', awaken: '覚醒', showAwaken: true,
+        id: null, buffer: '術士女官シャーリー', awaken: '覚醒', showAwaken: true,
         rate: 30, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'メイジ系', '下級メイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト' ] }
+            { 'unitClass': [ 'メイジ系', '下級メイジ', 'ちびメイジ', 'ちびアークメイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト' ] }
         ],
         tooltip: '[編成バフ] クラス：メイジ系のスキル時間+30%'
     },
     {
-        id: 9, buffer: '召使いアイリーン', awaken: '-', showAwaken: false,
+        id: null, buffer: '召使いアイリーン', awaken: '-', showAwaken: false,
         rate: 20, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'ローグ系', 'ローグ', 'アサシン', 'マスターアサシン', 'ナイトアサシン', 'エンフォーサー' ] }
+            { 'unitClass': [ 'ローグ系', 'ちびローグ', 'ちびマスターアサシン', 'ローグ', 'アサシン', 'マスターアサシン', 'ナイトアサシン', 'エンフォーサー' ] }
         ],
         tooltip: '[編成バフ] クラス：ローグ系のスキル時間+20%'
     },
     {
-        id: 10, buffer: '悪魔召喚士リヴル', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '悪魔召喚士リヴル', awaken: '覚醒', showAwaken: false,
         rate: 20, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'デモンサモナー系', 'デモンサモナー', 'デモンマスター', 'デモンルーラー', 'デモンブリンガー' ] }
+            { 'unitClass': [ 'デモンサモナー系', 'ちびデモンサモナー', 'ちびデモンマスター', 'デモンサモナー', 'デモンマスター', 'デモンルーラー', 'デモンブリンガー' ] }
         ],
         tooltip: '[編成バフ] クラス：デモンサモナー系のスキル時間+20%'
     },
     {
-        id: 11, buffer: '風水士ピピン', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '風水士ピピン', awaken: '覚醒', showAwaken: false,
         rate: 20, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ '風水使い系', '風水使い', '風水士', '風水導士', '風水仙人', '八門風水導士' ] }
+            { 'unitClass': [ '風水使い系', 'ちび風水使い', 'ちび風水導士', '風水使い', '風水士', '風水導士', '風水仙人', '八門風水導士' ] }
         ],
         tooltip: '[編成バフ] クラス：風水使い系のスキル時間+20%'
     }
@@ -245,41 +245,41 @@ const skillExtendListElem = [
 //硬直短縮(編成バフ)リスト
 const hasteTeemListElem = [
     {
-        id: 0, buffer: '時の調停者トワ', awaken: '-', showAwaken: false,
+        id: null, buffer: '時の調停者トワ', awaken: '-', showAwaken: false,
         rate: 20, disabled: false,
         AndOr: 'or', target: [ { '-': [] } ],
         tooltip: '[編成バフ] 全味方の攻撃硬直-20%'
     },
     {
-        id: 1, buffer: '帝国辺境総督アレイダ', awaken: '未覚醒', showAwaken: true,
+        id: null, buffer: '帝国辺境総督アレイダ', awaken: '未覚醒', showAwaken: true,
         rate: 25, disabled: true,
         AndOr: 'and', target: [ { 'deployType': [ '近接型' ] }, { 'attribution': [ '白の帝国' ] } ],
         tooltip: '[編成バフ] 属性：帝国の近接ユニットの攻撃硬直-25%'
     },
     {
-        id: 2, buffer: '帝国辺境総督アレイダ', awaken: '覚醒', showAwaken: true,
+        id: null, buffer: '帝国辺境総督アレイダ', awaken: '覚醒', showAwaken: true,
         rate: 35, disabled: true,
         AndOr: 'and', target: [ { 'deployType': [ '近接型' ] }, { 'attribution': [ '白の帝国' ] } ],
         tooltip: '[編成バフ] 属性：帝国の近接ユニットの攻撃硬直-35%'
     },
     {
-        id: 3, buffer: '雷光の魔剣士タラニア', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '雷光の魔剣士タラニア', awaken: '覚醒', showAwaken: false,
         rate: 20, disabled: true,
         AndOr: 'or', target: [
             { 'unitClass': [
-                '魔法剣士系', '魔法剣士', 'ルーンフェンサー', 'ルーンロード', 'ルーンデルヴァー', 'ルーンスレイヤー',
-                'メイジ系', '下級メイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト'
+                '魔法剣士系', 'ちび魔法剣士', 'ちびルーンロード', '魔法剣士', 'ルーンフェンサー', 'ルーンロード', 'ルーンデルヴァー', 'ルーンスレイヤー',
+                'メイジ系', '下級メイジ', 'ちびメイジ', 'ちびアークメイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト'
             ] }
         ],
         tooltip: '[編成バフ] クラス：魔法剣士系・メイジ系の攻撃硬直-20%'
     },
     {
-        id: 4, buffer: '砲術教官エイプリル', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '砲術教官エイプリル', awaken: '覚醒', showAwaken: false,
         rate: 30, disabled: true,
         AndOr: 'or', target: [
             { 'unitClass': [
-                '砲術士系', '砲術士', '重砲士', 'キャノンマスター', 'ハイキャノンマスター', '超重巨砲士',
-                '重装砲兵系', '重装砲兵', 'キャノンアーマー', 'ギガキャノンアーマー', 'バスターアーマー', 'フォートレス',
+                '砲術士系', 'ちび砲術士', 'ちびキャノンマスター', '砲術士', '重砲士', 'キャノンマスター', 'ハイキャノンマスター', '超重巨砲士',
+                '重装砲兵系', 'ちび重装砲兵', 'ちびギガキャノンアーマー', '重装砲兵', 'キャノンアーマー', 'ギガキャノンアーマー', 'バスターアーマー', 'フォートレス',
                 'モンスタースレイヤー系'
             ] }
         ],
@@ -288,13 +288,13 @@ const hasteTeemListElem = [
          　　　　　 モンスタースレイヤー系の攻撃硬直-30%'
     },
     {
-        id: 5, buffer: '湯けむり吸血鬼エマ', awaken: '-', showAwaken: false,
+        id: null, buffer: '湯けむり吸血鬼エマ', awaken: '-', showAwaken: false,
         rate: 20, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ 'アンデッド', '温泉' ] } ],
         tooltip: '[編成バフ] 属性：アンデッド・温泉の攻撃硬直-20%'
     },
     {
-        id: 6, buffer: '恋慕の堕天使ソフィー', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '恋慕の堕天使ソフィー', awaken: '覚醒', showAwaken: false,
         rate: 40, disabled: true,
         AndOr: 'or', target: [
             { 'unitClass': [
@@ -309,26 +309,26 @@ const hasteTeemListElem = [
 //硬直短縮(スキル)リスト
 const hasteSkillListElem = [
     {
-        id: 0, buffer: '付与魔術師ハーニィ', awaken: '通常', showAwaken: false,
+        id: null, buffer: '付与魔術師ハーニィ', awaken: '通常', showAwaken: false,
         atkCooldown: 11, disabled: false,
         AndOr: 'or', target: [ { 'deployType': [ '近接型' ] } ],
         tooltip: '[スキルバフ] 近接ユニットの攻撃硬直5.5f化(範囲内)'
     },
     {
-        id: 1, buffer: '弓兵の湯浴みソーマ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '弓兵の湯浴みソーマ', awaken: '覚醒', showAwaken: false,
         atkCooldown: 4, disabled: true,
         AndOr: 'or', target: [
-            { 'unitClass': [ 'アーチャー系', '下級アーチャー', 'アーチャー', 'スナイパー', 'アルテミス', 'セレーネ', 'ラピッドシューター' ] }
+            { 'unitClass': [ 'アーチャー系', '下級アーチャー', 'ちびアーチャー', 'ちびアルテミス', 'アーチャー', 'スナイパー', 'アルテミス', 'セレーネ', 'ラピッドシューター' ] }
         ],
         tooltip: '[スキルバフ] クラス：アーチャー系の攻撃硬直2f化(通常)'
     },
     {
-        id: 2, buffer: '時の調停者トワ', awaken: '通常', showAwaken: true,
+        id: null, buffer: '時の調停者トワ', awaken: '通常', showAwaken: true,
         atkCooldown: 11, disabled: true,
         AndOr: 'or', target: [
             { 'unitClass': [
-                'ウィッチ系', 'ウィッチ', 'ロードウィッチ', 'アークウィッチ', 'ホーリーウィッチ', 'ソーサレス',
-                'クロノウィッチ系', 'クロノウィッチ', 'アーククロノウィッチ', 'クロノマスター', 'クロノマンサー'
+                'ウィッチ系', 'ちびウィッチ', 'ちびアークウィッチ', 'ウィッチ', 'ロードウィッチ', 'アークウィッチ', 'ホーリーウィッチ', 'ソーサレス',
+                'クロノウィッチ系', 'ちびクロノウィッチ', 'ちびアーククロノウィッチ', 'クロノウィッチ', 'アーククロノウィッチ', 'クロノマスター', 'クロノマンサー'
             ] }
         ],
         tooltip:
@@ -336,13 +336,13 @@ const hasteSkillListElem = [
          　　　　　　 クロノウィッチ系の攻撃硬直5.5f化(範囲内)'
     },
     {
-        id: 3, buffer: '時の調停者トワ', awaken: '覚醒', showAwaken: true,
+        id: null, buffer: '時の調停者トワ', awaken: '覚醒', showAwaken: true,
         atkCooldown: 11, disabled: true,
         AndOr: 'or', target: [
             { 'unitClass': [
-                'メイジ系', '下級メイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト',
-                'ウィッチ系', 'ウィッチ', 'ロードウィッチ', 'アークウィッチ', 'ホーリーウィッチ', 'ソーサレス',
-                'クロノウィッチ系', 'クロノウィッチ', 'アーククロノウィッチ', 'クロノマスター', 'クロノマンサー'
+                'メイジ系', '下級メイジ', 'ちびメイジ', 'ちびアークメイジ', 'メイジ', 'ウォーロック', 'アークメイジ', 'メイガスアデプト', 'メイジデストラクト',
+                'ウィッチ系', 'ちびウィッチ', 'ちびアークウィッチ', 'ウィッチ', 'ロードウィッチ', 'アークウィッチ', 'ホーリーウィッチ', 'ソーサレス',
+                'クロノウィッチ系', 'ちびクロノウィッチ', 'ちびアーククロノウィッチ', 'クロノウィッチ', 'アーククロノウィッチ', 'クロノマスター', 'クロノマンサー'
             ] }
         ],
         tooltip:
@@ -350,19 +350,19 @@ const hasteSkillListElem = [
          　　　　　　 クロノウィッチ系の攻撃硬直5.5f化(範囲内)'
     },
     {
-        id: 4, buffer: '胡喜美', awaken: '通常', showAwaken: false,
+        id: null, buffer: '胡喜美', awaken: '通常', showAwaken: false,
         atkCooldown: 21, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ '仙人' ] } ],
         tooltip: '[スキルバフ] 属性：仙人の攻撃硬直10.5f化'
     },
     {
-        id: 5, buffer: '秋祭の大魔女デスピア', awaken: '通常', showAwaken: false,
+        id: null, buffer: '秋祭の大魔女デスピア', awaken: '通常', showAwaken: false,
         atkCooldown: 11, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ 'ハロウィン' ] } ],
         tooltip: '[スキルバフ] 属性：ハロウィンの攻撃硬直5.5f化'
     },
     {
-        id: 6, buffer: '聖夜の炸裂海賊デューオ', awaken: '通常', showAwaken: false,
+        id: null, buffer: '聖夜の炸裂海賊デューオ', awaken: '通常', showAwaken: false,
         atkCooldown: 16, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ 'クリスマス' ] } ],
         tooltip: '[スキルバフ] 属性：クリスマスの攻撃硬直8f化'
@@ -371,13 +371,13 @@ const hasteSkillListElem = [
 //鈍化(マップ)軽減リスト
 const redMapEffListElem = [
     {
-        id: 0, buffer: '王子【海鎮】', awaken: null, showAwaken: false,
+        id: null, buffer: '王子【海鎮】', awaken: null, showAwaken: false,
         map: '深海', rate: 50, disabled: false,
         AndOr: 'or', target: [ { '-': [] } ],
         tooltip: '[配置] 全味方の深海の影響を50%軽減'
     },
     {
-        id: 1, buffer: '紫鱗の海巫女ハルフゥ', awaken: '覚醒', showAwaken: false,
+        id: null, buffer: '紫鱗の海巫女ハルフゥ', awaken: '覚醒', showAwaken: false,
         map: '深海', rate: 30, disabled: false,
         AndOr: 'or', target: [ { '-': [] } ],
         tooltip: '[編成] 全味方の深海の影響を30%軽減'
@@ -387,86 +387,102 @@ const redMapEffListElem = [
 //自己バフ
 //初動短縮リスト
 const self_rWTlistElem = [
-    { id: 0, buffer: 'ナイトアサシン', rate: 50 },
-    { id: 1, buffer: 'エンフォーサー', rate: 50 },
-    { id: 2, buffer: '雷光の魔剣士タラニア', rate: 50 },
-    { id: 3, buffer: '主天使セフィーレ', rate: 60 },
-    { id: 4, buffer: '堕天系お掃除当番クロエ', rate: 50 },
-    { id: 5, buffer: '帝国機甲士クリスタ', rate: 30 },
-    { id: 6, buffer: '封機の剣士エレカ', rate: 60 },
-    { id: 7, buffer: '信仰の槍士コルム', rate: 50 },
-    { id: 8, buffer: '炎のサンタ召喚士ソラノ', rate: 40 },
-    { id: 9, buffer: '甘美な踊り子マーニー', rate: 60 },
-    { id: 10, buffer: '恋の応援団シャルキー', rate: 70 },
-    { id: 11, buffer: '氷霊応援団ユキヒメ', rate: 60 },
-    { id: 12, buffer: '妖狸スズネ', rate: 20 },
-    { id: 13, buffer: '筆頭飛行士オヴェリー', rate: 40 }
+    { id: null, buffer: 'ナイトアサシン', rate: 50 },
+    { id: null, buffer: 'エンフォーサー', rate: 50 },
+    { id: null, buffer: '雷光の魔剣士タラニア', rate: 50 },
+    { id: null, buffer: '主天使セフィーレ', rate: 60 },
+    { id: null, buffer: '堕天系お掃除当番クロエ', rate: 50 },
+    { id: null, buffer: '帝国機甲士クリスタ', rate: 30 },
+    { id: null, buffer: '封機の剣士エレカ', rate: 60 },
+    { id: null, buffer: '信仰の槍士コルム', rate: 50 },
+    { id: null, buffer: '炎のサンタ召喚士ソラノ', rate: 40 },
+    { id: null, buffer: '甘美な踊り子マーニー', rate: 60 },
+    { id: null, buffer: '恋の応援団シャルキー', rate: 70 },
+    { id: null, buffer: '氷霊応援団ユキヒメ', rate: 60 },
+    { id: null, buffer: '妖狸スズネ', rate: 20 },
+    { id: null, buffer: '筆頭飛行士オヴェリー', rate: 40 }
 ];
 //再動短縮リスト
 const self_rCTlistElem = [
-    { id: 0, buffer: 'ギガントハンマー', rate: 45 },
-    { id: 1, buffer: 'ダイショーグン', rate: 45 },
-    { id: 2, buffer: '修羅', rate: 45 },
-    { id: 3, buffer: 'ボウライダーマスター', rate: 45 },
-    { id: 4, buffer: 'デッドリーエッジ', rate: 40 },
-    { id: 5, buffer: '剣神', rate: 40 },
-    { id: 6, buffer: '天魔天狗', rate: 45 },
-    { id: 7, buffer: 'ラピッドシューター', rate: 45 },
-    { id: 8, buffer: 'ネプチューン', rate: 45 },
-    { id: 9, buffer: '悟得陰陽頭', rate: 45 },
-    { id: 10, buffer: 'クロノマスター', rate: 45 },
-    { id: 11, buffer: 'ヘビートリガー', rate: 45 },
-    { id: 12, buffer: '聖女イリス', rate: 40 }
+    { id: null, buffer: 'ギガントハンマー', rate: 45 },
+    { id: null, buffer: 'ダイショーグン', rate: 45 },
+    { id: null, buffer: '修羅', rate: 45 },
+    { id: null, buffer: 'ボウライダーマスター', rate: 45 },
+    { id: null, buffer: 'デッドリーエッジ', rate: 40 },
+    { id: null, buffer: '剣神', rate: 40 },
+    { id: null, buffer: '天魔天狗', rate: 45 },
+    { id: null, buffer: 'ラピッドシューター', rate: 45 },
+    { id: null, buffer: 'ネプチューン', rate: 45 },
+    { id: null, buffer: '悟得陰陽頭', rate: 45 },
+    { id: null, buffer: 'クロノマスター', rate: 45 },
+    { id: null, buffer: 'ヘビートリガー', rate: 45 },
+    { id: null, buffer: '聖女イリス', rate: 40 }
 ];
 //スキル時間延長リスト
 const self_skillExtendListElem = [
-    { id: 0, buffer: 'イモータルオリジン', rate: 30 },
-    { id: 1, buffer: 'ファフニール', rate: 20 },
-    { id: 2, buffer: 'ダイショーグン', rate: 30 },
-    { id: 3, buffer: 'ペガサスマスター', rate: 70 },
-    { id: 4, buffer: 'アズライール', rate: -20 },
-    { id: 5, buffer: 'ドールマスター', rate: 30 },
-    { id: 6, buffer: 'アドミラル', rate: 30 },
-    { id: 7, buffer: '神仙', rate: 50 },
-    { id: 8, buffer: '天魔天狗', rate: 25 },
-    { id: 9, buffer: 'オンスロート', rate: 30 },
-    { id: 10, buffer: 'アビスレイダー', rate: 30 },
-    { id: 11, buffer: 'ソーサレス', rate: 30 },
-    { id: 12, buffer: 'ロードオブヘルメス', rate: 30 },
-    { id: 13, buffer: 'ヘビートリガー', rate: 30 },
-    { id: 14, buffer: '魔導鎧娘アルマ', rate: 20 },
-    { id: 15, buffer: '伏龍の軍師アイシャ', rate: 20 },
-    { id: 16, buffer: '水霊使いセノーテ', rate: 15 }
+    { id: null, buffer: 'イモータルオリジン', rate: 30 },
+    { id: null, buffer: 'ファフニール', rate: 20 },
+    { id: null, buffer: 'ダイショーグン', rate: 30 },
+    { id: null, buffer: 'ペガサスマスター', rate: 70 },
+    { id: null, buffer: 'アズライール', rate: -20 },
+    { id: null, buffer: 'ドールマスター', rate: 30 },
+    { id: null, buffer: 'アドミラル', rate: 30 },
+    { id: null, buffer: '神仙', rate: 50 },
+    { id: null, buffer: '天魔天狗', rate: 25 },
+    { id: null, buffer: 'オンスロート', rate: 30 },
+    { id: null, buffer: 'アビスレイダー', rate: 30 },
+    { id: null, buffer: 'ソーサレス', rate: 30 },
+    { id: null, buffer: 'ロードオブヘルメス', rate: 30 },
+    { id: null, buffer: 'ヘビートリガー', rate: 30 },
+    { id: null, buffer: '魔導鎧娘アルマ', rate: 20 },
+    { id: null, buffer: '伏龍の軍師アイシャ', rate: 20 },
+    { id: null, buffer: '水霊使いセノーテ', rate: 15 }
 ];
 //硬直短縮(編成バフ)リスト
 const self_hasteTeemListElem = [
-    { id: 0, buffer: '鉄泉の守護者レアン', rate: 40 },
-    { id: 1, buffer: '晴着の看板娘ジュノン', rate: 40 },
-    { id: 2, buffer: '恋慕の堕天使ソフィー', rate: 40 },
-    { id: 3, buffer: '水龍騎士スイレン', rate: 50 },
-    { id: 4, buffer: '屍骸道士ランファ', rate: 60 }
+    { id: null, buffer: '鉄泉の守護者レアン', rate: 40 },
+    { id: null, buffer: '晴着の看板娘ジュノン', rate: 40 },
+    { id: null, buffer: '恋慕の堕天使ソフィー', rate: 40 },
+    { id: null, buffer: '水龍騎士スイレン', rate: 50 },
+    { id: null, buffer: '屍骸道士ランファ', rate: 60 }
 ];
 //鈍化(マップ)軽減リスト
 const self_redMapEffListElem = [
-    { id: 0, buffer: 'セーラー系', map: '深海', rate: 50 },
-    { id: 1, buffer: 'セーラー', map: '深海', rate: 50 },
-    { id: 2, buffer: 'セーラーチーフ', map: '深海', rate: 50 },
-    { id: 3, buffer: 'セーラーエリート', map: '深海', rate: 50 },
-    { id: 4, buffer: 'アドミラル', map: '深海', rate: 50 },
-    { id: 5, buffer: 'ドレッドノート', map: '深海', rate: 50 },
-    { id: 6, buffer: 'パイレーツ系', map: '深海', rate: 50 },
-    { id: 7, buffer: '下級パイレーツ', map: '深海', rate: 50 },
-    { id: 8, buffer: 'パイレーツ', map: '深海', rate: 50 },
-    { id: 9, buffer: 'キャプテン', map: '深海', rate: 50 },
-    { id: 10, buffer: 'キングオブパイレーツ', map: '深海', rate: 50 },
-    { id: 11, buffer: 'ネプチューン', map: '深海', rate: 50 },
-    { id: 12, buffer: 'エル・ドラゴ', map: '深海', rate: 50 }
+    { id: null, buffer: 'セーラー系', map: '深海', rate: 50 },
+    { id: null, buffer: 'ちびセーラー', map: '深海', rate: 50 },
+    { id: null, buffer: 'ちびセーラーエリート', map: '深海', rate: 50 },
+    { id: null, buffer: 'セーラー', map: '深海', rate: 50 },
+    { id: null, buffer: 'セーラーチーフ', map: '深海', rate: 50 },
+    { id: null, buffer: 'セーラーエリート', map: '深海', rate: 50 },
+    { id: null, buffer: 'アドミラル', map: '深海', rate: 50 },
+    { id: null, buffer: 'ドレッドノート', map: '深海', rate: 50 },
+    { id: null, buffer: 'パイレーツ系', map: '深海', rate: 50 },
+    { id: null, buffer: '下級パイレーツ', map: '深海', rate: 50 },
+    { id: null, buffer: 'ちびパイレーツ', map: '深海', rate: 50 },
+    { id: null, buffer: 'ちびキングオブパイレーツ', map: '深海', rate: 50 },
+    { id: null, buffer: 'パイレーツ', map: '深海', rate: 50 },
+    { id: null, buffer: 'キャプテン', map: '深海', rate: 50 },
+    { id: null, buffer: 'キングオブパイレーツ', map: '深海', rate: 50 },
+    { id: null, buffer: 'ネプチューン', map: '深海', rate: 50 },
+    { id: null, buffer: 'エル・ドラゴ', map: '深海', rate: 50 }
 ];
+
+//遠近両型の強化対象としての扱い
+const depTypeCountElem = {
+    '近接型': [
+        'スカイウォリアー系', '下級スカイウォリアー', 'ちびスカイウォリアー', 'ドレッドウィング', 'スカイウォリアー', 'スカイウォリアーチーフ', 'ドレッドウィング',
+        'スカウト系', 'ちびスカウト', 'ちびスカウトオフィサー', 'スカウト', 'スカウトオフィサー'
+    ],
+    '遠距離型': [
+        'ロケットトルーパー系', 'ちびロケットトルーパー', 'ちびジェットトルーパー', 'ロケットトルーパー', 'ジェットトルーパー',
+        'スカイシューター系', '下級スカイシューター', 'ちびスカイシューター', 'ちびアローウィング', 'スカイシューター', 'スカイシューターチーフ', 'アローウィング'
+    ]
+};
 
 //ユニットリスト
 const unitsList_onSkillActElem = [
     {
-        id: 0,
+        id: null,
         unitInfo: {
             unitName: '九尾狐カヨウ', deployType: '近接型', rarity: '黒',
             unitClass: {
@@ -495,7 +511,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 1,
+        id: null,
         unitInfo: {
             unitName: '黒紫の巫女キキョウ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -524,7 +540,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 2,
+        id: null,
         unitInfo: {
             unitName: '迎春の呪姫オロチヒメ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -553,7 +569,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 3,
+        id: null,
         unitInfo: {
             unitName: '混沌霊使いニーヴ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -582,7 +598,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 4,
+        id: null,
         unitInfo: {
             unitName: '猫又コハル', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -611,7 +627,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 5,
+        id: null,
         unitInfo: {
             unitName: '清心の花嫁スイレン', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -640,7 +656,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 6,
+        id: null,
         unitInfo: {
             unitName: '召喚士アクアマリー', deployType: '遠距離型', rarity: '白',
             unitClass: {
@@ -669,7 +685,36 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 7,
+        id: null,
+        unitInfo: {
+            unitName: 'ちびコハル', deployType: '遠距離型', rarity: '金',
+            unitClass: {
+                selectable: false, selected: '猫又系',
+                options: [ '猫又系' ]
+            },
+            attribution: [ '妖怪', '東の国', 'ちび' ],
+            affection: { percentage: null, bonus: null, changeRate: null },
+            note: [ '女性' ]
+        },
+        skill: {
+            awaken: {
+                selectable: false, selected: '通常',
+                options: [ '通常' ]
+            },
+            target: [ '全敵', null ],
+            WT: { A: null, B: null },
+            CT: { A: null, B: null },
+            CT_uncurr: [  { A: 70, B: null }, { A: null, B: null } ],
+            dur: { A: null, B: null },
+            dur_uncurr: [ { A: 30, B: null }, { A: null, B: null } ],
+            firstTime: null, interval: null,
+            trigger: [ '-', null ], trans: [ '-', null ], HPred: [ 16, null ],
+            mulByNum: [ [ 1 ], null ],
+            dmgMul: { opt: [ '-', null ], mul: [ 1, null ], target: [ null, null ] }
+        }
+    },
+    {
+        id: null,
         unitInfo: {
             unitName: '祝祭の南瓜姫ミサ', deployType: '近接型', rarity: '黒',
             unitClass: {
@@ -698,7 +743,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 8,
+        id: null,
         unitInfo: {
             unitName: '海魔の麗姫スキュレ', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -727,7 +772,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 9,
+        id: null,
         unitInfo: {
             unitName: '狼剣の魔姫ピリカ', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -756,7 +801,7 @@ const unitsList_onSkillActElem = [
         }
     },
     {
-        id: 10,
+        id: null,
         unitInfo: {
             unitName: '降魔の戦姫トコヨ', deployType: '近接型', rarity: '青',
             unitClass: {
@@ -787,7 +832,7 @@ const unitsList_onSkillActElem = [
 ];
 const unitsList_onHitElem = [
     {
-        id: 0,
+        id: null,
         unitInfo: {
             unitName: '犬神シロ', deployType: '近接型', rarity: '黒',
             unitClass: {
@@ -825,7 +870,7 @@ const unitsList_onHitElem = [
         }
     },
     {
-        id: 1,
+        id: null,
         unitInfo: {
             unitName: '犬神ツムジ', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -863,7 +908,7 @@ const unitsList_onHitElem = [
         }
     },
     {
-        id: 2,
+        id: null,
         unitInfo: {
             unitName: '迎春の呪姫オロチヒメ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -901,7 +946,7 @@ const unitsList_onHitElem = [
         }
     },
     {
-        id: 3,
+        id: null,
         unitInfo: {
             unitName: '道化師ワンダーハート', deployType: '遠距離型', rarity: '白',
             unitClass: {
@@ -1028,41 +1073,43 @@ const vm = new Vue({
     el: '#app',
     data() {
         return {
-            rWTlist: rWTlistElem,
+            rWTlist: _.cloneDeep(rWTlistElem),
             checked_rWT: [],
-            rCTdepType: rCTdepTypeElem,
-            rCTlist: rCTlistElem,
+            rCTdepType: _.cloneDeep(rCTdepTypeElem),
+            rCTlist: _.cloneDeep(rCTlistElem),
             checked_rCT: [],
-            skillExtendList: skillExtendListElem,
+            skillExtendList: _.cloneDeep(skillExtendListElem),
             checked_skillExtend: [],
-            hasteTeemList: hasteTeemListElem,
+            hasteTeemList: _.cloneDeep(hasteTeemListElem),
             checked_hasteTeem: [],
-            hasteSkillList: hasteSkillListElem,
+            hasteSkillList: _.cloneDeep(hasteSkillListElem),
             checked_hasteSkill: [],
-            redMapEffList: redMapEffListElem,
+            redMapEffList: _.cloneDeep(redMapEffListElem),
             checked_redMapEff: [],
 
-            self_rWTlist: self_rWTlistElem,
-            self_rCTlist: self_rCTlistElem,
-            self_skillExtendList: self_skillExtendListElem,
-            self_hasteTeemList: self_hasteTeemListElem,
-            self_redMapEffList: self_redMapEffListElem,
+            self_rWTlist: _.cloneDeep(self_rWTlistElem),
+            self_rCTlist: _.cloneDeep(self_rCTlistElem),
+            self_skillExtendList: _.cloneDeep(self_skillExtendListElem),
+            self_hasteTeemList: _.cloneDeep(self_hasteTeemListElem),
+            self_redMapEffList: _.cloneDeep(self_redMapEffListElem),
 
-            unitsList_onSkillAct: unitsList_onSkillActElem,
+            depTypeCount: _.cloneDeep(depTypeCountElem),
+
+            unitsList_onSkillAct: _.cloneDeep(unitsList_onSkillActElem),
             modal_onSkillAct: false,
-            newUnitData_onSkillAct: unitDataTemplate_onSkillAct,
+            newUnitData_onSkillAct: _.cloneDeep(unitDataTemplate_onSkillAct),
 
-            unitsList_onHit: unitsList_onHitElem,
+            unitsList_onHit: _.cloneDeep(unitsList_onHitElem),
             modal_onHit: false,
-            newUnitData_onHit: unitDataTemplate_onHit,
+            newUnitData_onHit: _.cloneDeep(unitDataTemplate_onHit),
 
             modal_skillAwaken: [ true, true ],
             modal_atkInterval: [ false, true, true ],
             addUnitAlart: '',
 
-            options_attr1: array_attr1,
-            options_attr2: array_attr2,
-            options_note: array_note,
+            options_attr1: _.cloneDeep(array_attr1),
+            options_attr2: _.cloneDeep(array_attr2),
+            options_note: _.cloneDeep(array_note),
 
             redeployInterval: {
                 use: false,
@@ -1114,6 +1161,29 @@ const vm = new Vue({
             graphHidden_onHit: false,
             sortGraphTooltip: false
         }
+    },
+    created() {
+        const setID = function(array) {
+            _.forEach(array, function(elem, index) {
+                elem.id = index;
+            });
+        };
+        setID(this.rWTlist);
+        setID(this.rCTdepType);
+        setID(this.rCTlist);
+        setID(this.skillExtendList);
+        setID(this.hasteTeemList);
+        setID(this.hasteSkillList);
+        setID(this.redMapEffList);
+
+        setID(this.self_rWTlist);
+        setID(this.self_rCTlist);
+        setID(this.self_skillExtendList);
+        setID(this.self_hasteTeemList);
+        setID(this.self_redMapEffList);
+
+        setID(this.unitsList_onSkillAct);
+        setID(this.unitsList_onHit);
     },
     mounted() {
         this.Chart();
@@ -1202,27 +1272,27 @@ const vm = new Vue({
                 let bufferInfo;
                 //クラス・属性の初動短縮
                 //自身による効果
-                bufferInfo = me.rWTlist.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.findLast(me.rWTlist, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.rWTlist.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.findLast(me.rWTlist, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_rWTlist.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.find(me.self_rWTlist, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_rWTlist.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.find(me.self_rWTlist, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
                 //選択したオプションによる効果
-                me.checked_rWT.forEach(function(buffer) {
-                    bufferInfo = me.rWTlist.find((elem) => elem.buffer === buffer);
+                _.forEach(me.checked_rWT, function(buffer) {
+                    bufferInfo = _.find(me.rWTlist, {buffer: buffer.buffer, awaken: buffer.awaken});
                     buffRate = Math.max(buffRate, bufferInfo.rate * me.IsTarget(unit, bufferInfo));
-                })
+                });
                 return buffRate / 100;
             }
         },
@@ -1233,31 +1303,31 @@ const vm = new Vue({
                 let buffRate;
                 let bufferInfo;
                 //近接型・遠距離型・遠近両型の再動短縮
-                bufferInfo = me.rCTdepType.find((elem) => elem.deployType === unit.unitInfo.deployType);
+                bufferInfo = _.find(me.rCTdepType, {deployType: unit.unitInfo.deployType});
                 buffRate = bufferInfo.rate;
                 //クラス・属性の再動短縮
                 //自身による効果
-                bufferInfo = me.rCTlist.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.findLast(me.rCTlist, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.rCTlist.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.findLast(me.rCTlist, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_rCTlist.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.find(me.self_rCTlist, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_rCTlist.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.find(me.self_rCTlist, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
                 //選択したオプションによる効果
-                me.checked_rCT.forEach(function(buffer) {
-                    bufferInfo = me.rCTlist.find((elem) => elem.buffer === buffer);
+                _.forEach(me.checked_rCT, function(buffer) {
+                    bufferInfo = _.find(me.rCTlist, {buffer: buffer.buffer, awaken: buffer.awaken});
                     buffRate = Math.max(buffRate, bufferInfo.rate * me.IsTarget(unit, bufferInfo));
-                })
+                });
                 return buffRate / 100;
             }
         },
@@ -1269,27 +1339,27 @@ const vm = new Vue({
                 let bufferInfo;
                 //クラス・属性のスキル属性延長
                 //自身による効果
-                bufferInfo = me.skillExtendList.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.findLast(me.skillExtendList, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.skillExtendList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.findLast(me.skillExtendList, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_skillExtendList.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.find(me.self_skillExtendList, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_skillExtendList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.find(me.self_skillExtendList, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
                 //選択したオプションによる効果
-                me.checked_skillExtend.forEach(function(buffer) {
-                    bufferInfo = me.skillExtendList.find((elem) => elem.buffer === buffer);
+                _.forEach(me.checked_skillExtend, function(buffer) {
+                    bufferInfo = _.find(me.skillExtendList, {buffer: buffer.buffer, awaken: buffer.awaken});
                     buffRate = Math.max(buffRate, bufferInfo.rate * me.IsTarget(unit, bufferInfo));
-                })
+                });
                 return buffRate / 100;
             }
         },
@@ -1301,101 +1371,83 @@ const vm = new Vue({
                 let bufferInfo;
                 //クラス・属性の硬直短縮(編成バフ)
                 //自身による効果
-                bufferInfo = me.hasteTeemList.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.findLast(me.hasteTeemList, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.hasteTeemList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.findLast(me.hasteTeemList, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_hasteTeemList.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.find(me.self_hasteTeemList, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = me.self_hasteTeemList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.find(me.self_hasteTeemList, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
                 //選択したオプションによる効果
-                me.checked_hasteTeem.forEach(function(buffer) {
-                    bufferInfo = me.hasteTeemList.find((elem) => elem.buffer === buffer);
+                _.forEach(me.checked_hasteTeem, function(buffer) {
+                    bufferInfo = _.find(me.hasteTeemList, {buffer: buffer.buffer, awaken: buffer.awaken});
                     buffRate = Math.max(buffRate, bufferInfo.rate * me.IsTarget(unit, bufferInfo));
-                })
+                });
                 return buffRate / 100;
             }
         },
         //ユニットがバフ等の対象か判定
         IsTarget() {
             return function(unit, info) {
-                const deployType = unit.unitInfo.deployType;
+                const me = this;
+                const deployType = [unit.unitInfo.deployType];
                 const rarity = unit.unitInfo.rarity;
                 const unitClass = unit.unitInfo.unitClass.selected;
                 const attr = unit.unitInfo.attribution;
                 const note = unit.unitInfo.note;
+                deployType.push(_.findKey(me.depTypeCount, key => _.includes(key, unitClass)));
                 let isTarget;
                 if(info.AndOr === 'and') {
                     isTarget = 1;
-                    info.target.forEach(function(tar) {
+                    _.forEach(info.target,function(tar) {
                         switch(Object.keys(tar)[0]) {
                             case 'deployType':
-                                if(tar.deployType.indexOf(deployType) === -1) {
-                                    isTarget &= 0;
-                                }
+                                isTarget &= !_.isEmpty(_.intersection(tar.deployType, deployType));
                                 break;
                              case 'rarity':
-                                if(tar.rarity.indexOf(rarity) === -1) {
-                                   isTarget &= 0;
-                                }
+                                isTarget &= _.includes(tar.rarity, rarity);
                                 break;
                             case 'unitClass':
-                                if(tar.unitClass.indexOf(unitClass) === -1) {
-                                    isTarget &= 0;
-                                }
+                                isTarget &= _.includes(tar.unitClass, unitClass);
                                 break;
                             case 'attribution':
-                                if((new Set([...tar.attribution, ...attr])).size === [...tar.attribution, ...attr].length) {
-                                    isTarget &= 0;
-                                }
+                                isTarget &= !_.isEmpty(_.intersection(tar.attribution, attr));
                                 break;
                             case 'note':
-                                if((new Set([...tar.note, ...note])).size === [...tar.note, ...note].length) {
-                                    isTarget &= 0;
-                                }
+                                isTarget &= !_.isEmpty(_.intersection(tar.note, note));
                                 break;
                             default:
                         }
-                    })
+                    });
                 } else {
                     isTarget = 0;
-                    info.target.forEach(function(tar) {
+                    _.forEach(info.target, function(tar) {
                         switch(Object.keys(tar)[0]) {
                             case 'deployType':
-                                if(tar.deployType.indexOf(deployType) !== -1) {
-                                    isTarget |= 1;
-                                }
+                                isTarget != !_.isEmpty(_.intersection(tar.deployType, deployType));
                                 break;
                              case 'rarity':
-                                if(tar.rarity.indexOf(rarity) !== -1) {
-                                   isTarget |= 1;
-                                }
+                                isTarget |= _.includes(tar.rarity, rarity);
                                 break;
                             case 'unitClass':
-                                if(tar.unitClass.indexOf(unitClass) !== -1) {
-                                    isTarget |= 1;
-                                }
+                                isTarget |= _.includes(tar.unitClass, unitClass);
                                 break;
                             case 'attribution':
-                                if((new Set([...tar.attribution, ...attr])).size !== [...tar.attribution, ...attr].length) {
-                                    isTarget |= 1;
-                                }
+                                isTarget |= !_.isEmpty(_.intersection(tar.attribution, attr));
                                 break;
-                                case 'note':
-                                    if((new Set([...tar.note, ...note])).size !== [...tar.note, ...note].length) {
-                                        isTarget |= 1;
-                                    }
-                                    break;
-                                default:
+                            case 'note':
+                                isTarget |= !_.isEmpty(_.intersection(tar.note, note));
+                                break;
+                            default:
                                 isTarget |= 1;
                         }
                     })
@@ -1601,42 +1653,50 @@ const vm = new Vue({
                 }
                 //硬直短縮(スキル)
                 //自身による効果
-                bufferInfo = me.hasteSkillList.find((elem) => elem.buffer === unit.unitInfo.unitName);
-                if(bufferInfo !== undefined) {
-                    atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown);
-                }
-                bufferInfo = me.hasteSkillList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
-                if(bufferInfo !== undefined) {
-                    atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown);
+                if(index1 !== 0) {
+                    bufferInfo = _.findLast(me.hasteSkillList, {buffer: unit.unitInfo.unitName});
+                    if(bufferInfo !== undefined) {
+                        atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown);
+                    }
+                    bufferInfo = _.findLast(me.hasteSkillList, {buffer: unit.unitInfo.unitClass.selected});
+                    if(bufferInfo !== undefined) {
+                        atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown);
+                    }
                 }
                 //選択したオプションによる効果
-                me.checked_hasteSkill.forEach(function(buffer) {
-                    bufferInfo = me.hasteSkillList.find((elem) => elem.buffer === buffer);
+                _.forEach(me.checked_hasteSkill, function(buffer) {
+                    bufferInfo = _.find(me.hasteSkillList, {buffer: buffer.buffer, awaken: buffer.awaken});
                     atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown * me.IsTarget(unit, bufferInfo));
                 })
                 //鈍化(マップ)軽減
                 //自身による効果
-                bufferInfo = me.redMapEffList.find((elem) => elem.buffer === unit.unitInfo.unitName);
+                bufferInfo = _.findLast(me.redMapEffList, {buffer: unit.unitInfo.unitName});
                 if(bufferInfo !== undefined) {
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
                     }
                 }
-                bufferInfo = me.redMapEffList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.findLast(me.redMapEffList, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
                     }
                 }
-                bufferInfo = me.self_redMapEffList.find((elem) => elem.buffer === unit.unitInfo.unitClass.selected);
+                bufferInfo = _.find(me.self_redMapEffList, {buffer: unit.unitInfo.unitName});
+                if(bufferInfo !== undefined) {
+                    if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
+                        redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
+                    }
+                }
+                bufferInfo = _.find(me.self_redMapEffList, {buffer: unit.unitInfo.unitClass.selected});
                 if(bufferInfo !== undefined) {
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
                     }
                 }
                 //選択したオプションによる効果
-                me.checked_redMapEff.forEach(function(buffer) {
-                    bufferInfo = me.redMapEffList.find((elem) => elem.buffer === buffer);
+                _.forEach(me.checked_redMapEff, function(buffer) {
+                    bufferInfo = _.find(me.redMapEffList, {buffer: buffer.buffer, awaken: buffer.awaken});
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate * me.IsTarget(unit, bufferInfo));
                     }
@@ -1644,17 +1704,17 @@ const vm = new Vue({
                 if(atkStartup !== null) {
                     //                 ↓ceil?
                     atkCooldown = Math.floor(((atkCooldownBySkill > 0 ? atkCooldownBySkill : atkCooldown) - 1) * (1 - hasteRate) + 1);
-                    if(unit.unitInfo.note.indexOf('状態異常無効') === -1) {
+                    if(!_.includes(unit.unitInfo.note, '状態異常無効')) {
                         atkCooldown += me.incAtkCooldown_enemy.value * 2;
                     }
-                    if(unit.unitInfo.note.indexOf('深海適応') === -1) {
+                    if(!_.includes(unit.unitInfo.note, '深海適応')) {
                         atkCooldown += Math.ceil(me.incAtkCooldown_map.value * (1 - redMapEffRate / 100)) * 2;
                     }
                     unit.unitInfo.atkInterval[index0].startup = atkStartup;
                     unit.unitInfo.atkInterval[index0].remain = atkRemain;
                     unit.unitInfo.atkInterval[index0].cooldown = atkCooldown;
                 }
-                return { startup: atkStartup, remain: atkRemain, cooldown: atkCooldown }
+                return { startup: atkStartup, remain: atkRemain, cooldown: atkCooldown };
             }
         },
         //HP減少率
@@ -1676,7 +1736,7 @@ const vm = new Vue({
                 if(unit.skill.dmgMul.opt[index] === 'あり') {
                     return unit.skill.HPred[index] * unit.skill.dmgMul.mul[index];
                 } else {
-                    return unit.skill.HPred[index]
+                    return unit.skill.HPred[index];
                 }
             }
         },
@@ -1718,9 +1778,10 @@ const vm = new Vue({
         SetGraphData() {
             const me = this;
             const max = me.unitsList_onSkillAct.length + me.unitsList_onHit.length;
+            let h;
             me.datasets.length = 0;
-            me.unitsList_onSkillAct.forEach(function(unit) {
-                h = 360 * unit.id / max;
+            _.forEach(me.unitsList_onSkillAct, function(unit, index) {
+                h = 360 * index / max;
                 //グラフデータ作成
                 me.datasets.push({
                     label: unit.unitInfo.unitName,
@@ -1728,14 +1789,14 @@ const vm = new Vue({
                     borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                     backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                     pointRadius: 0,
-                    pointHitRadius: 0.1,
+                    pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
                     hidden: me.graphHidden_onSkillAct
                 });
             })
-            me.unitsList_onHit.forEach(function(unit) {
+            _.forEach(me.unitsList_onHit, function(unit, index) {
                 me.SetFirstTime_onHit(unit);
                 me.SetInterval_onHit(unit);
-                h = 360 * (unit.id + me.unitsList_onSkillAct.length) / max;
+                h = 360 * (index + me.unitsList_onSkillAct.length) / max;
                 //グラフデータ作成
                 me.datasets.push({
                     label: unit.unitInfo.unitName,
@@ -1743,12 +1804,12 @@ const vm = new Vue({
                     borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                     backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                     pointRadius: 0,
-                    pointHitRadius: 0.1,
+                    pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
                     hidden: me.graphHidden_onHit
                 });
             })
         },
-        //HP変移計算(スキル発動時発生型)
+        //HP遷移計算(スキル発動時発生型)
         ClacHPchange_onSkillAct() {
             return function(unit) {
                 const me = this;
@@ -1765,6 +1826,10 @@ const vm = new Vue({
                 let count = 0;
                 const damage = me.DPS * deltaTime;
                 for(let time = 0; time <= me.timeCap.value; time += deltaTime) {
+                    if(HP === 0) {
+                        HPchanges.push(0);
+                        continue;
+                    }
                     mul[0] = 1.0;
                     mul[1] = 1.0;
                     //HP減少発生時の処理
@@ -1778,43 +1843,52 @@ const vm = new Vue({
                             mul[1] *= unit.skill.dmgMul.mul[index];
                         }
                         if(target === '全員' || target === '全敵') {    //全員・全敵
-                            if(me.linkedHP.use) {   //HPリンクあり
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
-                                HP -= (linkedHP - Math.floor(linkedHP * (1 - unit.skill.HPred[index] / 100 * mul[1])));
-                                linkedHP = Math.floor(linkedHP * (1 - unit.skill.HPred[index] / 100 * mul[1]));
-                            } else {                //HPリンクなし
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                            if(me.linkedHP.use && linkedHP > 0) {   //HPリンクあり
+                                HP -= Math.max(1, Math.floor(linkedHP * unit.skill.HPred[index] / 100 * mul[1]));
+                                linkedHP -= Math.max(1, Math.floor(linkedHP * unit.skill.HPred[index] / 100 * mul[1]));
                             }
                         } else if(target === '射程内') {   //射程内制限なし
                             if(me.simultHit.use) {  //引き付け(敵)あり
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** simultHit);
+                                Array(simultHit).fill().map(function() {
+                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                });
                             } else {                //引き付け(敵)なし
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
                             }
                         } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
                             if(me.simultHit.use) {  //引き付け(敵)あり
                                 simultHit = Math.min(simultHit, parseInt(target));
-                                 HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** simultHit);
+                                Array(simultHit).fill().map(function() {
+                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                });
                             } else {                //引き付け(敵)なし
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
                             }
                         } else {    //他
-                            HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]));
+                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
                         }
                         count++;
                     }
-                    if(HP < 0) HP = 0;
-                    if(linkedHP < 0) linkedHP = 0;
-                    HPchanges.push(HP / me.maxHP.value * 100);
-                    HP -= damage;
-                    linkedHP -= damage;
-                    if(HP > me.maxHP.value) HP = me.maxHP.value;
-                    if(linkedHP > me.linkedHP.value) linkedHP = me.linkedHP.value;
+                    if(HP <= 0) {
+                        HP = 0;
+                        HPchanges.push(0);
+                    } else {
+                        HPchanges.push(HP / me.maxHP.value * 100);
+                        HP -= damage;
+                        HP = _.clamp(HP, 0, me.maxHP.value);
+                        if(linkedHP <= 0) {
+                            linkedHP = 0;
+                        } else {
+                            linkedHP -= damage;
+                            linkedHP = _.clamp(linkedHP, 0, me.linkedHP.value);
+                        }
+                    }
                 }
-                return HPchanges.slice()
+                return _.clone(HPchanges);
             }
         },
-        //HP変移計算(攻撃ヒット時発生型)
+        //HP遷移計算(攻撃ヒット時発生型)
         ClacHPchange_onHit() {
             return function(unit) {
                 const me = this;
@@ -1853,6 +1927,10 @@ const vm = new Vue({
                     dur = unit.skill.dur.A * (1 + extend);
                 }
                 for(let time = 0; time <= me.timeCap.value; time += deltaTime) {
+                    if(HP === 0) {
+                        HPchanges.push(0);
+                        continue;
+                    }
                     mul[0] = 1.0;
                     mul[1] = 1.0;
                     if(time >= (unit.skill.firstTime + count * (dur + unit.skill.interval)) //スキル中
@@ -1874,21 +1952,37 @@ const vm = new Vue({
                             //前回プロット時からのヒット数
                             hit = Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
                                 - Math.floor(((skillTimeLapse - deltaTime) * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
-                            if(target === '射程内') {   //射程内制限なし
-                                if(me.simultHit.use) {  //引き付け(敵)あり
-                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
-                                } else {                //引き付け(敵)なし
-                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
+                            if(hit > 0) {
+                                if(target === '射程内') {   //射程内制限なし
+                                    if(me.simultHit.use) {  //引き付け(敵)あり
+                                        Array(hit).fill().map(function() {
+                                            Array(simultHit).fill().map(function() {
+                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                            });
+                                        });
+                                    } else {                //引き付け(敵)なし
+                                        Array(hit).fill().map(function() {
+                                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                        });
+                                    }
+                                } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
+                                    if(me.simultHit.use) {  //引き付け(敵)あり
+                                        simultHit = Math.min(simultHit, parseInt(target));
+                                        Array(hit).fill().map(function() {
+                                            Array(simultHit).fill().map(function() {
+                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                            });
+                                        });
+                                    } else {                //引き付け(敵)なし
+                                        Array(hit).fill().map(function() {
+                                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                        });
+                                    }
+                                } else {    //他
+                                    Array(hit).fill().map(function() {
+                                        HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                    });
                                 }
-                            } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
-                                if(me.simultHit.use) {  //引き付け(敵)あり
-                                    simultHit = Math.min(simultHit, parseInt(target));
-                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
-                                } else {                //引き付け(敵)なし
-                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
-                                }
-                            } else {    //他
-                                HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
                             }
                         }
                     } else {    //非スキル中
@@ -1910,34 +2004,59 @@ const vm = new Vue({
                                 //最小プロット間隔が1/30秒ではない時にはみ出す分の計算
                                 hit = Math.floor((dur * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
                                     - Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
-                                if(target === '射程内') {   //射程内制限なし
-                                    if(me.simultHit.use) {  //引き付け(敵)あり
-                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
-                                    } else {                //引き付け(敵)なし
-                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
+                                if(hit > 0) {
+                                    if(target === '射程内') {   //射程内制限なし
+                                        if(me.simultHit.use) {  //引き付け(敵)あり
+                                            Array(hit).fill().map(function() {
+                                                Array(simultHit).fill().map(function() {
+                                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                });
+                                            });
+                                        } else {                //引き付け(敵)なし
+                                            Array(hit).fill().map(function() {
+                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                            });
+                                        }
+                                    } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
+                                        if(me.simultHit.use) {  //引き付け(敵)あり
+                                            simultHit = Math.min(simultHit, parseInt(target));
+                                            Array(hit).fill().map(function() {
+                                                Array(simultHit).fill().map(function() {
+                                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                });
+                                            });
+                                        } else {                //引き付け(敵)なし
+                                            Array(hit).fill().map(function() {
+                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                            });
+                                        }
+                                    } else {    //他
+                                        Array(hit).fill().map(function() {
+                                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                        });
                                     }
-                                } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
-                                    if(me.simultHit.use) {  //引き付け(敵)あり
-                                        simultHit = Math.min(simultHit, parseInt(target));
-                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** (hit * simultHit));
-                                    } else {                //引き付け(敵)なし
-                                        HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
-                                    }
-                                } else {    //他
-                                    HP = Math.floor(HP * (1 - unit.skill.HPred[index] / 100 * mul[0]) ** hit);
                                 }
                             }
                         }
                     }
-                    if(HP < 0) HP = 0;
-                    //if(linkedHP < 0) linkedHP = 0;
-                    HPchanges.push(HP / me.maxHP.value * 100);
-                    HP -= damage;
-                    //linkedHP -= damage;
-                    if(HP > me.maxHP.value) HP = me.maxHP.value;
-                    //if(linkedHP > me.linkedHP.value) linkedHP = me.linkedHP.value;
+                    if(HP <= 0) {
+                        HP = 0;
+                        HPchanges.push(0);
+                    } else {
+                        HPchanges.push(HP / me.maxHP.value * 100);
+                        HP -= damage;
+                        HP = _.clamp(HP, 0, me.maxHP.value);
+                        /*
+                        if(linkedHP <= 0) {
+                            linkedHP = 0;
+                        } else {
+                            linkedHP -= damage;
+                            linkedHP = _.clamp(linkedHP, 0, me.linkedHP.value);
+                        }
+                        */
+                    }
                 }
-                return HPchanges.slice()
+                return _.clone(HPchanges);
             }
         }
     },
@@ -2054,35 +2173,7 @@ const vm = new Vue({
         //ユニットデータ追加用モーダル(スキル発動時発生型)
         OpenModal_onSkillAct() {
             const me = this;
-            me.newUnitData_onSkillAct = {
-                id: null,
-                unitInfo: {
-                    unitName: '', deployType: '', rarity: '',
-                    unitClass: {
-                        selectable: false, selected: '',
-                        options: [ '' ]
-                    },
-                    attribution: [ '', '', '', '' ],
-                    affection: { percentage: null, bonus: '', changeRate: null },
-                    note: [ '' ]
-                },
-                skill: {
-                    awaken: {
-                        selectable: false, selected: '通常',
-                        options: [ '通常', '覚醒' ]
-                    },
-                    target: [ null, null ],
-                    WT: { A: null, B: null },
-                    CT: { A: null, B: null },
-                    CT_uncurr: [ { A: null, B: null }, { A: null, B: null } ],
-                    dur: { A: null, B: null },
-                    dur_uncurr: [ { A: null, B: null }, { A: null, B: null } ],
-                    firstTime: null, interval: null,
-                    trigger: [ null, null ], trans: [ '-', '-' ], HPred: [ 0, 0 ],
-                    mulByNum: [ [ 1 ], [ 1 ] ],
-                    dmgMul: { opt: [ false, false ], mul: [ 1, 1 ], target: [ null, null ] }
-                }
-            };
+            me.newUnitData_onSkillAct = _.cloneDeep(unitDataTemplate_onSkillAct);
             me.addUnitAlart = '';
             me.modal_onSkillAct = true;
             me.modal_skillAwaken[0] = true;
@@ -2096,29 +2187,29 @@ const vm = new Vue({
             const unitInfo = me.newUnitData_onSkillAct.unitInfo;
             const skill = me.newUnitData_onSkillAct.skill;
             //ユニット名
-            if(unitInfo.unitName.length === 0) {
+            if(_.isEmpty(unitInfo.unitName)) {
                 alartText.push('ユニット名');
             }
             //配置型
-            if(unitInfo.deployType === '') {
+            if(_.isEmpty(unitInfo.deployType)) {
                 alartText.push('配置型');
             }
             //レアリティ
-            if(unitInfo.rarity === '') {
+            if(_.isEmpty(unitInfo.rarity)) {
                 alartText.push('レアリティ');
             }
             //クラス
-            unitInfo.unitClass.options = unitInfo.unitClass.options.filter(Boolean);
+            unitInfo.unitClass.options = _.compact(unitInfo.unitClass.options);
             unitInfo.unitClass.selected = unitInfo.unitClass.options[0];
-            if(unitInfo.unitClass.options.length === 0) {
+            if(_.isEmpty(unitInfo.unitClass.options)) {
                 alartText.push('クラス');
                 unitInfo.unitClass.options.push('');
             } else {
                 unitInfo.unitClass.selectable = unitInfo.unitClass.options.length > 1;
             }
             //好感度ボーナス
-            if(unitInfo.affection.bonus === '') {
-                alartText.push('好感度ボーナス')
+            if(_.isEmpty(unitInfo.affection.bonus)) {
+                alartText.push('好感度ボーナス');
             } else {
                 switch(unitInfo.affection.bonus) {
                     case '再動短縮':
@@ -2153,17 +2244,17 @@ const vm = new Vue({
             skill.awaken.selectable = fillSkill[0] && fillSkill[1];
             skill.awaken.selected = fillSkill[0] ? '通常' : '覚醒';
 
-            if(alartText.length === 0) {
+            if(_.isEmpty(alartText)) {
                 //必須事項全記入
                 //id付与
                 me.newUnitData_onSkillAct.id = me.unitsList_onSkillAct[me.unitsList_onSkillAct.length - 1].id + 1;
                 //属性詰め&整形
-                unitInfo.attribution = unitInfo.attribution.filter(Boolean);
-                if(unitInfo.attribution.length === 0) {
+                unitInfo.attribution = _.compact(unitInfo.attribution);
+                if(_.isEmpty(unitInfo.attribution)) {
                     unitInfo.attribution.push('なし');
                 }
                 //その他詰め
-                unitInfo.note = unitInfo.note.filter(Boolean);
+                unitInfo.note = _.compact(unitInfo.note);
                 //スキル整形
                 for(let i = 0; i < 2; i++) {
                     if(fillSkill[i]) {
@@ -2206,7 +2297,7 @@ const vm = new Vue({
             } else {
                 //記入漏れあり
                 me.addUnitAlart = '※以下の事項が記入されてません\n'
-                alartText.forEach(function(text, index, array) {
+                _.forEach(alartText, function(text, index, array) {
                     me.addUnitAlart += text;
                     if(index < array.length - 1) {
                         me.addUnitAlart += '、';
@@ -2217,44 +2308,7 @@ const vm = new Vue({
         //ユニットデータ追加用モーダル(攻撃ヒット時発生型)
         OpenModal_onHit() {
             const me = this;
-            me.newUnitData_onHit = {
-                id: null,
-                unitInfo: {
-                    unitName: '', deployType: '', rarity: '',
-                    unitClass: {
-                        selectable: false, selected: '',
-                        options: [ '' ]
-                    },
-                    attribution: [ '', '', '', '' ],
-                    affection: { percentage: null, bonus: '', changeRate: null },
-                    note: [ '' ],
-                    atkInterval: [
-                        { startup: null, remain: null, cooldown: null },
-                        { startup: null, remain: null, cooldown: null }
-                    ],
-                    atkInterval_uncurr: [
-                        { startup: null, remain: null, cooldown: null },
-                        { startup: null, remain: null, cooldown: null },
-                        { startup: null, remain: null, cooldown: null }
-                    ]
-                },
-                skill: {
-                    awaken: {
-                        selectable: false, selected: '通常',
-                        options: [ '通常', '覚醒' ]
-                    },
-                    target: [ null, null ],
-                    WT: { A: null, B: null },
-                    CT: { A: null, B: null },
-                    CT_uncurr: [ { A: null, B: null }, { A: null, B: null } ],
-                    dur: { A: null, B: null },
-                    dur_uncurr: [ { A: null, B: null }, { A: null, B: null } ],
-                    firstTime: null, interval: null,
-                    trigger: [ null, null ], trans: [ '-', '-' ], HPred: [ 0, 0 ],
-                    mulByNum: [ [ 1 ], [ 1 ] ],
-                    dmgMul: { opt: [ false, false ], mul: [ 1, 1 ], target: [ null, null ] }
-                }
-            };
+            me.newUnitData_onHit = _.cloneDeep(unitDataTemplate_onHit);
             me.addUnitAlart = '';
             me.modal_onHit = true;
             me.modal_skillAwaken[0] = true;
@@ -2272,28 +2326,28 @@ const vm = new Vue({
             const unitInfo = me.newUnitData_onHit.unitInfo;
             const skill = me.newUnitData_onHit.skill;
             //ユニット名
-            if(unitInfo.unitName.length === 0) {
+            if(_.isEmpty(unitInfo.unitName)) {
                 alartText.push('ユニット名');
             }
             //配置型
-            if(unitInfo.deployType === '') {
+            if(_.isEmpty(unitInfo.deployType)) {
                 alartText.push('配置型');
             }
             //レアリティ
-            if(unitInfo.rarity === '') {
+            if(_.isEmpty(unitInfo.rarity)) {
                 alartText.push('レアリティ');
             }
             //クラス
-            unitInfo.unitClass.options = unitInfo.unitClass.options.filter(Boolean);
+            unitInfo.unitClass.options = _.compact(unitInfo.unitClass.options);
             unitInfo.unitClass.selected = unitInfo.unitClass.options[0];
-            if(unitInfo.unitClass.options.length === 0) {
+            if(_.isEmpty(unitInfo.unitClass.options)) {
                 alartText.push('クラス');
                 unitInfo.unitClass.options.push('');
             } else {
                 unitInfo.unitClass.selectable = unitInfo.unitClass.options.length > 1;
             }
             //好感度ボーナス
-            if(unitInfo.affection.bonus === '') {
+            if(_.isEmpty(unitInfo.affection.bonus)) {
                 alartText.push('好感度ボーナス')
             } else {
                 switch(unitInfo.affection.bonus) {
@@ -2345,12 +2399,12 @@ const vm = new Vue({
                 //id付与
                 me.newUnitData_onHit.id = me.unitsList_onHit[me.unitsList_onHit.length - 1].id + 1;
                 //属性詰め&整形
-                unitInfo.attribution = unitInfo.attribution.filter(Boolean);
-                if(unitInfo.attribution.length === 0) {
+                unitInfo.attribution = _.compact(unitInfo.attribution);
+                if(_.isEmpty(unitInfo.attribution)) {
                     unitInfo.attribution.push('なし');
                 }
                 //その他詰め
-                unitInfo.note = unitInfo.note.filter(Boolean);
+                unitInfo.note = _.compact(unitInfo.note);
                 //攻撃速度整形
                 for(let i = 0; i < 3; i++) {
                     if(fillAtkInterval[i])  continue;
@@ -2400,7 +2454,7 @@ const vm = new Vue({
             } else {
                 //記入漏れあり
                 me.addUnitAlart = '※以下の事項が記入されてません\n'
-                alartText.forEach(function(text, index, array) {
+                _.forEach(alartText, function(text, index, array) {
                     me.addUnitAlart += text;
                     if(index < array.length - 1) {
                         me.addUnitAlart += '、';
@@ -2412,7 +2466,7 @@ const vm = new Vue({
         Chart() {
             const me = this;
             //プロット数
-            me.plotNum = Math.min(me.timeCap.value * 30, Math.floor(window.innerWidth / 100) * 300);
+            me.plotNum = Math.min(me.timeCap.value * 30, _.floor(window.innerWidth, -2) * 3);
             //グラフデータ作成
             me.SetGraphData;
             //グラフの枠線の色
@@ -2430,16 +2484,23 @@ const vm = new Vue({
                     yAxisColor.push('rgba(0, 0, 0, 0.1)')
                 }
             }
-            //ツールチップの位置を左下に固定
+            //ツールチップの位置
             Chart.Tooltip.positioners.custom = function(elements, position) {
                 if (!elements.length) {
                     return false;
                 }
                 const area = elements[0]._chart.chartArea;
-                return {
-                    x: 200,
-                    y: area.bottom
-                };
+                if(position.x < (area.left + area.right) / 2) {
+                    return {
+                        x: area.right - 120,
+                        y: area.bottom
+                    };
+                } else {
+                    return {
+                        x: 200,
+                        y: area.bottom
+                    };
+                }
             };
             //グラフ作成
             const ctx = document.getElementById('charts').getContext('2d');
@@ -2484,7 +2545,7 @@ const vm = new Vue({
                             label: function (tooltipItem, data) {
                                 const tooltipLabel = [];
                                 const added = [];
-                                if(added.indexOf(data.datasets[tooltipItem.datasetIndex].label) === -1) {
+                                if(!_.includes(added, data.datasets[tooltipItem.datasetIndex].label)) {
                                     tooltipLabel.push(
                                         data.datasets[tooltipItem.datasetIndex].label
                                         + ': '
