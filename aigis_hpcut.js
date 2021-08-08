@@ -478,6 +478,49 @@ const depTypeCountElem = {
         'スカイシューター系', '下級スカイシューター', 'ちびスカイシューター', 'ちびアローウィング', 'スカイシューター', 'スカイシューターチーフ', 'アローウィング'
     ]
 };
+//特殊なスキル初動(特に黒)
+const specialWTlistElem = [
+    { unitName: '魔導鎧姫グレース', rarity: '黒', skillAwaken: '覚醒', WT: 0 },
+    { unitName: '万刃を担う者アルヴァ', rarity: '黒', skillAwaken: '覚醒', WT: 0 }
+];
+//特殊な好感度ボーナス%
+const specialAffListElem = {
+    '再動短縮': {
+        '黒': {},
+        '白': {},
+        '金': {
+            0.12: [ 'ちびイブキ', 'ちびナタク', 'ちびアイシャ', 'ちびメル' ],
+            0.15: [
+                '新米狩人ピックル', 'ちびキャリー', 'ちびクリッサ', 'ちびオリヴィエ', 'ちびヴルム', 'ちびウェンディ',
+                'ちびカヨウ', 'ちびキュウビ', 'ちびオーガスタ', 'ちびスピカ', 'ちびフレデリカ'
+            ],
+            0.16: [ '姫装山賊モーティマ', '竜騎士アベル', '黒衣のサイラス' ]
+        }
+    },
+    '時間延長': {
+        '黒': {
+            0.23: [ '赤き盗賊花嫁ベルナ', '降魔の復讐者ノワール', '鬼刃忍タチバナ', '至宝の使い手リアナ', '翠花の領主メアリ' ]
+        },
+        '白': {},
+        '金': {
+            0.15: [ 'ちびマツリ', 'ちびセーラ', 'ちび鬼刃姫', 'ちびティニー', 'ちびリアナ', 'ちびクラリーチェ' ]
+        }
+    },
+    '攻撃硬直': {
+        '黒': {
+            0.17: [ '純白の花嫁カルマ', '夜鳥ツグミ', '花嫁姿の召喚士ファルネ', '冥霊たちの夏メルアビス', '錬金調合師ニコル' ]
+        },
+        '白': {},
+        '金': {
+            0.10: [
+                'ちびディーナ', 'ちびエレイン', 'ちびセシリー', 'ちびジュノン', 'ちびロゼット', 'ちびエルドラ' ,'ちびリディ',
+                'ちびアリス', 'ちびイングリッド', 'ちびソフィー', 'ちびコノハ', 'ちびリュクス', 'ちびアーシェラ',
+                'ちびメーリス', 'ちびイリス', 'ちびメープル', 'ちびアンリ'
+            ],
+            0.12: [ '海賊番長ジョヴァンニ' ]
+        }
+    }
+};
 
 //ユニットリスト
 const unitsList_onSkillActElem = [
@@ -503,7 +546,7 @@ const unitsList_onSkillActElem = [
             CT: { A: null, B: null },
             CT_uncurr: [ { A: 22, B: null }, { A: 10, B: 30 } ],
             dur: { A: null, B: null },
-            dur_uncurr: [ { A: 30, B: null }, { A: 0, B: 30 } ],
+            dur_uncurr: [ { A: 30, B: null }, { A: 3, B: 30 } ],
             firstTime: null, interval: null,
             trigger: [ null, 'A' ], trans: [ '-', '交互' ], HPred: [ 0, 20 ],
             mulByNum: [ [ 1 ], [ 1 ] ],
@@ -532,7 +575,7 @@ const unitsList_onSkillActElem = [
             CT: { A: null, B: null },
             CT_uncurr: [ { A: 15, B: 15 }, { A: 15, B: 15 } ],
             dur: { A: null, B: null },
-            dur_uncurr: [ { A: 0, B: 0 }, { A: 10, B: 20 } ],
+            dur_uncurr: [ { A: 1, B: 1 }, { A: 10, B: 20 } ],
             firstTime: null, interval: null,
             trigger: [ null, 'B' ], trans: [ '交互', '交互' ], HPred: [ 0, 5 ],
             mulByNum: [ [ 1 ], [ 1 ] ],
@@ -590,7 +633,7 @@ const unitsList_onSkillActElem = [
             CT: { A: null, B: null },
             CT_uncurr: [ { A: 10, B: null }, { A: 80, B: null } ],
             dur: { A: null, B: null },
-            dur_uncurr: [ { A: 0, B: null }, { A: Infinity, B: null } ],
+            dur_uncurr: [ { A: 2, B: null }, { A: Infinity, B: null } ],
             firstTime: null, interval: null,
             trigger: [ '-', null ], trans: [ '-', '-' ], HPred: [ 10, 0 ],
             mulByNum: [ [ 1 ], [ 1 ] ],
@@ -648,7 +691,7 @@ const unitsList_onSkillActElem = [
             CT: { A: null, B: null },
             CT_uncurr: [ { A: 55, B: null }, { A: 50, B: 55 } ],
             dur: { A: null, B: null },
-            dur_uncurr: [ { A: 0, B: null }, { A: 0, B: 0 } ],
+            dur_uncurr: [ { A: 1, B: null }, { A: 1, B: 1 } ],
             firstTime: null, interval: null,
             trigger: [ '-', 'B' ], trans: [ '-', '初回A' ], HPred: [ 20, 20 ],
             mulByNum: [ [ 1 ], [ 1 ] ],
@@ -1066,7 +1109,7 @@ const array_attr2 = [
 ];
 //その他一覧
 const array_note = [
-    '', '女性', '男性', 'ドラゴンライダー系', '状態異常無効', 'GG持ち', 'HP回復不可', '魔界適応', '深海適応', '天界適応'
+    '', '女性', '男性', 'プリンセス系', 'ドラゴンライダー系', '状態異常無効', 'GG持ち', 'HP回復不可', '魔界適応', '深海適応', '天界適応'
 ];
 
 const vm = new Vue({
@@ -1094,6 +1137,8 @@ const vm = new Vue({
             self_redMapEffList: _.cloneDeep(self_redMapEffListElem),
 
             depTypeCount: _.cloneDeep(depTypeCountElem),
+            specialWTlist: _.cloneDeep(specialWTlistElem),
+            specialAffList: _.cloneDeep(specialAffListElem),
 
             unitsList_onSkillAct: _.cloneDeep(unitsList_onSkillActElem),
             modal_onSkillAct: false,
@@ -1163,27 +1208,27 @@ const vm = new Vue({
         }
     },
     created() {
-        const setID = function(array) {
+        const SetID = function(array) {
             _.forEach(array, function(elem, index) {
                 elem.id = index;
             });
         };
-        setID(this.rWTlist);
-        setID(this.rCTdepType);
-        setID(this.rCTlist);
-        setID(this.skillExtendList);
-        setID(this.hasteTeemList);
-        setID(this.hasteSkillList);
-        setID(this.redMapEffList);
+        SetID(this.rWTlist);
+        SetID(this.rCTdepType);
+        SetID(this.rCTlist);
+        SetID(this.skillExtendList);
+        SetID(this.hasteTeemList);
+        SetID(this.hasteSkillList);
+        SetID(this.redMapEffList);
 
-        setID(this.self_rWTlist);
-        setID(this.self_rCTlist);
-        setID(this.self_skillExtendList);
-        setID(this.self_hasteTeemList);
-        setID(this.self_redMapEffList);
+        SetID(this.self_rWTlist);
+        SetID(this.self_rCTlist);
+        SetID(this.self_skillExtendList);
+        SetID(this.self_hasteTeemList);
+        SetID(this.self_redMapEffList);
 
-        setID(this.unitsList_onSkillAct);
-        setID(this.unitsList_onHit);
+        SetID(this.unitsList_onSkillAct);
+        SetID(this.unitsList_onHit);
     },
     mounted() {
         this.Chart();
@@ -1196,27 +1241,35 @@ const vm = new Vue({
         //好感度ボーナス込みの初動・再動
         CurrectSkill() {
             return function(unit) {
+                const me = this;
+                const unitName = unit.unitInfo.unitName;
+                const rarity = unit.unitInfo.rarity;
                 const AW = unit.skill.awaken.selected;
-                const aff = unit.unitInfo.affection;
-                const WT = unit.skill.WT;
-                const CT = unit.skill.CT;
-                const dur = unit.skill.dur;
-                const CT_uncurr = unit.skill.CT_uncurr[AW === '通常' ? 0 : 1];
-                const dur_uncurr = unit.skill.dur_uncurr[AW === '通常' ? 0 : 1];
-                let curr = 0;
+                const aff = unit.unitInfo.affection;    //object
+                const WT = unit.skill.WT;               //object
+                const CT = unit.skill.CT;               //object
+                const dur = unit.skill.dur;             //object
+                const CT_uncurr = unit.skill.CT_uncurr[AW === '通常' ? 0 : 1];      //object
+                const dur_uncurr = unit.skill.dur_uncurr[AW === '通常' ? 0 : 1];    //object
+                let curr = NaN;
                 //150%ボーナスの補正値
-                switch(unit.unitInfo.rarity) {
-                    case '黒':
-                        curr = 0.25; 
-                        break;
-                    case '白':
-                    case '青':
-                        curr = 0.2;
-                        break;
-                    case '金':
-                        curr = 0.18;
-                        break;
-                    default:
+                if(aff.bonus !== null && aff.bonus !== 'その他') {
+                    curr = _.toNumber(_.findKey(me.specialAffList[aff.bonus][rarity], key => _.includes(key, unitName)));
+                }
+                if(_.isNaN(curr)) {
+                    switch(rarity) {
+                        case '黒':
+                            curr = 0.25; 
+                            break;
+                        case '白':
+                        case '青':
+                            curr = 0.2;
+                            break;
+                        case '金':
+                            curr = 0.18;
+                            break;
+                        default:
+                    }
                 }
                 //CT・スキル時間の計算
                 switch(aff.bonus) {
@@ -1241,26 +1294,31 @@ const vm = new Vue({
                         dur.B = dur_uncurr.B;
                 }
                 //初動の計算
-                switch(unit.unitInfo.rarity) {
-                    case '黒':
-                        WT.A = AW === '通常' ? 1 : 5;
-                        if(CT.B !== null) WT.B = AW === '通常' ? 1 : 5;
-                        break;
-                    case '白':
-                        WT.A = CT.A * 0.5;
-                        if(CT.B !== null) WT.B = CT.B * 0.5;
-                        break;
-                    case '青':
-                        WT.A = CT.A * 0.6;
-                        if(CT.B !== null) WT.B = CT.B * 0.6;
-                        break;
-                    case '金':
-                        WT.A = CT.A * 0.66;
-                        if(CT.B !== null) WT.B = CT.B * 0.66;
-                        break;
-                    default:
-                        WT.A = CT.A;
-                        if(CT.B !== null) WT.B = CT.B;
+                const specialWT = _.find(me.specialWTlist, {unitName: unitName, rarity: rarity, skillAwaken: AW});
+                if(specialWT !== undefined) {
+                    WT.A = specialWT.WT;
+                } else {
+                    switch(rarity) {
+                        case '黒':
+                            WT.A = AW === '通常' ? 1 : 5;
+                            if(CT.B !== null) WT.B = AW === '通常' ? 1 : 5;
+                            break;
+                        case '白':
+                            WT.A = CT.A * 0.5;
+                            if(CT.B !== null) WT.B = CT.B * 0.5;
+                            break;
+                        case '青':
+                            WT.A = CT.A * 0.6;
+                            if(CT.B !== null) WT.B = CT.B * 0.6;
+                            break;
+                        case '金':
+                            WT.A = CT.A * 0.66;
+                            if(CT.B !== null) WT.B = CT.B * 0.66;
+                            break;
+                        default:
+                            WT.A = CT.A;
+                            if(CT.B !== null) WT.B = CT.B;
+                    }
                 }
             }
         },
@@ -1268,23 +1326,25 @@ const vm = new Vue({
         SetWTred() {
             return function(unit) {
                 const me = this;
+                const unitName = unit.unitInfo.unitName;
+                const unitClass = unit.unitInfo.unitClass.selected;
                 let buffRate = 0;
                 let bufferInfo;
                 //クラス・属性の初動短縮
                 //自身による効果
-                bufferInfo = _.findLast(me.rWTlist, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.findLast(me.rWTlist, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.findLast(me.rWTlist, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.findLast(me.rWTlist, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_rWTlist, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.find(me.self_rWTlist, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_rWTlist, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.find(me.self_rWTlist, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
@@ -1300,6 +1360,8 @@ const vm = new Vue({
         SetCTred() {
             return function(unit) {
                 const me = this;
+                const unitName = unit.unitInfo.unitName;
+                const unitClass = unit.unitInfo.unitClass.selected;
                 let buffRate;
                 let bufferInfo;
                 //近接型・遠距離型・遠近両型の再動短縮
@@ -1307,19 +1369,19 @@ const vm = new Vue({
                 buffRate = bufferInfo.rate;
                 //クラス・属性の再動短縮
                 //自身による効果
-                bufferInfo = _.findLast(me.rCTlist, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.findLast(me.rCTlist, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.findLast(me.rCTlist, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.findLast(me.rCTlist, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_rCTlist, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.find(me.self_rCTlist, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_rCTlist, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.find(me.self_rCTlist, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
@@ -1335,23 +1397,25 @@ const vm = new Vue({
         SetExtend() {
             return function(unit) {
                 const me = this;
+                const unitName = unit.unitInfo.unitName;
+                const unitClass = unit.unitInfo.unitClass.selected;
                 let buffRate = 0;
                 let bufferInfo;
                 //クラス・属性のスキル属性延長
                 //自身による効果
-                bufferInfo = _.findLast(me.skillExtendList, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.findLast(me.skillExtendList, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.findLast(me.skillExtendList, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.findLast(me.skillExtendList, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_skillExtendList, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.find(me.self_skillExtendList, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_skillExtendList, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.find(me.self_skillExtendList, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
@@ -1367,23 +1431,25 @@ const vm = new Vue({
         SetHasteRate() {
             return function(unit) {
                 const me = this;
+                const unitName = unit.unitInfo.unitName;
+                const unitClass = unit.unitInfo.unitClass.selected;
                 let buffRate = 0;
                 let bufferInfo;
                 //クラス・属性の硬直短縮(編成バフ)
                 //自身による効果
-                bufferInfo = _.findLast(me.hasteTeemList, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.findLast(me.hasteTeemList, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.findLast(me.hasteTeemList, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.findLast(me.hasteTeemList, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_hasteTeemList, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.find(me.self_hasteTeemList, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
-                bufferInfo = _.find(me.self_hasteTeemList, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.find(me.self_hasteTeemList, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     buffRate = Math.max(buffRate, bufferInfo.rate);
                 }
@@ -1399,11 +1465,11 @@ const vm = new Vue({
         IsTarget() {
             return function(unit, info) {
                 const me = this;
-                const deployType = [unit.unitInfo.deployType];
+                const deployType = [unit.unitInfo.deployType];  //array
                 const rarity = unit.unitInfo.rarity;
                 const unitClass = unit.unitInfo.unitClass.selected;
-                const attr = unit.unitInfo.attribution;
-                const note = unit.unitInfo.note;
+                const attr = unit.unitInfo.attribution;         //array
+                const note = unit.unitInfo.note;                //array
                 deployType.push(_.findKey(me.depTypeCount, key => _.includes(key, unitClass)));
                 let isTarget;
                 if(info.AndOr === 'and') {
@@ -1433,7 +1499,7 @@ const vm = new Vue({
                     _.forEach(info.target, function(tar) {
                         switch(Object.keys(tar)[0]) {
                             case 'deployType':
-                                isTarget != !_.isEmpty(_.intersection(tar.deployType, deployType));
+                                isTarget |= !_.isEmpty(_.intersection(tar.deployType, deployType));
                                 break;
                              case 'rarity':
                                 isTarget |= _.includes(tar.rarity, rarity);
@@ -1463,19 +1529,25 @@ const vm = new Vue({
                 const WTred = me.SetWTred(unit);
                 const CTred = me.SetCTred(unit);
                 const extend = me.SetExtend(unit);
+                const unitName = unit.unitInfo.unitName;
                 const index = unit.skill.awaken.selected === '通常' ? 0 : 1;
-                const WT = unit.skill.WT;
-                const CT = unit.skill.CT;
-                const dur = unit.skill.dur;
+                const WT = unit.skill.WT;   //object
+                const CT = unit.skill.CT;   //object
+                const dur = unit.skill.dur; //object
+                const isBomb = {
+                    A: (dur.A < 5) || ((unitName === '爆砲の新兵カノン' || unitName === '聖夜の祝星砲カノン') && index === 1 && dur.B === 5),
+                    B: dur.B < 5
+                };
                 let firstTime = WT.A * (1 - WTred);
                 if(unit.skill.trigger[index] === 'B') {
                     if(me.redeployInterval.use) {
-                        firstTime += Math.min(
-                                Math.max(dur.A * (1 + extend), 2) + CT.A * (1 - CTred),
+                        firstTime +=
+                            Math.min(
+                                dur.A * (1 + extend * !isBomb.A) + CT.A * (1 - CTred),
                                 me.redeployInterval.value + WT.B * (1 - WTred)
                             );
                     } else {
-                        firstTime += Math.max(dur.A * (1 + extend), 2) + CT.A * (1 - CTred);
+                        firstTime += dur.A * (1 + extend * !isBomb.A) + CT.A * (1 - CTred);
                     }
                 }
                 return unit.skill.firstTime = firstTime;
@@ -1489,19 +1561,25 @@ const vm = new Vue({
                 const WTred = me.SetWTred(unit);
                 const CTred = me.SetCTred(unit);
                 const extend = me.SetExtend(unit);
+                const unitName = unit.unitInfo.unitName;
                 const index = unit.skill.awaken.selected === '通常' ? 0 : 1;
-                const WT = unit.skill.WT;
-                const CT = unit.skill.CT;
-                const dur = unit.skill.dur;
+                const WT = unit.skill.WT;   //object
+                const CT = unit.skill.CT;   //object
+                const dur = unit.skill.dur; //object
+                const isBomb = {
+                    A: (dur.A < 5) || ((unitName === '爆砲の新兵カノン' || unitName === '聖夜の祝星砲カノン') && index === 1 && dur.B === 5),
+                    B: dur.B < 5
+                };
                 let firstTime = WT.A * (1 - WTred);
                 if(unit.skill.trigger[index] === 'B') {     //編集いるかも
                     if(me.redeployInterval.use) {
-                        firstTime += Math.min(
-                                Math.max(dur.A * (1 + extend), 2) + CT.A * (1 - CTred),
+                        firstTime +=
+                            Math.min(
+                                dur.A * (1 + extend * !isBomb.A) + CT.A * (1 - CTred),
                                 me.redeployInterval.value + WT.B * (1 - WTred)
                             );
                     } else {
-                        firstTime += Math.max(dur.A * (1 + extend), 2) + CT.A * (1 - CTred);
+                        firstTime += dur.A * (1 + extend * !isBomb.A) + CT.A * (1 - CTred);
                     }
                 }
                 return unit.skill.firstTime = firstTime;
@@ -1511,32 +1589,37 @@ const vm = new Vue({
         SetInterval_onSkillAct() {
             return function(unit) {
                 const me = this;
-                me.CurrectSkill(unit);
+                //me.CurrectSkill(unit);
                 const WTred = me.SetWTred(unit);
                 const CTred = me.SetCTred(unit);
                 const extend = me.SetExtend(unit);
+                const unitName = unit.unitInfo.unitName;
                 const index = unit.skill.awaken.selected === '通常' ? 0 : 1;
-                const WT = unit.skill.WT;
-                const CT = unit.skill.CT;
-                const dur = unit.skill.dur;
+                const WT = unit.skill.WT;   //object
+                const CT = unit.skill.CT;   //object
+                const dur = unit.skill.dur; //object
+                const isBomb = {
+                    A: (dur.A < 5) || ((unitName === '爆砲の新兵カノン' || unitName === '聖夜の祝星砲カノン') && index === 1 && dur.B === 5),
+                    B: dur.B < 5
+                };
                 let interval = 0;
                 let intervalRedeploy = 0;
                 switch(unit.skill.trans[index]) {
                     case '-':
-                        interval = Math.max(dur.A * (1 + extend), 2) + CT.A * (1 - CTred);
+                        interval = dur.A * (1 + extend * !isBomb.A) + CT.A * (1 - CTred);
                         intervalRedeploy = me.redeployInterval.value + WT.A * (1 - WTred);
                         break;
                     case '交互':
-                        interval = (Math.max(dur.A * (1 + extend), 2) + Math.max(dur.B * (1 + extend), 2)) + (CT.A + CT.B) * (1 - CTred);
+                        interval = (dur.A * (1 + extend * !isBomb.A) + dur.B * (1 + extend * !isBomb.B)) + (CT.A + CT.B) * (1 - CTred);
                         intervalRedeploy = me.redeployInterval.value
                             + Math.min(
-                                WT.A * (1 - WTred) + Math.max(dur.A * (1 + extend), 2) + CT.A * (1 - CTred),
-                                WT.B * (1 - WTred) + Math.max(dur.B * (1 + extend), 2) + CT.B * (1 - CTred),
+                                WT.A * (1 - WTred) + dur.A * (1 + extend * !isBomb.A) + CT.A * (1 - CTred),
+                                WT.B * (1 - WTred) + dur.B * (1 + extend * !isBomb.B) + CT.B * (1 - CTred),
                                 me.redeployInterval.value + WT.A * (1 - WTred) + WT.B * (1 - WTred)
                             );
                         break;
                     case '初回A':
-                        interval = Math.max(dur.B * (1 + extend), 2) + CT.B * (1 - CTred);
+                        interval = dur.B * (1 + extend * !isBomb.B) + CT.B * (1 - CTred);
                         intervalRedeploy = me.redeployInterval.value + WT.B * (1 - WTred);
                         break;
                     default:
@@ -1552,14 +1635,19 @@ const vm = new Vue({
         SetInterval_onHit() {
             return function(unit) {
                 const me = this
-                me.CurrectSkill(unit);
+                //me.CurrectSkill(unit);
                 const WTred = me.SetWTred(unit);
                 const CTred = me.SetCTred(unit);
                 const extend = me.SetExtend(unit);
+                const unitName = unit.unitInfo.unitName;
                 const index = unit.skill.awaken.selected === '通常' ? 0 : 1
-                const WT = unit.skill.WT;
-                const CT = unit.skill.CT;
-                const dur = unit.skill.dur;
+                const WT = unit.skill.WT;   //object
+                const CT = unit.skill.CT;   //object
+                const dur = unit.skill.dur; //object
+                const isBomb = {
+                    A: (dur.A < 5) || ((unitName === '爆砲の新兵カノン' || unitName === '聖夜の祝星砲カノン') && index === 1 && dur.B === 5),
+                    B: dur.B < 5
+                };
                 let interval = 0;
                 let intervalRedeploy = 0;
                 switch(unit.skill.trans[index]) {
@@ -1570,18 +1658,18 @@ const vm = new Vue({
                     case '交互':
                         switch(unit.skill.trigger[index]) {
                             case 'A':
-                                interval =  Math.max(dur.B * (1 + extend), 2) + (CT.A + CT.B) * (1 - CTred);
+                                interval =  dur.B * (1 + extend * !isBomb.B) + (CT.A + CT.B) * (1 - CTred);
                                 intervalRedeploy = me.redeployInterval.value
                                     + Math.min(
                                         WT.A * (1 - WTred) + CT.A * (1 - CTred),
-                                        WT.B * (1 - WTred) + Math.max(dur.B * (1 + extend), 2) + CT.B * (1 - CTred),
+                                        WT.B * (1 - WTred) + dur.B * (1 + extend * !isBomb.B) + CT.B * (1 - CTred),
                                     );
                                 break;
                             case 'B':
-                                interval = Math.max(dur.A * (1 + extend), 2) + (CT.A + CT.B) * (1 - CTred);
+                                interval = dur.A * (1 + extend * !isBomb.A) + (CT.A + CT.B) * (1 - CTred);
                                 intervalRedeploy = me.redeployInterval.value
                                     + Math.min(
-                                        WT.A * (1 - WTred) + Math.max(dur.A * (1 + extend), 2) + CT.A * (1 - CTred),
+                                        WT.A * (1 - WTred) + dur.A * (1 + extend * !isBomb.A) + CT.A * (1 - CTred),
                                         WT.B * (1 - WTred) + CT.B * (1 - CTred),
                                     );
                                 break;
@@ -1605,7 +1693,7 @@ const vm = new Vue({
         SetAtkInterval() {
             return function(unit, index) {
                 const me = this;
-                const atkInterval = me.SetAtkIntervalSub(unit, index);
+                const atkInterval = me.SetAtkIntervalSub(unit, index);  //object
                 if(atkInterval.startup !== null) {
                     const atkMotion = Math.floor((atkInterval.startup + atkInterval.remain - 1) / 2);
                     const atkCooldown = Math.floor((atkInterval.cooldown - 1) / 2);
@@ -1620,27 +1708,35 @@ const vm = new Vue({
                 const me = this;
                 const index1 = index0 === 0 ? 0 : unit.skill.awaken.selected === '通常' ? 1 : 2;
                 const hasteRate = me.SetHasteRate(unit);
-                const aff = unit.unitInfo.affection;
+                const unitName = unit.unitInfo.unitName;
+                const rarity = unit.unitInfo.rarity;
+                const unitClass = unit.unitInfo.unitClass.selected;
+                const aff = unit.unitInfo.affection;    //object
                 const atkStartup = unit.unitInfo.atkInterval_uncurr[index1].startup;
                 const atkRemain = unit.unitInfo.atkInterval_uncurr[index1].remain;
                 let atkCooldown = unit.unitInfo.atkInterval_uncurr[index1].cooldown;
-                let curr = 0;
+                let curr = NaN;
                 let atkCooldownBySkill = 0;
                 let redMapEffRate = 0;
                 let bufferInfo;
                 //150%ボーナスの補正値
-                switch(unit.unitInfo.rarity) {
-                    case '黒':
-                        curr = 0.18; 
-                        break;
-                    case '白':
-                    case '青':
-                        curr = 0.14;
-                        break;
-                    case '金':
-                        curr = 0.13;
-                        break;
-                    default:
+                if(aff.bonus !== null && aff.bonus !== 'その他') {
+                    curr = _.toNumber(_.findKey(me.specialAffList[aff.bonus][rarity], key => _.includes(key, unitName)));
+                }
+                if(_.isNaN(curr)) {
+                    switch(rarity) {
+                        case '黒':
+                            curr = 0.18; 
+                            break;
+                        case '白':
+                        case '青':
+                            curr = 0.14;
+                            break;
+                        case '金':
+                            curr = 0.13;
+                            break;
+                        default:
+                    }
                 }
                 //攻撃速度の計算
                 //好感度ボーナス
@@ -1654,11 +1750,11 @@ const vm = new Vue({
                 //硬直短縮(スキル)
                 //自身による効果
                 if(index1 !== 0) {
-                    bufferInfo = _.findLast(me.hasteSkillList, {buffer: unit.unitInfo.unitName});
+                    bufferInfo = _.findLast(me.hasteSkillList, {buffer: unitName});
                     if(bufferInfo !== undefined) {
                         atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown);
                     }
-                    bufferInfo = _.findLast(me.hasteSkillList, {buffer: unit.unitInfo.unitClass.selected});
+                    bufferInfo = _.findLast(me.hasteSkillList, {buffer: unitClass});
                     if(bufferInfo !== undefined) {
                         atkCooldownBySkill = Math.max(atkCooldownBySkill, bufferInfo.atkCooldown);
                     }
@@ -1670,25 +1766,25 @@ const vm = new Vue({
                 })
                 //鈍化(マップ)軽減
                 //自身による効果
-                bufferInfo = _.findLast(me.redMapEffList, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.findLast(me.redMapEffList, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
                     }
                 }
-                bufferInfo = _.findLast(me.redMapEffList, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.findLast(me.redMapEffList, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
                     }
                 }
-                bufferInfo = _.find(me.self_redMapEffList, {buffer: unit.unitInfo.unitName});
+                bufferInfo = _.find(me.self_redMapEffList, {buffer: unitName});
                 if(bufferInfo !== undefined) {
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
                     }
                 }
-                bufferInfo = _.find(me.self_redMapEffList, {buffer: unit.unitInfo.unitClass.selected});
+                bufferInfo = _.find(me.self_redMapEffList, {buffer: unitClass});
                 if(bufferInfo !== undefined) {
                     if(bufferInfo.map === me.incAtkCooldown_map.map.selected) {
                         redMapEffRate = Math.max(redMapEffRate, bufferInfo.rate);
@@ -1816,8 +1912,10 @@ const vm = new Vue({
                 //const unitName = unit.unitInfo.unitName;
                 const AW = unit.skill.awaken.selected;
                 const index = AW === '通常' ? 0 : 1;
-                const deltaTime = me.timeCap.value / me.plotNum;
                 const target = unit.skill.target[index];
+                const mulByNum = unit.skill.mulByNum[index];    //array
+                const HPred = unit.skill.HPred[index];
+                const deltaTime = me.timeCap.value / me.plotNum;
                 let HP = me.maxHP.value;
                 let linkedHP = me.linkedHP.value;
                 let simultHit = me.simultHit.value;
@@ -1836,37 +1934,37 @@ const vm = new Vue({
                     if(time >= (unit.skill.firstTime + count * unit.skill.interval)) {
                         mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
                         mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
-                        mul[0] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
-                        mul[1] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                        mul[0] *= mulByNum[Math.min(count, mulByNum.length - 1)];
+                        mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
                         if(unit.skill.dmgMul.opt[index] === 'あり') {
                             mul[0] *= unit.skill.dmgMul.mul[index];
                             mul[1] *= unit.skill.dmgMul.mul[index];
                         }
                         if(target === '全員' || target === '全敵') {    //全員・全敵
-                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                            HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                             if(me.linkedHP.use && linkedHP > 0) {   //HPリンクあり
-                                HP -= Math.max(1, Math.floor(linkedHP * unit.skill.HPred[index] / 100 * mul[1]));
-                                linkedHP -= Math.max(1, Math.floor(linkedHP * unit.skill.HPred[index] / 100 * mul[1]));
+                                HP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
+                                linkedHP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
                             }
                         } else if(target === '射程内') {   //射程内制限なし
                             if(me.simultHit.use) {  //引き付け(敵)あり
                                 Array(simultHit).fill().map(function() {
-                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                    HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                 });
                             } else {                //引き付け(敵)なし
-                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                             }
                         } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
                             if(me.simultHit.use) {  //引き付け(敵)あり
                                 simultHit = Math.min(simultHit, parseInt(target));
                                 Array(simultHit).fill().map(function() {
-                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                    HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                 });
                             } else {                //引き付け(敵)なし
-                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                             }
                         } else {    //他
-                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                            HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                         }
                         count++;
                     }
@@ -1897,8 +1995,10 @@ const vm = new Vue({
                 const AW = unit.skill.awaken.selected;
                 const index = AW === '通常' ? 0 : 1;
                 const trigger = unit.skill.trigger[index];
-                const deltaTime = me.timeCap.value / me.plotNum;
                 const target = unit.skill.target[index];
+                const mulByNum = unit.skill.mulByNum[index];    //array
+                const HPred = unit.skill.HPred[index];
+                const deltaTime = me.timeCap.value / me.plotNum;
                 let HP = me.maxHP.value;
                 //let linkedHP = me.linkedHP.value;
                 let simultHit = me.simultHit.value;
@@ -1943,8 +2043,8 @@ const vm = new Vue({
                         if(trigger !== '非スキル中hit') {
                             //mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
                             //mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
-                            mul[0] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
-                            //mul[1] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                            mul[0] *= mulByNum[Math.min(count, mulByNum.length - 1)];
+                            //mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
                             if(unit.skill.dmgMul.opt[index] === 'あり') {
                                 mul[0] *= unit.skill.dmgMul.mul[index];
                                 //mul[1] *= unit.skill.dmgMul.mul[index];
@@ -1957,12 +2057,12 @@ const vm = new Vue({
                                     if(me.simultHit.use) {  //引き付け(敵)あり
                                         Array(hit).fill().map(function() {
                                             Array(simultHit).fill().map(function() {
-                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                             });
                                         });
                                     } else {                //引き付け(敵)なし
                                         Array(hit).fill().map(function() {
-                                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                            HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                         });
                                     }
                                 } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
@@ -1970,17 +2070,17 @@ const vm = new Vue({
                                         simultHit = Math.min(simultHit, parseInt(target));
                                         Array(hit).fill().map(function() {
                                             Array(simultHit).fill().map(function() {
-                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                             });
                                         });
                                     } else {                //引き付け(敵)なし
                                         Array(hit).fill().map(function() {
-                                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                            HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                         });
                                     }
                                 } else {    //他
                                     Array(hit).fill().map(function() {
-                                        HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                        HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                     });
                                 }
                             }
@@ -1995,8 +2095,8 @@ const vm = new Vue({
                             if(trigger !== '非スキル中hit') {
                                 //mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
                                 //mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
-                                mul[0] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
-                                //mul[1] *= unit.skill.mulByNum[index][Math.min(count, unit.skill.mulByNum[index].length - 1)];
+                                mul[0] *= mulByNum[Math.min(count, mulByNum.length - 1)];
+                                //mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
                                 if(unit.skill.dmgMul.opt[index] === 'あり') {
                                     mul[0] *= unit.skill.dmgMul.mul[index];
                                     //mul[1] *= unit.skill.dmgMul.mul[index];
@@ -2009,12 +2109,12 @@ const vm = new Vue({
                                         if(me.simultHit.use) {  //引き付け(敵)あり
                                             Array(hit).fill().map(function() {
                                                 Array(simultHit).fill().map(function() {
-                                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                    HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                                 });
                                             });
                                         } else {                //引き付け(敵)なし
                                             Array(hit).fill().map(function() {
-                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                             });
                                         }
                                     } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
@@ -2022,17 +2122,17 @@ const vm = new Vue({
                                             simultHit = Math.min(simultHit, parseInt(target));
                                             Array(hit).fill().map(function() {
                                                 Array(simultHit).fill().map(function() {
-                                                    HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                    HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                                 });
                                             });
                                         } else {                //引き付け(敵)なし
                                             Array(hit).fill().map(function() {
-                                                HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                             });
                                         }
                                     } else {    //他
                                         Array(hit).fill().map(function() {
-                                            HP -= Math.max(1, Math.floor(HP * unit.skill.HPred[index] / 100 * mul[0]));
+                                            HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                         });
                                     }
                                 }
@@ -2175,9 +2275,9 @@ const vm = new Vue({
             const me = this;
             me.newUnitData_onSkillAct = _.cloneDeep(unitDataTemplate_onSkillAct);
             me.addUnitAlart = '';
-            me.modal_onSkillAct = true;
             me.modal_skillAwaken[0] = true;
             me.modal_skillAwaken[1] = true;
+            me.modal_onSkillAct = true;
         },
         //ユニットデータ整形追加(スキル発動時発生型)
         AddUnit_onSkillAct() {
@@ -2227,13 +2327,13 @@ const vm = new Vue({
                 if(!me.modal_skillAwaken[i]) continue;
                 switch(skill.trans[i]) {
                     case '-':
-                        fillSkill[i] = skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null;
+                        fillSkill[i] = !_.isNil(skill.CT_uncurr[i].A) && !_.isNil(skill.dur_uncurr[i].A);
                         break;
                     case '交互':
                     case '初回A':
                         fillSkill[i] = !skill.trigger[i]
-                                    && skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null
-                                    && skill.CT_uncurr[i].B !== null && skill.dur_uncurr[i].B !== null;
+                                    && !_.isNil(skill.CT_uncurr[i].A) && !_.isNil(skill.dur_uncurr[i].A)
+                                    && !_.isNil(skill.CT_uncurr[i].B) && !_.isNil(skill.dur_uncurr[i].B);
                         break;
                     default:
                 }
@@ -2310,12 +2410,12 @@ const vm = new Vue({
             const me = this;
             me.newUnitData_onHit = _.cloneDeep(unitDataTemplate_onHit);
             me.addUnitAlart = '';
-            me.modal_onHit = true;
             me.modal_skillAwaken[0] = true;
             me.modal_skillAwaken[1] = true;
             me.modal_atkInterval[0] = false;
             me.modal_atkInterval[1] = true;
             me.modal_atkInterval[2] = true;
+            me.modal_onHit = true;
         },
         //ユニットデータ整形追加(攻撃ヒット発生型)
         AddUnit_onHit() {
@@ -2377,13 +2477,13 @@ const vm = new Vue({
                 if(!me.modal_skillAwaken[i]) continue;
                 switch(skill.trans[i]) {
                     case '-':
-                        fillSkill[i] = skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null;
+                        fillSkill[i] = !_.isNil(skill.CT_uncurr[i].A) && !_.isNil(skill.dur_uncurr[i].A);
                         break;
                     case '交互':
                     case '初回A':
                         fillSkill[i] = !skill.trigger[i]
-                                    && skill.CT_uncurr[i].A !== null && skill.dur_uncurr[i].A !== null
-                                    && skill.CT_uncurr[i].B !== null && skill.dur_uncurr[i].B !== null;
+                                    && !_.isNil(skill.CT_uncurr[i].A) && !_.isNil(skill.dur_uncurr[i].A)
+                                    && !_.isNil(skill.CT_uncurr[i].B) && !_.isNil(skill.dur_uncurr[i].B);
                         break;
                     default:
                 }
