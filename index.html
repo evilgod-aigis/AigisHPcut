@@ -44,7 +44,7 @@
                                 </span>
                             </div>
                             <div class="optset">
-                                <div class="box" v-tooltip.bottom-start="`対象の配置タイプにのみ適用<br><br>例えば近接型を50%にしてもスカウト系クラスには適用されない`">
+                                <div class="box" v-tooltip.bottom-start="`対象の配置型にのみ適用<br><br>例えば近接型を50%にしてもスカウト系クラスには適用されない`">
                                     <template v-for="item in rCTdepType">
                                         <div :key="`rCTdepType-${item.id}`" class="box">
                                             {{item.deployType}}
@@ -705,16 +705,16 @@
                                                     再動
                                                 </span>
                                                 <span style="margin-left: 10px;">
-                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onSkillAct.skill.CT_uncurr[n - 1].A" style="color: red;">*</span>
+                                                    A<span v-if="modal_skillAwaken[n - 1] && _.isNil(newUnitData_onSkillAct.skill.CT_uncurr[n - 1].A)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`1～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'A', 1, 1000, $event)">秒
+                                                <label v-tooltip.top-start="`0～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'A', 0, 1000, $event)">秒
                                                 </label>
                                                 <span style="margin-left: 10px;">
-                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onSkillAct.skill.trans[n - 1] !== '-' && !newUnitData_onSkillAct.skill.CT_uncurr[n - 1].B" style="color: red;">*</span>
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onSkillAct.skill.trans[n - 1] !== '-' && _.isNil(newUnitData_onSkillAct.skill.CT_uncurr[n - 1].B)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`1～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'B', 1, 1000, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">秒
+                                                <label v-tooltip.top-start="`0～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.CT_uncurr[n - 1], 'B', 0, 1000, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
                                             <!--継続-->
@@ -723,16 +723,26 @@
                                                     継続
                                                 </span>
                                                 <span style="margin-left: 10px;">
-                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onSkillAct.skill.dur_uncurr[n - 1].A" style="color: red;">*</span>
+                                                    A<span v-if="modal_skillAwaken[n - 1] && _.isNil(newUnitData_onSkillAct.skill.dur_uncurr[n - 1].A)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'A', 0, timeCap.value, $event)">秒
+                                                <label v-tooltip.top-start="`
+                                                    1～[グラフ最大秒数] 秒<br>
+                                                    5秒未満はボムスキルと判断(ボムスキルの継続時間はくろもじ屋'参照)<br>
+                                                    スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>
+                                                    好感度ボーナス等の補正なしのベースの秒数を入力`"
+                                                >
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'A', 1, timeCap.value, $event)">秒
                                                 </label>
                                                 <span style="margin-left: 10px;">
-                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onSkillAct.skill.trans[n - 1] !== '-' && !newUnitData_onSkillAct.skill.dur_uncurr[n - 1].B" style="color: red;">*</span>
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onSkillAct.skill.trans[n - 1] !== '-' && _.isNil(newUnitData_onSkillAct.skill.dur_uncurr[n - 1].B)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'B', 0, timeCap.value, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">秒
+                                                <label v-tooltip.top-start="`
+                                                    1～[グラフ最大秒数] 秒<br>
+                                                    5秒未満はボムスキルと判断(ボムスキルの継続時間はくろもじ屋'参照)<br>
+                                                    スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>
+                                                    好感度ボーナス等の補正なしのベースの秒数を入力`"
+                                                >
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onSkillAct.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onSkillAct.skill.dur_uncurr[n - 1], 'B', 1, timeCap.value, $event)" :disabled="newUnitData_onSkillAct.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
                                             <!--減少率-->
@@ -977,7 +987,7 @@
                                                     <span style="margin-left: 5px;" v-tooltip.top-start="`攻撃モーション終了後、次の攻撃モーションを<br>始めるまでの待機フレーム数(60fps)`">
                                                         攻撃硬直<span v-if="modal_atkInterval[index] && item.cooldown < 2" style="color: red;">*</span>
                                                     </span>
-                                                    <label v-tooltip.top-start="`2以上(60fps)`">
+                                                    <label v-tooltip.top-start="`2以上(60fps)<br>好感度100%ボーナスを含み、150%ボーナスを含まない値を入力`">
                                                         <input type="number" class="modalNumber" :value="item.cooldown" @input="LimitAtkInterval(item, 'cooldown', $event)">
                                                     </label>
                                                 </div>
@@ -1032,16 +1042,16 @@
                                                     再動
                                                 </span>
                                                 <span style="margin-left: 10px;">
-                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onHit.skill.CT_uncurr[n - 1].A" style="color: red;">*</span>
+                                                    A<span v-if="modal_skillAwaken[n - 1] && _.isNil(newUnitData_onHit.skill.CT_uncurr[n - 1].A)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`1～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'A', 1, 1000, $event)">秒
+                                                <label v-tooltip.top-start="`0～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'A', 0, 1000, $event)">秒
                                                 </label>
                                                 <span style="margin-left: 10px;">
-                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onHit.skill.trans[n - 1] !== '-' && !newUnitData_onHit.skill.CT_uncurr[n - 1].B" style="color: red;">*</span>
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onHit.skill.trans[n - 1] !== '-' && _.isNil(newUnitData_onHit.skill.CT_uncurr[n - 1].B)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`1～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'B', 1, 1000, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">秒
+                                                <label v-tooltip.top-start="`0～1,000秒<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.CT_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.CT_uncurr[n - 1], 'B', 0, 1000, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
                                             <!--継続-->
@@ -1050,16 +1060,26 @@
                                                     継続
                                                 </span>
                                                 <span style="margin-left: 10px;">
-                                                    A<span v-if="modal_skillAwaken[n - 1] && !newUnitData_onHit.skill.dur_uncurr[n - 1].A" style="color: red;">*</span>
+                                                    A<span v-if="modal_skillAwaken[n - 1] && _.isNil(newUnitData_onHit.skill.dur_uncurr[n - 1].A)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'A', 0, timeCap.value, $event)">秒
+                                                <label v-tooltip.top-start="`
+                                                    1～[グラフ最大秒数] 秒<br>
+                                                    5秒未満はボムスキルと判断(ボムスキルの継続時間はくろもじ屋'参照)<br>
+                                                    スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>
+                                                    好感度ボーナス等の補正なしのベースの秒数を入力`"
+                                                >
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].A" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'A', 1, timeCap.value, $event)">秒
                                                 </label>
                                                 <span style="margin-left: 10px;">
-                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onHit.skill.trans[n - 1] !== '-' && !newUnitData_onHit.skill.dur_uncurr[n - 1].B" style="color: red;">*</span>
+                                                    B<span v-if="modal_skillAwaken[n - 1] && newUnitData_onHit.skill.trans[n - 1] !== '-' && _.isNil(newUnitData_onHit.skill.dur_uncurr[n - 1].B)" style="color: red;">*</span>
                                                 </span>
-                                                <label v-tooltip.top-start="`0～[グラフ最大秒数] 秒<br>スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>好感度ボーナス等の補正なしのベースの秒数を入力`">
-                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'B', 0, timeCap.value, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">秒
+                                                <label v-tooltip.top-start="`
+                                                    1～[グラフ最大秒数] 秒<br>
+                                                    5秒未満はボムスキルと判断(ボムスキルの継続時間はくろもじ屋'参照)<br>
+                                                    スキル継続時間が無限or1回のみの場合は適当に大きな数値を入れればおｋ<br>
+                                                    好感度ボーナス等の補正なしのベースの秒数を入力`"
+                                                >
+                                                    <input type="number" class="modalNumber" :value="newUnitData_onHit.skill.dur_uncurr[n - 1].B" @input="LimitSkill(newUnitData_onHit.skill.dur_uncurr[n - 1], 'B', 1, timeCap.value, $event)" :disabled="newUnitData_onHit.skill.trans[n - 1] === '-'">秒
                                                 </label>
                                             </div>
                                             <!--減少率-->
@@ -1237,6 +1257,16 @@
                     <details>
                         <summary>更新(折り畳み)</summary>
                         <div id="updateContent">
+                            <!--2021/08/08(日)-->
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/08/08(日)：
+                                </div>
+                                <div class="detail">
+                                    ・項目「その他」に「プリンセス系」を追加<br>
+                                    ・スキルの最短継続時間を1秒とし、5秒未満のものをボムスキルと判定するよう変更
+                                </div>
+                            </div>
                             <!--2021/08/05(木)-->
                             <div class="updateElem">
                                 <div class="date">
