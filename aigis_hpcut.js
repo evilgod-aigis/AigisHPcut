@@ -312,7 +312,7 @@ const hasteSkillListElem = [
         id: null, buffer: '付与魔術師ハーニィ', awaken: '通常', showAwaken: false,
         atkCooldown: 11, disabled: false,
         AndOr: 'or', target: [ { 'deployType': [ '近接型' ] } ],
-        tooltip: '[スキルバフ] 近接ユニットの攻撃硬直5.5f化(範囲内)'
+        tooltip: '[スキルバフ] 近接ユニットの攻撃硬直6f化(範囲内)'
     },
     {
         id: null, buffer: '弓兵の湯浴みソーマ', awaken: '覚醒', showAwaken: false,
@@ -333,7 +333,7 @@ const hasteSkillListElem = [
         ],
         tooltip:
         '[スキルバフ] クラス：ウィッチ系・<br>\
-         　　　　　　 クロノウィッチ系の攻撃硬直5.5f化(範囲内)'
+         　　　　　　 クロノウィッチ系の攻撃硬直6f化(範囲内)'
     },
     {
         id: null, buffer: '時の調停者トワ', awaken: '覚醒', showAwaken: true,
@@ -347,25 +347,31 @@ const hasteSkillListElem = [
         ],
         tooltip:
         '[スキルバフ] クラス：メイジ系・ウィッチ系・<br>\
-         　　　　　　 クロノウィッチ系の攻撃硬直5.5f化(範囲内)'
+         　　　　　　 クロノウィッチ系の攻撃硬直6f化(範囲内)'
     },
     {
         id: null, buffer: '胡喜美', awaken: '通常', showAwaken: false,
         atkCooldown: 21, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ '仙人' ] } ],
-        tooltip: '[スキルバフ] 属性：仙人の攻撃硬直10.5f化'
+        tooltip: '[スキルバフ] 属性：仙人の攻撃硬直11f化'
     },
     {
         id: null, buffer: '秋祭の大魔女デスピア', awaken: '通常', showAwaken: false,
         atkCooldown: 11, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ 'ハロウィン' ] } ],
-        tooltip: '[スキルバフ] 属性：ハロウィンの攻撃硬直5.5f化'
+        tooltip: '[スキルバフ] 属性：ハロウィンの攻撃硬直6f化'
     },
     {
         id: null, buffer: '聖夜の炸裂海賊デューオ', awaken: '通常', showAwaken: false,
         atkCooldown: 16, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ 'クリスマス' ] } ],
         tooltip: '[スキルバフ] 属性：クリスマスの攻撃硬直8f化'
+    },
+    {
+        id: null, buffer: 'お祭り夕涼みココロ', awaken: '覚醒', showAwaken: false,
+        atkCooldown: 11, disabled: true,
+        AndOr: 'and', target: [ { 'deployType': [ '遠距離型' ] }, { 'attribution': [ 'サマー' ] } ],
+        tooltip: '[スキルバフ] 属性：サマーの遠距離ユニットの攻撃硬直6f化'
     }
 ];
 //鈍化(マップ)軽減リスト
@@ -398,6 +404,7 @@ const self_rWTlistElem = [
     { id: null, buffer: '炎のサンタ召喚士ソラノ', rate: 40 },
     { id: null, buffer: '甘美な踊り子マーニー', rate: 60 },
     { id: null, buffer: '恋の応援団シャルキー', rate: 70 },
+    { id: null, buffer: 'お祭り夕涼みココロ', rate: 50 },
     { id: null, buffer: '氷霊応援団ユキヒメ', rate: 60 },
     { id: null, buffer: '妖狸スズネ', rate: 20 },
     { id: null, buffer: '筆頭飛行士オヴェリー', rate: 40 }
@@ -503,7 +510,7 @@ const specialAffListElem = {
         },
         '白': {},
         '金': {
-            0.15: [ 'ちびマツリ', 'ちびセーラ', 'ちび鬼刃姫', 'ちびティニー', 'ちびリアナ', 'ちびクラリーチェ' ]
+            0.15: [ 'ちびマツリ', 'ちびセーラ', 'ちび鬼刃姫', 'ちびティニー', 'ちびリアナ', 'ちびクラリーチェ', 'ちびコハル' ]
         }
     },
     '攻撃硬直': {
@@ -736,7 +743,7 @@ const unitsList_onSkillActElem = [
                 options: [ '猫又系' ]
             },
             attribution: [ '妖怪', '東の国', 'ちび' ],
-            affection: { percentage: null, bonus: null, changeRate: null },
+            affection: { percentage: 100, bonus: '時間延長', changeRate: null },
             note: [ '女性' ]
         },
         skill: {
