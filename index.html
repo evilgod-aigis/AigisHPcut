@@ -138,6 +138,26 @@
                         </div>
                     </div>
                     <div class="opt1">
+                        <!--特攻付与-->
+                        <div class="opt2">
+                            <div class="optcap8em">
+                                <span v-tooltip.bottom-start="`倍率が最大のものを適用(暫定)`">
+                                    特攻付与：
+                                </span>
+                            </div>
+                            <div class="optset">
+                                <template v-for="item in giveDmgMulList">
+                                    <div :key="`giveDmgMul-${item.id}`" class="box">
+                                        <label v-tooltip.bottom-start="`${item.tooltip}`">
+                                            <input type="checkbox" v-model="checked_giveDmgMul" :value="{buffer: item.buffer, awaken: item.awaken}" :disabled="item.disabled">
+                                            {{item.buffer}}<span v-if="item.showAwaken">({{item.awaken}})</span>
+                                        </label>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="opt1">
                         <!--撤退再出撃-->
                         <div class="opt2">
                             <div class="optcap8em">
@@ -1257,6 +1277,17 @@
                     <details>
                         <summary>更新(折り畳み)</summary>
                         <div id="updateContent">
+                            <!--2021/10/24(日)-->
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/10/24(日)：
+                                </div>
+                                <div class="detail">
+                                    ・オプション「特攻付与」追加(とりあえず最大値を適用。付与の仕方が正しいとは限らない)<br>
+                                    ・「射程内/○体」かつ「引き付け(敵)」がOFFのとき、「HPリンク」を適用できるよう修正<br>
+                                    ・コードを少し最適化
+                                </div>
+                            </div>
                             <!--2021/08/12(木)-->
                             <div class="updateElem">
                                 <div class="date">
