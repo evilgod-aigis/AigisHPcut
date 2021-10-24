@@ -110,7 +110,7 @@ const rCTlistElem = [
         rate: 50, disabled: true,
         AndOr: 'or', target: [
             { 'unitClass': [
-                'ランスマスター系', 'ちびランスマスター', 'ちび槍聖', 'ランスマスター', '槍聖',
+                'ランスマスター系', 'ちびランスマスター', 'ちび槍聖', 'ランスマスター', '槍聖', 'レイジランサー', '槍神',
                 'ワルキューレ系', 'ちびワルキューレ', 'ちびブリュンヒルデ', 'ワルキューレ', 'ユニコーンナイト', 'ブリュンヒルデ', 'レギンレイヴ', 'ゲイレルル',
                 'ロイヤルガード系', 'ちびロイヤルガード', 'ちびロイヤルオーダー', 'ロイヤルガード', 'ロイヤルオーダー', 'ロードオブロイヤルズ', 'セイクリッドガード'
             ] }
@@ -372,6 +372,37 @@ const hasteSkillListElem = [
         atkCooldown: 11, disabled: true,
         AndOr: 'and', target: [ { 'deployType': [ '遠距離型' ] }, { 'attribution': [ 'サマー' ] } ],
         tooltip: '[スキルバフ] 属性：サマーの遠距離ユニットの攻撃硬直6f化'
+    }
+];
+//特攻付与リスト
+const giveDmgMulListElem = [
+    {
+        id: null, buffer: '奇想の発明家タバサ', awaken: '通常', showAwaken: true,
+        dmgMul: 1.1, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[編成バフ] 神獣・魔獣・妖獣・獣・獣人・水棲に対して<br>\
+        　　　　　 全味方の攻撃力が10%上昇'
+    },
+    {
+        id: null, buffer: '奇想の発明家タバサ', awaken: '覚醒', showAwaken: true,
+        dmgMul: 1.15, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[編成バフ] 神獣・魔獣・妖獣・獣・獣人・水棲に対して<br>\
+        　　　　　 全味方の攻撃力が15%上昇'
+    },
+    {
+        id: null, buffer: '帝国発明家ヘンドリカ', awaken: '通常', showAwaken: true,
+        dmgMul: 1.1, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[編成バフ] 天使に対して全味方の攻撃力が10%上昇'
+    },
+    {
+        id: null, buffer: '帝国発明家ヘンドリカ', awaken: '覚醒', showAwaken: true,
+        dmgMul: 1.15, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[編成バフ] 天使に対して全味方の攻撃力が15%上昇<br>\
+        　　　　　 竜族に対して属性：帝国の攻撃力が15%上昇<br>\
+        　　　　　 (敵の属性は特に指定してないので、2行目は特に意味ない)'
     }
 ];
 //鈍化(マップ)軽減リスト
@@ -1123,6 +1154,7 @@ const vm = new Vue({
     el: '#app',
     data() {
         return {
+            //バフリスト
             rWTlist: _.cloneDeep(rWTlistElem),
             checked_rWT: [],
             rCTdepType: _.cloneDeep(rCTdepTypeElem),
@@ -1134,35 +1166,37 @@ const vm = new Vue({
             checked_hasteTeem: [],
             hasteSkillList: _.cloneDeep(hasteSkillListElem),
             checked_hasteSkill: [],
+            giveDmgMulList: _.cloneDeep(giveDmgMulListElem),
+            checked_giveDmgMul: [],
             redMapEffList: _.cloneDeep(redMapEffListElem),
             checked_redMapEff: [],
-
+            //自己バフリスト
             self_rWTlist: _.cloneDeep(self_rWTlistElem),
             self_rCTlist: _.cloneDeep(self_rCTlistElem),
             self_skillExtendList: _.cloneDeep(self_skillExtendListElem),
             self_hasteTeemList: _.cloneDeep(self_hasteTeemListElem),
             self_redMapEffList: _.cloneDeep(self_redMapEffListElem),
-
+            //他リスト
             depTypeCount: _.cloneDeep(depTypeCountElem),
             specialWTlist: _.cloneDeep(specialWTlistElem),
             specialAffList: _.cloneDeep(specialAffListElem),
-
+            //スキル発動時発生型
             unitsList_onSkillAct: _.cloneDeep(unitsList_onSkillActElem),
             modal_onSkillAct: false,
             newUnitData_onSkillAct: _.cloneDeep(unitDataTemplate_onSkillAct),
-
+            //攻撃ヒット時発生型
             unitsList_onHit: _.cloneDeep(unitsList_onHitElem),
             modal_onHit: false,
             newUnitData_onHit: _.cloneDeep(unitDataTemplate_onHit),
-
+            //モーダル系
             modal_skillAwaken: [ true, true ],
             modal_atkInterval: [ false, true, true ],
             addUnitAlart: '',
-
+            //オプション(モーダル)
             options_attr1: _.cloneDeep(array_attr1),
             options_attr2: _.cloneDeep(array_attr2),
             options_note: _.cloneDeep(array_note),
-
+            //数値
             redeployInterval: {
                 use: false,
                 value: 30,
@@ -1206,7 +1240,7 @@ const vm = new Vue({
                 min: 0,
                 max: 1000
             },
-
+            //グラフ
             plotNum: 0,
             datasets: [],
             graphHidden_onSkillAct: false,
@@ -1226,6 +1260,7 @@ const vm = new Vue({
         SetID(this.skillExtendList);
         SetID(this.hasteTeemList);
         SetID(this.hasteSkillList);
+        SetID(this.giveDmgMulList);
         SetID(this.redMapEffList);
 
         SetID(this.self_rWTlist);
@@ -1847,6 +1882,9 @@ const vm = new Vue({
         EvilPrincessMulti() {
             return function(unit, HP) {
                 switch(unit.unitInfo.unitClass.selected) {
+                    case 'ちびイビルプリンセス':
+                    case 'ちびイビルクイーン':
+                    case 'イビルプリンセス':
                     case 'イビルクイーン':
                     case 'イビルシーカー':
                         if(HP < 31) {
@@ -1926,26 +1964,38 @@ const vm = new Vue({
                 let HP = me.maxHP.value;
                 let linkedHP = me.linkedHP.value;
                 let simultHit = me.simultHit.value;
+                if(Number.isInteger(parseInt(target))) {
+                    simultHit = Math.min(simultHit, parseInt(target));
+                }
                 const HPchanges = [];
                 const mul = [];
+                let specialDmgMul = 1.0;
+                let bufferInfo;
                 let count = 0;
                 const damage = me.DPS * deltaTime;
+                //特攻倍率
+                _.forEach(me.checked_giveDmgMul, function(buffer) {
+                    bufferInfo = _.find(me.giveDmgMulList, {buffer: buffer.buffer, awaken: buffer.awaken});
+                    specialDmgMul = Math.max(specialDmgMul, bufferInfo.dmgMul * me.IsTarget(unit, bufferInfo));
+                });
+                if(unit.skill.dmgMul.opt[index] === 'あり') {
+                    specialDmgMul = Math.max(specialDmgMul, unit.skill.dmgMul.mul[index]);
+                }
+                //グラフデータ作成
                 for(let time = 0; time <= me.timeCap.value; time += deltaTime) {
                     if(HP === 0) {
                         HPchanges.push(0);
                         continue;
                     }
-                    mul[0] = 1.0;
-                    mul[1] = 1.0;
+                    mul[0] = specialDmgMul;
+                    mul[1] = specialDmgMul;
                     //HP減少発生時の処理
                     if(time >= (unit.skill.firstTime + count * unit.skill.interval)) {
                         mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
-                        mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
                         mul[0] *= mulByNum[Math.min(count, mulByNum.length - 1)];
-                        mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
-                        if(unit.skill.dmgMul.opt[index] === 'あり') {
-                            mul[0] *= unit.skill.dmgMul.mul[index];
-                            mul[1] *= unit.skill.dmgMul.mul[index];
+                        if(me.linkedHP.use) {
+                            mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
+                            mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
                         }
                         if(target === '全員' || target === '全敵') {    //全員・全敵
                             HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
@@ -1953,22 +2003,17 @@ const vm = new Vue({
                                 HP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
                                 linkedHP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
                             }
-                        } else if(target === '射程内') {   //射程内制限なし
+                        } else if(target === '射程内' || Number.isInteger(parseInt(target))) {   //射程内
                             if(me.simultHit.use) {  //引き付け(敵)あり
                                 Array(simultHit).fill().map(function() {
                                     HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                 });
                             } else {                //引き付け(敵)なし
                                 HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
-                            }
-                        } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
-                            if(me.simultHit.use) {  //引き付け(敵)あり
-                                simultHit = Math.min(simultHit, parseInt(target));
-                                Array(simultHit).fill().map(function() {
-                                    HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
-                                });
-                            } else {                //引き付け(敵)なし
-                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
+                                if(me.linkedHP.use && linkedHP > 0 && simultHit !== 1) {   //HPリンクあり
+                                    HP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
+                                    linkedHP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
+                                }
                             }
                         } else {    //他
                             HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
@@ -1980,13 +2025,10 @@ const vm = new Vue({
                         HPchanges.push(0);
                     } else {
                         HPchanges.push(HP / me.maxHP.value * 100);
-                        HP -= damage;
-                        HP = _.clamp(HP, 0, me.maxHP.value);
-                        if(linkedHP <= 0) {
-                            linkedHP = 0;
-                        } else {
-                            linkedHP -= damage;
-                            linkedHP = _.clamp(linkedHP, 0, me.linkedHP.value);
+                        HP = _.clamp(HP - damage, 0, me.maxHP.value);
+                        if(me.linkedHP.use) {
+                            HP = _.clamp(linkedHP - damage, 0 , damage);
+                            linkedHP = _.clamp(linkedHP - damage, 0, me.linkedHP.value);
                         }
                     }
                 }
@@ -2007,10 +2049,15 @@ const vm = new Vue({
                 const HPred = unit.skill.HPred[index];
                 const deltaTime = me.timeCap.value / me.plotNum;
                 let HP = me.maxHP.value;
-                //let linkedHP = me.linkedHP.value;
+                let linkedHP = me.linkedHP.value;
                 let simultHit = me.simultHit.value;
+                if(Number.isInteger(parseInt(target))) {
+                    simultHit = Math.min(simultHit, parseInt(target));
+                }
                 const HPchanges = [];
                 const mul = [];
+                let specialDmgMul = 1.0;
+                let bufferInfo;
                 let dur;
                 let count = 0;
                 let isActive = false;
@@ -2033,13 +2080,22 @@ const vm = new Vue({
                 } else {
                     dur = unit.skill.dur.A * (1 + extend);
                 }
+                //特攻倍率
+                _.forEach(me.checked_giveDmgMul, function(buffer) {
+                    bufferInfo = _.find(me.giveDmgMulList, {buffer: buffer.buffer, awaken: buffer.awaken});
+                    specialDmgMul = Math.max(specialDmgMul, bufferInfo.dmgMul * me.IsTarget(unit, bufferInfo));
+                });
+                if(unit.skill.dmgMul.opt[index] === 'あり') {
+                    specialDmgMul = Math.max(specialDmgMul, unit.skill.dmgMul.mul[index]);
+                }
+                //グラフデータ作成
                 for(let time = 0; time <= me.timeCap.value; time += deltaTime) {
                     if(HP === 0) {
                         HPchanges.push(0);
                         continue;
                     }
-                    mul[0] = 1.0;
-                    mul[1] = 1.0;
+                    mul[0] = specialDmgMul;
+                    mul[1] = specialDmgMul;
                     if(time >= (unit.skill.firstTime + count * (dur + unit.skill.interval)) //スキル中
                     && time <= (unit.skill.firstTime + dur + count * (unit.skill.interval + dur))) {
                         skillTimeLapse += deltaTime;
@@ -2049,18 +2105,16 @@ const vm = new Vue({
                         }
                         if(trigger !== '非スキル中hit') {
                             //mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
-                            //mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
                             mul[0] *= mulByNum[Math.min(count, mulByNum.length - 1)];
-                            //mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
-                            if(unit.skill.dmgMul.opt[index] === 'あり') {
-                                mul[0] *= unit.skill.dmgMul.mul[index];
-                                //mul[1] *= unit.skill.dmgMul.mul[index];
+                            if(me.linkedHP.use) {
+                                //mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
+                                mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
                             }
                             //前回プロット時からのヒット数
                             hit = Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
                                 - Math.floor(((skillTimeLapse - deltaTime) * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
                             if(hit > 0) {
-                                if(target === '射程内') {   //射程内制限なし
+                                if(target === '射程内' || Number.isInteger(parseInt(target))) {   //射程内
                                     if(me.simultHit.use) {  //引き付け(敵)あり
                                         Array(hit).fill().map(function() {
                                             Array(simultHit).fill().map(function() {
@@ -2071,19 +2125,12 @@ const vm = new Vue({
                                         Array(hit).fill().map(function() {
                                             HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                         });
-                                    }
-                                } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
-                                    if(me.simultHit.use) {  //引き付け(敵)あり
-                                        simultHit = Math.min(simultHit, parseInt(target));
-                                        Array(hit).fill().map(function() {
-                                            Array(simultHit).fill().map(function() {
-                                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
+                                        if(me.linkedHP.use && linkedHP > 0 && simultHit !== 1) {   //HPリンクあり
+                                            Array(hit).fill().map(function() {
+                                                HP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
+                                                linkedHP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
                                             });
-                                        });
-                                    } else {                //引き付け(敵)なし
-                                        Array(hit).fill().map(function() {
-                                            HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
-                                        });
+                                        }
                                     }
                                 } else {    //他
                                     Array(hit).fill().map(function() {
@@ -2103,16 +2150,12 @@ const vm = new Vue({
                                 //mul[0] *= me.EvilPrincessMulti(unit, HP / me.maxHP.value * 100);
                                 //mul[1] *= me.EvilPrincessMulti(unit, linkedHP / me.linkedHP.value * 100);
                                 mul[0] *= mulByNum[Math.min(count, mulByNum.length - 1)];
-                                //mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
-                                if(unit.skill.dmgMul.opt[index] === 'あり') {
-                                    mul[0] *= unit.skill.dmgMul.mul[index];
-                                    //mul[1] *= unit.skill.dmgMul.mul[index];
-                                }
+                                mul[1] *= mulByNum[Math.min(count, mulByNum.length - 1)];
                                 //最小プロット間隔が1/30秒ではない時にはみ出す分の計算
                                 hit = Math.floor((dur * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1)
                                     - Math.floor((skillTimeLapse * 30 - atkStartupSkill / 2) / atkIntervalSkill + 1);
                                 if(hit > 0) {
-                                    if(target === '射程内') {   //射程内制限なし
+                                    if(target === '射程内' || Number.isInteger(parseInt(target))) {   //射程内
                                         if(me.simultHit.use) {  //引き付け(敵)あり
                                             Array(hit).fill().map(function() {
                                                 Array(simultHit).fill().map(function() {
@@ -2123,19 +2166,12 @@ const vm = new Vue({
                                             Array(hit).fill().map(function() {
                                                 HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
                                             });
-                                        }
-                                    } else if(Number.isInteger(parseInt(target))) { //射程内制限あり
-                                        if(me.simultHit.use) {  //引き付け(敵)あり
-                                            simultHit = Math.min(simultHit, parseInt(target));
-                                            Array(hit).fill().map(function() {
-                                                Array(simultHit).fill().map(function() {
-                                                    HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
+                                            if(me.linkedHP.use && linkedHP > 0 && simultHit !== 1) {   //HPリンクあり
+                                                Array(hit).fill().map(function() {
+                                                    HP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
+                                                    linkedHP -= Math.max(1, Math.floor(linkedHP * HPred / 100 * mul[1]));
                                                 });
-                                            });
-                                        } else {                //引き付け(敵)なし
-                                            Array(hit).fill().map(function() {
-                                                HP -= Math.max(1, Math.floor(HP * HPred / 100 * mul[0]));
-                                            });
+                                            }
                                         }
                                     } else {    //他
                                         Array(hit).fill().map(function() {
@@ -2151,16 +2187,11 @@ const vm = new Vue({
                         HPchanges.push(0);
                     } else {
                         HPchanges.push(HP / me.maxHP.value * 100);
-                        HP -= damage;
-                        HP = _.clamp(HP, 0, me.maxHP.value);
-                        /*
-                        if(linkedHP <= 0) {
-                            linkedHP = 0;
-                        } else {
-                            linkedHP -= damage;
-                            linkedHP = _.clamp(linkedHP, 0, me.linkedHP.value);
+                        HP = _.clamp(HP - damage, 0, me.maxHP.value);
+                        if(me.linkedHP.use) {
+                            HP = _.clamp(linkedHP - damage, 0 , damage);
+                            linkedHP = _.clamp(linkedHP - damage, 0, me.linkedHP.value);
                         }
-                        */
                     }
                 }
                 return _.clone(HPchanges);
