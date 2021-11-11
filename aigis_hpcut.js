@@ -1214,10 +1214,15 @@ const vm = new Vue({
             unitsList_onSkillAct: _.cloneDeep(unitsList_onSkillActElem),
             modal_onSkillAct: false,
             newUnitData_onSkillAct: _.cloneDeep(unitDataTemplate_onSkillAct),
+            nUnits0_onSkillAct: 0,      //非イビルプリンセス系のユニット数
+            nUnits1_onSkillAct: 0,      //イビルプリンセス系のユニット数
+            nUnitsAdded_onSkillAct: 0,  //追加されたユニット数
             //攻撃ヒット時発生型
             unitsList_onHit: _.cloneDeep(unitsList_onHitElem),
             modal_onHit: false,
             newUnitData_onHit: _.cloneDeep(unitDataTemplate_onHit),
+            nUnits_onHit: 0,        //ユニット数
+            nUnitsAdded_onHit: 0,   //追加されたユニット数
             //モーダル系
             modal_skillAwaken: [ true, true ],
             modal_atkInterval: [ false, true, true ],
@@ -1284,23 +1289,38 @@ const vm = new Vue({
                 elem.id = index;
             });
         };
-        SetID(this.rWTlist);
-        SetID(this.rCTdepType);
-        SetID(this.rCTlist);
-        SetID(this.skillExtendList);
-        SetID(this.hasteTeemList);
-        SetID(this.hasteSkillList);
-        SetID(this.giveDmgMulList);
-        SetID(this.redMapEffList);
+        const me = this;
+        SetID(me.rWTlist);
+        SetID(me.rCTdepType);
+        SetID(me.rCTlist);
+        SetID(me.skillExtendList);
+        SetID(me.hasteTeemList);
+        SetID(me.hasteSkillList);
+        SetID(me.giveDmgMulList);
+        SetID(me.redMapEffList);
 
-        SetID(this.self_rWTlist);
-        SetID(this.self_rCTlist);
-        SetID(this.self_skillExtendList);
-        SetID(this.self_hasteTeemList);
-        SetID(this.self_redMapEffList);
+        SetID(me.self_rWTlist);
+        SetID(me.self_rCTlist);
+        SetID(me.self_skillExtendList);
+        SetID(me.self_hasteTeemList);
+        SetID(me.self_redMapEffList);
 
-        SetID(this.unitsList_onSkillAct);
-        SetID(this.unitsList_onHit);
+        SetID(me.unitsList_onSkillAct);
+        SetID(me.unitsList_onHit);
+
+        _.forEach(me.unitsList_onSkillAct, function(unit) {
+            const unitClass = unit.unitInfo.unitClass.selected;
+            if(unitClass === 'イビルクイーン'
+            || unitClass === 'イビルシーカー'
+            || unitClass === 'デスブリンガー') {
+                me.nUnits1_onSkillAct++;
+            } else {
+                me.nUnits0_onSkillAct++;
+            }
+        });
+        _.forEach(me.unitsList_onHit, function(unit) {
+            me.nUnits_onHit++;
+        });
     },
     mounted() {
         this.Chart();
@@ -1951,34 +1971,99 @@ const vm = new Vue({
             const max = me.unitsList_onSkillAct.length + me.unitsList_onHit.length;
             let h;
             me.datasets.length = 0;
-            _.forEach(me.unitsList_onSkillAct, function(unit, index) {
-                h = 360 * index / max;
-                //グラフデータ作成
-                me.datasets.push({
-                    label: unit.unitInfo.unitName,
-                    data: me.ClacHPchange_onSkillAct(unit),
-                    borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
-                    backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
-                    pointRadius: 0,
-                    pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
-                    hidden: me.graphHidden_onSkillAct
-                });
-            })
-            _.forEach(me.unitsList_onHit, function(unit, index) {
-                me.SetFirstTime_onHit(unit);
-                me.SetInterval_onHit(unit);
-                h = 360 * (index + me.unitsList_onSkillAct.length) / max;
-                //グラフデータ作成
-                me.datasets.push({
-                    label: unit.unitInfo.unitName,
-                    data: me.ClacHPchange_onHit(unit),
-                    borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
-                    backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
-                    pointRadius: 0,
-                    pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
-                    hidden: me.graphHidden_onHit
-                });
-            })
+            //スキル発動時発生型
+            {
+                //非イビルプリンセス系
+                for(let i = 0; i < me.nUnits0_onSkillAct; i++) {
+                    const id = i;
+                    const unit = me.unitsList_onSkillAct[id];
+                    h = 360 * i / me.nUnits0_onSkillAct;
+                    //グラフデータ作成
+                    me.datasets.push({
+                        label: unit.unitInfo.unitName,
+                        data: me.ClacHPchange_onSkillAct(unit),
+                        borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        borderDash: [15, 3],
+                        pointRadius: 0,
+                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        hidden: me.graphHidden_onSkillAct
+                    });
+                }
+                //イビルプリンセス系
+                for(let i = 0; i < me.nUnits1_onSkillAct; i++) {
+                    const id = me.nUnits0_onSkillAct + i;
+                    const unit = me.unitsList_onSkillAct[id];
+                    h = 360 * i / me.nUnits1_onSkillAct;
+                    //グラフデータ作成
+                    me.datasets.push({
+                        label: unit.unitInfo.unitName,
+                        data: me.ClacHPchange_onSkillAct(unit),
+                        borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        borderDash: [10, 3, 3, 3],
+                        pointRadius: 0,
+                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        hidden: me.graphHidden_onSkillAct
+                    });
+                }
+                //追加分
+                for(let i = 0; i < me.nUnitsAdded_onSkillAct; i++) {
+                    const id = me.nUnits0_onSkillAct + me.nUnits1_onSkillAct + i;
+                    const unit = me.unitsList_onSkillAct[id];
+                    h = 360 * (i + 0.3) / me.nUnitsAdded_onSkillAct;
+                    //グラフデータ作成
+                    me.datasets.push({
+                        label: unit.unitInfo.unitName,
+                        data: me.ClacHPchange_onSkillAct(unit),
+                        borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        borderDash: [8, 3, 3, 3, 3, 3],
+                        pointRadius: 0,
+                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        hidden: me.graphHidden_onSkillAct
+                    });
+                }
+            }
+            //攻撃ヒット時発生型
+            {
+                for(let i = 0; i < me.nUnits_onHit; i++) {
+                    const id = i;
+                    const unit = me.unitsList_onHit[id];
+                    me.SetFirstTime_onHit(unit);
+                    me.SetInterval_onHit(unit);
+                    h = 360 * i / me.nUnits_onHit;
+                    //グラフデータ作成
+                    me.datasets.push({
+                        label: unit.unitInfo.unitName,
+                        data: me.ClacHPchange_onHit(unit),
+                        borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        pointRadius: 0,
+                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        hidden: me.graphHidden_onHit
+                    });
+                }
+                //追加分
+                for(let i = 0; i < me.nUnitsAdded_onHit; i++) {
+                    const id = me.nUnits_onHit + i;
+                    const unit = me.unitsList_onHit[id];
+                    me.SetFirstTime_onHit(unit);
+                    me.SetInterval_onHit(unit);
+                    h = 360 * (i + 0.3) / me.nUnitsAdded_onHit;
+                    //グラフデータ作成
+                    me.datasets.push({
+                        label: unit.unitInfo.unitName,
+                        data: me.ClacHPchange_onHit(unit),
+                        borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
+                        borderDash: [15, 3],
+                        pointRadius: 0,
+                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        hidden: me.graphHidden_onHit
+                    });
+                }
+            }
         },
         //HP遷移計算(スキル発動時発生型)
         ClacHPchange_onSkillAct() {
@@ -2461,6 +2546,7 @@ const vm = new Vue({
                     }
                 }
                 me.unitsList_onSkillAct.push(me.newUnitData_onSkillAct);
+                me.nUnitsAdded_onSkillAct++;
                 me.modal_onSkillAct = false;
             } else {
                 //記入漏れあり
@@ -2562,7 +2648,7 @@ const vm = new Vue({
             skill.awaken.selectable = fillSkill[0] && fillSkill[1];
             skill.awaken.selected = fillSkill[0] ? '通常' : '覚醒';
 
-            if(alartText.length === 0) {
+            if(_.isEmpty(alartText)) {
                 //必須事項全記入
                 //id付与
                 me.newUnitData_onHit.id = me.unitsList_onHit[me.unitsList_onHit.length - 1].id + 1;
@@ -2618,6 +2704,7 @@ const vm = new Vue({
                     }
                 }
                 me.unitsList_onHit.push(me.newUnitData_onHit);
+                me.nUnitsAdded_onHit++;
                 me.modal_onHit = false;
             } else {
                 //記入漏れあり
