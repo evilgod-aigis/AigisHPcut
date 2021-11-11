@@ -432,6 +432,7 @@ const self_rWTlistElem = [
     { id: null, buffer: '帝国機甲士クリスタ', rate: 30 },
     { id: null, buffer: '封機の剣士エレカ', rate: 60 },
     { id: null, buffer: '信仰の槍士コルム', rate: 50 },
+    { id: null, buffer: '帝国魔術師イルマ', rate: 50 },
     { id: null, buffer: '炎のサンタ召喚士ソラノ', rate: 40 },
     { id: null, buffer: '甘美な踊り子マーニー', rate: 60 },
     { id: null, buffer: '恋の応援団シャルキー', rate: 70 },
@@ -763,6 +764,35 @@ const unitsList_onSkillActElem = [
             trigger: [ '-', '-' ], trans: [ '-', '-' ], HPred: [ 15, 10 ],
             mulByNum: [ [ 1 ], [ 1, 1.5, 2, 2.5, 3 ] ],
             dmgMul: { opt: [ '-', '-' ], mul: [ 1, 1 ], target: [ null, null ] }
+        }
+    },
+    {
+        id: null,
+        unitInfo: {
+            unitName: '魔神の共鳴者レライエ', deployType: '遠距離型', rarity: '白',
+            unitClass: {
+                selectable: false, selected: 'デモンシャーマン系',
+                options: [ 'デモンシャーマン系' ]
+            },
+            attribution: [ '人間' ],
+            affection: { percentage: null, bonus: 'その他', changeRate: null },
+            note: [ '女性', 'HP回復不可', '魔界適応' ]
+        },
+        skill: {
+            awaken: {
+                selectable: false, selected: '通常',
+                options: [ '通常', '覚醒' ]
+            },
+            target: [ '全敵', null ],
+            WT: { A: null, B: null },
+            CT: { A: null, B: null },
+            CT_uncurr: [ { A: 30, B: null }, { A: null, B: null } ],
+            dur: { A: null, B: null },
+            dur_uncurr: [ { A: 30, B: null }, { A: null, B: null } ],
+            firstTime: null, interval: null,
+            trigger: [ '-', null ], trans: [ '-', null ], HPred: [ 8, null ],
+            mulByNum: [ [ 1 ], null ],
+            dmgMul: { opt: [ '-', null ], mul: [ 1, null ], target: [ null, null ] }
         }
     },
     {
