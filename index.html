@@ -415,8 +415,8 @@
                                             </select>
                                         </template>
                                     </td>
-                                    <td v-if="unit.id > 12">
-                                        <button type="button" class="delUnitBtn" @click="unitsList_onSkillAct.splice(unit.id, 1)">削除</button>
+                                    <td v-if="unit.id > nUnits0_onSkillAct + nUnits1_onSkillAct - 1">
+                                        <button type="button" class="delUnitBtn" @click="unitsList_onSkillAct.splice(unit.id, 1); nUnitsAdded_onSkillAct--">削除</button>
                                     </td>
                                 </tr>
                             </template>
@@ -519,8 +519,8 @@
                                             </select>
                                         </template>
                                     </th>
-                                    <td v-if="unit.id > 3">
-                                        <button type="button" class="delUnitBtn" @click="unitsList_onHit.splice(unit.id, 1)">削除</button>
+                                    <td v-if="unit.id > nUnits_onHit - 1">
+                                        <button type="button" class="delUnitBtn" @click="unitsList_onHit.splice(unit.id, 1); nUnitsAdded_onHit--">削除</button>
                                     </td>
                                 </tr>
                             </template>
@@ -1283,7 +1283,8 @@
                                     2021/11/11(木)：
                                 </div>
                                 <div class="detail">
-                                    ・「魔神の共鳴者レライエ」を追加
+                                    ・「魔神の共鳴者レライエ」を追加<br>
+                                    ・グラフが見やすくなるよう調整(できてたらいいな)
                                 </div>
                             </div>
                             <!--2021/10/24(日)-->
