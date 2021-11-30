@@ -372,6 +372,12 @@ const hasteSkillListElem = [
         atkCooldown: 11, disabled: true,
         AndOr: 'and', target: [ { 'deployType': [ '遠距離型' ] }, { 'attribution': [ 'サマー' ] } ],
         tooltip: '[スキルバフ] 属性：サマーの遠距離ユニットの攻撃硬直6f化'
+    },
+    {
+        id: null, buffer: '叡智の杖', awaken: '-', showAwaken: false,
+        atkCooldown: 21, disabled: false,
+        AndOr: 'or', target: [ { 'attribution': [ '魔術師' ] } ],
+        tooltip: '[スキルバフ] 属性：魔術師の攻撃硬直11f化'
     }
 ];
 //特攻付与リスト
@@ -1026,7 +1032,7 @@ const unitsList_onHitElem = [
                 selectable: false, selected: '呪術使い系',
                 options: [ '呪術使い系' ]
             },
-            attribution: [ '人間', 'お正月' ],
+            attribution: [ '人間', '魔術師', '東の国', 'お正月' ],
             affection: { percentage: 150, bonus: '再動短縮', changeRate: null },
             note: [ '女性', '状態異常無効' ],
             atkInterval: [
