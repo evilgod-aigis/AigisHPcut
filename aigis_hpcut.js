@@ -1990,6 +1990,7 @@ const vm = new Vue({
         SetGraphData() {
             const me = this;
             //const max = me.unitsList_onSkillAct.length + me.unitsList_onHit.length;
+            const pointHitRadius = _.clamp(_.floor(0.08 + 100 / me.plotNum, 2), 0.1, 1.0);
             let h;
             me.datasets.length = 0;
             //スキル発動時発生型
@@ -2007,7 +2008,7 @@ const vm = new Vue({
                         backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                         borderDash: [15, 3],
                         pointRadius: 0,
-                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        pointHitRadius: pointHitRadius,
                         hidden: me.graphHidden_onSkillAct
                     });
                 }
@@ -2024,7 +2025,7 @@ const vm = new Vue({
                         backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                         borderDash: [10, 3, 3, 3],
                         pointRadius: 0,
-                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        pointHitRadius: pointHitRadius,
                         hidden: me.graphHidden_onSkillAct
                     });
                 }
@@ -2041,7 +2042,7 @@ const vm = new Vue({
                         backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                         borderDash: [8, 3, 3, 3, 3, 3],
                         pointRadius: 0,
-                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        pointHitRadius: pointHitRadius,
                         hidden: me.graphHidden_onSkillAct
                     });
                 }
@@ -2061,7 +2062,7 @@ const vm = new Vue({
                         borderColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                         backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                         pointRadius: 0,
-                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        pointHitRadius: pointHitRadius,
                         hidden: me.graphHidden_onHit
                     });
                 }
@@ -2080,7 +2081,7 @@ const vm = new Vue({
                         backgroundColor: 'hsla(' + h + ', 100%, 50%, 0.7)',
                         borderDash: [15, 3],
                         pointRadius: 0,
-                        pointHitRadius: _.clamp(_.floor(300 / me.plotNum, 2), 0.1, 1.0),
+                        pointHitRadius: pointHitRadius,
                         hidden: me.graphHidden_onHit
                     });
                 }
@@ -2780,9 +2781,9 @@ const vm = new Vue({
         Chart() {
             const me = this;
             //ウィンドウ幅
-            const winWidth = window.innerWidth;
+            const winWidth = Math.min(window.screen.width, window.innerWidth);
             //プロット数
-            me.plotNum = Math.min(me.timeCap.value * 30, _.floor(winWidth, -2) * 3);
+            me.plotNum = _.clamp(_.floor(winWidth, -2) * 3, 1500, me.timeCap.value * 30);
             //グラフデータ作成
             me.SetGraphData;
             //グラフの枠線の色
@@ -2841,15 +2842,17 @@ const vm = new Vue({
                     legend: {       //凡例
                         position: winWidth > 800 ? 'right' : 'bottom',
                         labels: {
-                            fontSize: winWidth > 800 ? 16 : 12,
+                            fontSize: winWidth > 1000 ? 16 : 10,
                             fontColor: 'black'
-                        },
+                        }
                     },
                     tooltips: {
                         mode: 'interpolate',
                         intersect: false,
                         position: 'custom',
+                        titleFontFamily: "monospace, monospace",
                         titleFontSize: 16,
+                        bodyFontFamily: "monospace, monospace",
                         bodyFontSize: 14,
                         custom: function(tooltipModel) {
                             tooltipModel.caretSize = 0;
@@ -2863,10 +2866,10 @@ const vm = new Vue({
                                 const added = [];
                                 if(!_.includes(added, data.datasets[tooltipItem.datasetIndex].label)) {
                                     tooltipLabel.push(
-                                        data.datasets[tooltipItem.datasetIndex].label
-                                        + ': '
-                                        + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toFixed(2)
+                                        data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].toFixed(2).toString().padStart(6, ' ')
                                         + '%'
+                                        + ': '
+                                        + data.datasets[tooltipItem.datasetIndex].label
                                     );
                                     added.push(data.datasets[tooltipItem.datasetIndex].label);
                                 }
@@ -2894,14 +2897,14 @@ const vm = new Vue({
                                 minRotation: 0,
                                 maxRotation: 0,
                                 autoSkip: true,
-                                maxTicksLimit: winWidth > 500 ? 10 : 5,
+                                maxTicksLimit: winWidth > 560 ? 10 : 5,
                                 fontSize: 14,
                                 fontColor: 'black',
                                 padding: 10,
                                 callback: function(value) {
                                     return value + '秒'
                                 }
-                            },
+                            }
                         }],
                         yAxes: [{
                             id: 'y-axis',
