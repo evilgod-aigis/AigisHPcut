@@ -432,6 +432,12 @@ const redMapEffListElem = [
 const self_rWTlistElem = [
     { id: null, buffer: 'ナイトアサシン', rate: 50 },
     { id: null, buffer: 'エンフォーサー', rate: 50 },
+    { id: null, buffer: 'アベンジャー系', rate: 80 },
+    { id: null, buffer: 'アベンジャー', rate: 80 },
+    { id: null, buffer: 'デスアベンジャー', rate: 80 },
+    { id: null, buffer: 'ヴェンデッタ', rate: 80 },
+    { id: null, buffer: 'リヴェンジェンス', rate: 80 },
+    { id: null, buffer: '聖夜の天才戦術家ヘレナ', rate: 20 },
     { id: null, buffer: '雷光の魔剣士タラニア', rate: 50 },
     { id: null, buffer: '主天使セフィーレ', rate: 60 },
     { id: null, buffer: '堕天系お掃除当番クロエ', rate: 50 },
@@ -525,8 +531,9 @@ const depTypeCountElem = {
 };
 //特殊なスキル初動(特に黒)
 const specialWTlistElem = [
+    { unitName: '万刃を担う者アルヴァ', rarity: '黒', skillAwaken: '覚醒', WT: 0 },
     { unitName: '魔導鎧姫グレース', rarity: '黒', skillAwaken: '覚醒', WT: 0 },
-    { unitName: '万刃を担う者アルヴァ', rarity: '黒', skillAwaken: '覚醒', WT: 0 }
+    { unitName: '鷲獅騎兵リュクス', rarity: '黒', skillAwaken: '覚醒', WT: 0 }
 ];
 //特殊な好感度ボーナス%
 const specialAffListElem = {
@@ -571,6 +578,7 @@ const specialAffListElem = {
 const unitsList_onSkillActElem = [
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '九尾狐カヨウ', deployType: '近接型', rarity: '黒',
             unitClass: {
@@ -600,6 +608,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '黒紫の巫女キキョウ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -629,6 +638,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '迎春の呪姫オロチヒメ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -658,6 +668,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '混沌霊使いニーヴ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -687,6 +698,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '猫又コハル', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -716,6 +728,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '清心の花嫁スイレン', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -745,6 +758,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '召喚士アクアマリー', deployType: '遠距離型', rarity: '白',
             unitClass: {
@@ -774,6 +788,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '魔神の共鳴者レライエ', deployType: '遠距離型', rarity: '白',
             unitClass: {
@@ -803,6 +818,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: 'ちびコハル', deployType: '遠距離型', rarity: '金',
             unitClass: {
@@ -832,6 +848,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '祝祭の南瓜姫ミサ', deployType: '近接型', rarity: '黒',
             unitClass: {
@@ -861,6 +878,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '海魔の麗姫スキュレ', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -869,7 +887,7 @@ const unitsList_onSkillActElem = [
             },
             attribution: [ 'なし' ],
             affection: { percentage: 100, bonus: '時間延長', changeRate: null },
-            note: [ '女性', 'HP回復不可', '魔界適応' ]
+            note: [ '女性', 'HP回復不可', '魔界適応', '深海適応' ]
         },
         skill: {
             awaken: {
@@ -890,6 +908,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '狼剣の魔姫ピリカ', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -919,6 +938,7 @@ const unitsList_onSkillActElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '降魔の戦姫トコヨ', deployType: '近接型', rarity: '青',
             unitClass: {
@@ -950,6 +970,7 @@ const unitsList_onSkillActElem = [
 const unitsList_onHitElem = [
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '犬神シロ', deployType: '近接型', rarity: '黒',
             unitClass: {
@@ -988,6 +1009,7 @@ const unitsList_onHitElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '犬神ツムジ', deployType: '近接型', rarity: '白',
             unitClass: {
@@ -1026,6 +1048,7 @@ const unitsList_onHitElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '迎春の呪姫オロチヒメ', deployType: '遠距離型', rarity: '黒',
             unitClass: {
@@ -1064,6 +1087,7 @@ const unitsList_onHitElem = [
     },
     {
         id: null,
+        added: false,
         unitInfo: {
             unitName: '道化師ワンダーハート', deployType: '遠距離型', rarity: '白',
             unitClass: {
@@ -1104,6 +1128,7 @@ const unitsList_onHitElem = [
 //テンプレ
 const unitDataTemplate_onSkillAct = {
     id: null,
+    added: false,
     unitInfo: {
         unitName: '', deployType: '', rarity: '',
         unitClass: {
@@ -1133,6 +1158,7 @@ const unitDataTemplate_onSkillAct = {
 };
 const unitDataTemplate_onHit = {
     id: null,
+    added: false,
     unitInfo: {
         unitName: '', deployType: '', rarity: '',
         unitClass: {
@@ -1314,24 +1340,13 @@ const vm = new Vue({
         SetID(me.unitsList_onSkillAct);
         SetID(me.unitsList_onHit);
 
-        _.forEach(me.unitsList_onSkillAct, function(unit) {
-            const unitClass = unit.unitInfo.unitClass.selected;
-            if(unitClass === 'イビルクイーン'
-            || unitClass === 'イビルシーカー'
-            || unitClass === 'デスブリンガー') {
-                me.nUnits1_onSkillAct++;
-            } else {
-                me.nUnits0_onSkillAct++;
-            }
-        });
-        _.forEach(me.unitsList_onHit, function(unit) {
-            me.nUnits_onHit++;
-        });
+        me.CountUnits();
     },
     mounted() {
         this.Chart();
     },
     updated() {
+        this.CountUnits();
         this.canvas.destroy();
         this.Chart();
     },
@@ -1974,7 +1989,7 @@ const vm = new Vue({
         //グラフデータ作成
         SetGraphData() {
             const me = this;
-            const max = me.unitsList_onSkillAct.length + me.unitsList_onHit.length;
+            //const max = me.unitsList_onSkillAct.length + me.unitsList_onHit.length;
             let h;
             me.datasets.length = 0;
             //スキル発動時発生型
@@ -2320,6 +2335,42 @@ const vm = new Vue({
         }
     },
     methods: {
+        //ユニット数カウント
+        CountUnits() {
+            const me = this;
+            //保持しているユニット数データと異なる場合に数え直し
+            if(me.unitsList_onSkillAct.length !== me.nUnits0_onSkillAct + me.nUnits1_onSkillAct + me.nUnitsAdded_onSkillAct) {
+                me.nUnits0_onSkillAct = 0;
+                me.nUnits1_onSkillAct = 0;
+                me.nUnitsAdded_onSkillAct = 0;
+                _.forEach(me.unitsList_onSkillAct, function(unit) {
+                    if(unit.added) {
+                        me.nUnitsAdded_onSkillAct++;
+                    }
+                    else {
+                        const evilPrinces = [ 'イビルクイーン', 'イビルシーカー', 'デスブリンガー' ];
+                        const unitClass = unit.unitInfo.unitClass.selected;
+                        if(evilPrinces.some(elem => elem === unitClass)) {
+                            me.nUnits1_onSkillAct++;
+                        } else {
+                            me.nUnits0_onSkillAct++;
+                        }
+                    }
+                });
+            }
+            if(me.unitsList_onHit.length !== me.nUnits_onHit + me.nUnitsAdded_onHit) {
+                me.nUnits_onHit = 0;
+                me.nUnitsAdded_onHit = 0;
+                _.forEach(me.unitsList_onHit, function(unit) {
+                    if(unit.added) {
+                        me.nUnitsAdded_onHit++;
+                    }
+                    else {
+                        me.nUnits_onHit++;
+                    }
+                });
+            }
+        },
         //入力制限
         LimitNum(num, min, max, event) {
             const me = this;
@@ -2507,6 +2558,7 @@ const vm = new Vue({
                 //必須事項全記入
                 //id付与
                 me.newUnitData_onSkillAct.id = me.unitsList_onSkillAct[me.unitsList_onSkillAct.length - 1].id + 1;
+                me.newUnitData_onSkillAct.added = true;
                 //属性詰め&整形
                 unitInfo.attribution = _.compact(unitInfo.attribution);
                 if(_.isEmpty(unitInfo.attribution)) {
@@ -2658,6 +2710,7 @@ const vm = new Vue({
                 //必須事項全記入
                 //id付与
                 me.newUnitData_onHit.id = me.unitsList_onHit[me.unitsList_onHit.length - 1].id + 1;
+                me.newUnitData_onHit.added = true;
                 //属性詰め&整形
                 unitInfo.attribution = _.compact(unitInfo.attribution);
                 if(_.isEmpty(unitInfo.attribution)) {
@@ -2726,8 +2779,10 @@ const vm = new Vue({
         //グラフ作成
         Chart() {
             const me = this;
+            //ウィンドウ幅
+            const winWidth = window.innerWidth;
             //プロット数
-            me.plotNum = Math.min(me.timeCap.value * 30, _.floor(window.innerWidth, -2) * 3);
+            me.plotNum = Math.min(me.timeCap.value * 30, _.floor(winWidth, -2) * 3);
             //グラフデータ作成
             me.SetGraphData;
             //グラフの枠線の色
@@ -2737,7 +2792,7 @@ const vm = new Vue({
                 if(i === 0 || i === 10) {
                     xAxisColor.push('black');
                     yAxisColor.push('black');
-                } else if(i === 5 && window.innerWidth <= 500) {
+                } else if(i === 5 && winWidth <= 500) {
                     xAxisColor.push('black');
                     yAxisColor.push('rgba(0, 0, 0, 0.1)')
                 } else {
@@ -2784,9 +2839,9 @@ const vm = new Vue({
                         }
                     },
                     legend: {       //凡例
-                        position: window.innerWidth > 800 ? 'right' : 'bottom',
+                        position: winWidth > 800 ? 'right' : 'bottom',
                         labels: {
-                            fontSize: window.innerWidth > 800 ? 16 : 12,
+                            fontSize: winWidth > 800 ? 16 : 12,
                             fontColor: 'black'
                         },
                     },
@@ -2839,7 +2894,7 @@ const vm = new Vue({
                                 minRotation: 0,
                                 maxRotation: 0,
                                 autoSkip: true,
-                                maxTicksLimit: window.innerWidth > 500 ? 10 : 5,
+                                maxTicksLimit: winWidth > 500 ? 10 : 5,
                                 fontSize: 14,
                                 fontColor: 'black',
                                 padding: 10,
