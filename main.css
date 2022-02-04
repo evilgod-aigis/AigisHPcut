@@ -264,6 +264,15 @@ input[type="checkbox"] {
 #graphArea {
     margin: 0;
     padding: 0;
+    min-width: 500px;
+    height: 100vh;
+    max-height: 600px;
+}
+#charts {
+    width: auto;
+    min-width: 500px;
+    height: 100vh;
+    max-height: 600px;
 }
 .wrap_checkbox {
     text-align: left;
@@ -297,6 +306,7 @@ input[type="checkbox"] {
     margin-bottom: 20px;
     padding: 0;
     font-size: 12px;
+    min-width: 500px;
 }
 #console div {
     margin-left: 10px;
