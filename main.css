@@ -21,6 +21,7 @@
     float: left;
 }
 .opt2 {
+    margin-bottom: 5px;
     overflow: hidden;
 }
 .optcap6em {
@@ -306,7 +307,7 @@ input[type="checkbox"] {
     margin: 10px 0;
 }
 #updateContent {
-    margin-left: 4em;
+    margin-left: 3.5em;
     padding: 5px;
     height: 100px;
     border: 1px solid black;
