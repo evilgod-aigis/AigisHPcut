@@ -415,7 +415,7 @@
                                             </select>
                                         </template>
                                     </td>
-                                    <td v-if="unit.id > nUnits0_onSkillAct + nUnits1_onSkillAct - 1">
+                                    <td v-if="unit.added">
                                         <button type="button" class="delUnitBtn" @click="unitsList_onSkillAct.splice(unit.id, 1); nUnitsAdded_onSkillAct--">削除</button>
                                     </td>
                                 </tr>
@@ -519,7 +519,7 @@
                                             </select>
                                         </template>
                                     </th>
-                                    <td v-if="unit.id > nUnits_onHit - 1">
+                                    <td v-if="unit.added">
                                         <button type="button" class="delUnitBtn" @click="unitsList_onHit.splice(unit.id, 1); nUnitsAdded_onHit--">削除</button>
                                     </td>
                                 </tr>
@@ -1237,7 +1237,7 @@
                     <div>
                         F12キーで開発ツールを開き、コンソール(Console)タグの入力ウィンドウに以下を参考にコードを入力し実行<br>
                         ページを更新するとすべてリセットされる<br>
-                        ・初動短縮や再動短縮オプションのチェックボックスをアクティブにしたい。<br>
+                        ・初動短縮や再動短縮などのオプションのチェックボックスをアクティブにしたい。<br>
                         　　vm.<span style="font-style: italic; color: red;">list</span>[<span style="font-style: italic; color: red;">i</span>].disable=false<br>
                         　　　・<span style="font-style: italic; color: red;">list</span>：初動短縮　rWTlist<br>
                         　　　　　　 再動短縮　rCTlist<br>
@@ -1277,6 +1277,16 @@
                     <details>
                         <summary>更新(折り畳み)</summary>
                         <div id="updateContent">
+                            <!--2022/02/04(金)-->
+                            <div class="updateElem">
+                                <div class="date">
+                                    2021/02/04(金)：
+                                </div>
+                                <div class="detail">
+                                    ・バランス調整を反映<br>
+                                    ・バグ修正
+                                </div>
+                            </div>
                             <!--2021/11/30(火)-->
                             <div class="updateElem">
                                 <div class="date">
@@ -1424,7 +1434,7 @@
                     <a href="http://pc-play.games.dmm.com/play/aigisc/" target="_blank" style="margin-left: 3em;">千年戦争アイギス</a><br>
                     参考：<a href="https://wikiwiki.jp/aigiszuki/" target="_blank">千年戦争アイギス攻略 Wiki*</a><br>
                     <a href="https://aigis.fandom.com/wiki/Aigis_Wiki" target="_blank" style="margin-left: 3em;">Aigis Wiki | Fandom</a><br>
-                    <a href="http://www116.sakura.ne.jp/~kuromoji/aigis.htm" target="_blank" style="margin-left: 3em;">くろもじ屋’</a>
+                    <a href="http://www116.sakura.ne.jp/~kuromoji/aigis.htm" target="_blank" style="margin-left: 3em;">くろもじ屋'</a>
                 </div>
             </div>
         </div>
