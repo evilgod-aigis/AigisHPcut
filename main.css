@@ -141,7 +141,7 @@ input[type="checkbox"] {
     z-index: 2;
     min-height: auto;
     max-height: 95%;
-    min-width: min-content;
+    /*min-width: min-content;*/
     max-width: 840px;
     padding: 1em;
     border: 2px solid orange;
@@ -156,7 +156,7 @@ input[type="checkbox"] {
 .modalBody {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: auto;
 }
 .inactive{
     position: relative;
@@ -235,12 +235,10 @@ input[type="checkbox"] {
 .addUnitAlart {
     margin: 10px 0;
     min-height: 3em;
-    overflow: hidden;
 }
 .modalFooter {
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 .modalFooter button {
     vertical-align: 0;
