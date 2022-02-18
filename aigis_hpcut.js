@@ -34,16 +34,26 @@ const rWTlistElem = [
         tooltip: '[編成バフ] レアリティ：白以下の初動-15%'
     },
     {
-        id: null, buffer: '陰陽師タマミ', awaken: '覚醒', showAwaken: false,
-        rate: 25, disabled: false,
-        AndOr: 'or', target: [ { 'rarity': [ '白' ] } ],
-        tooltip: '[編成バフ] レアリティ：白の初動-25%'
+        id: null, buffer: '竜姫婚姻譚メリュジアナ', awaken: '未覚醒', showAwaken: true,
+        rate: 20, disabled: false,
+        AndOr: 'or', target: [
+            { 'attribution': [ 'ジューンブライド', '竜族' ] },
+            { 'note': [ 'ドラゴンライダー系', 'ドラグーン系' ] }
+        ],
+        tooltip:
+        '[編成バフ] 属性：ジューンブライド・<br>\
+         　　　　　 竜族(ドラゴンライダー・ドラグーン系含)の初動-20%'
     },
     {
-        id: null, buffer: 'ロゼット', awaken: '未覚醒', showAwaken: false,
-        rate: 30, disabled: true,
-        AndOr: 'or', target: [ { 'rarity': [ '銀' ] } ],
-        tooltip: '[編成バフ] レアリティ：銀の初動-30%'
+        id: null, buffer: '竜姫婚姻譚メリュジアナ', awaken: '覚醒', showAwaken: true,
+        rate: 25, disabled: false,
+        AndOr: 'or', target: [
+            { 'attribution': [ 'ジューンブライド', '竜族' ] },
+            { 'note': [ 'ドラゴンライダー系', 'ドラグーン系' ] }
+        ],
+        tooltip:
+        '[編成バフ] 属性：ジューンブライド・<br>\
+         　　　　　 竜族(ドラゴンライダー・ドラグーン系含)の初動-25%'
     },
     {
         id: null, buffer: '波斬りの剣士サンドラ', awaken: '覚醒', showAwaken: false,
@@ -57,26 +67,16 @@ const rWTlistElem = [
          　　　　　 属性：サマーの初動-30%'
     },
     {
-        id: null, buffer: '竜姫婚姻譚メリュジアナ', awaken: '未覚醒', showAwaken: true,
-        rate: 20, disabled: false,
-        AndOr: 'or', target: [
-            { 'attribution': [ 'ジューンブライド', '竜族' ] },
-            { 'note': [ 'ドラゴンライダー系' ] }
-        ],
-        tooltip:
-        '[編成バフ] 属性：ジューンブライド・<br>\
-         　　　　　 竜族(ドラゴンライダー系含)の初動-20%'
+        id: null, buffer: '陰陽師タマミ', awaken: '覚醒', showAwaken: false,
+        rate: 25, disabled: false,
+        AndOr: 'or', target: [ { 'rarity': [ '白' ] } ],
+        tooltip: '[編成バフ] レアリティ：白の初動-25%'
     },
     {
-        id: null, buffer: '竜姫婚姻譚メリュジアナ', awaken: '覚醒', showAwaken: true,
-        rate: 25, disabled: false,
-        AndOr: 'or', target: [
-            { 'attribution': [ 'ジューンブライド', '竜族' ] },
-            { 'note': [ 'ドラゴンライダー系' ] }
-        ],
-        tooltip:
-        '[編成バフ] 属性：ジューンブライド・<br>\
-         　　　　　 竜族(ドラゴンライダー系含)の初動-25%'
+        id: null, buffer: 'ロゼット', awaken: '未覚醒', showAwaken: false,
+        rate: 30, disabled: true,
+        AndOr: 'or', target: [ { 'rarity': [ '銀' ] } ],
+        tooltip: '[編成バフ] レアリティ：銀の初動-30%'
     }
 ];
 //再動短縮(近・遠・両)
@@ -104,6 +104,12 @@ const rCTlistElem = [
         rate: 50, disabled: false,
         AndOr: 'or', target: [ { 'attribution': [ '魔術師' ] } ],
         tooltip: '[配置バフ] 属性：魔術師の再動-50%'
+    },
+    {
+        id: null, buffer: '約束の花嫁ディエーラ', awaken: '覚醒', showAwaken: false,
+        rate: 45, disabled: false,
+        AndOr: 'or', target: [ { 'attribution': [ 'ジューンブライド' ] } ],
+        tooltip: '[配置バフ] 属性：ジューンブライドの再動-45%'
     },
     {
         id: null, buffer: '天穿の槍士フィロ', awaken: '覚醒', showAwaken: false,
@@ -135,12 +141,6 @@ const rCTlistElem = [
          　　　　　 邪仙系・呪術使い系の再動-50%'
     },
     {
-        id: null, buffer: '約束の花嫁ディエーラ', awaken: '覚醒', showAwaken: false,
-        rate: 45, disabled: false,
-        AndOr: 'or', target: [ { 'attribution': [ 'ジューンブライド' ] } ],
-        tooltip: '[配置バフ] 属性：ジューンブライドの再動-45%'
-    },
-    {
         id: null, buffer: 'ねこみみ購買部ミネット', awaken: '覚醒', showAwaken: false,
         rate: 40, disabled: true,
         AndOr: 'or', target: [ { 'attribution': [ '学園' ] } ],
@@ -149,18 +149,6 @@ const rCTlistElem = [
 ];
 //スキル時間延長リスト
 const skillExtendListElem = [
-    {
-        id: null, buffer: '時空魔法の優等生トワ', awaken: '未覚醒', showAwaken: true,
-        rate: 10, disabled: false,
-        AndOr: 'or', target: [ { 'deployType': [ '遠距離型' ] } ],
-        tooltip: '[編成バフ] 遠距離ユニットのスキル時間+10%'
-    },
-    {
-        id: null, buffer: '時空魔法の優等生トワ', awaken: '覚醒', showAwaken: true,
-        rate: 15, disabled: false,
-        AndOr: 'or', target: [ { 'deployType': [ '遠距離型' ] } ],
-        tooltip: '[編成バフ] 遠距離ユニットのスキル時間+15%'
-    },
     {
         id: null, buffer: '天馬騎士団長エスタ', awaken: '未覚醒', showAwaken: true,
         rate: 20, disabled: true,
@@ -184,6 +172,18 @@ const skillExtendListElem = [
             { 'unitClass': [ 'ダークファイター系', 'ちびダークファイター', 'ちびパラディン', 'ダークファイター', 'ダークナイト', 'パラディン', 'マスターパラディン', 'カオスナイト' ] }
         ],
         tooltip: '[編成バフ] クラス：ダークファイター系のスキル時間+30%'
+    },
+    {
+        id: null, buffer: '時空魔法の優等生トワ', awaken: '未覚醒', showAwaken: true,
+        rate: 10, disabled: false,
+        AndOr: 'or', target: [ { 'deployType': [ '遠距離型' ] } ],
+        tooltip: '[編成バフ] 遠距離ユニットのスキル時間+10%'
+    },
+    {
+        id: null, buffer: '時空魔法の優等生トワ', awaken: '覚醒', showAwaken: true,
+        rate: 15, disabled: false,
+        AndOr: 'or', target: [ { 'deployType': [ '遠距離型' ] } ],
+        tooltip: '[編成バフ] 遠距離ユニットのスキル時間+15%'
     },
     {
         id: null, buffer: '提督リーンベル', awaken: '覚醒', showAwaken: false,
@@ -245,6 +245,33 @@ const skillExtendListElem = [
 //硬直短縮(編成バフ)リスト
 const hasteTeemListElem = [
     {
+        id: null, buffer: 'エルダードラゴンメイガス', awaken: '覚2a?', showAwaken: false,
+        rate: 40, disabled: true,
+        AndOr: 'or', target: [
+            { 'attribution': [ '竜族' ] },
+            { 'note': [ 'ドラゴンライダー系', 'ドラグーン系' ] }
+        ],
+        tooltip: '[編成バフ] 属性：竜族(ドラゴンライダー・ドラグーン系含)の攻撃硬直-40%'
+    },
+    {
+        id: null, buffer: '恋慕の堕天使ソフィー', awaken: '覚醒', showAwaken: false,
+        rate: 40, disabled: true,
+        AndOr: 'or', target: [
+            { 'unitClass': [
+                '王子', '王子【神器装備】', '王子【ケラウノス】', '王子【砂漠】', '王子【獣装】',
+                '王子【巨像】', '王子【風護】', '王子【英魂】', '王子【ダーク】', '王子【英雄王】',
+                '王子【四神】', '王子【神槍】', '王子【ナンディ】', '王子【海鎮】', '王子【幼少】', 'ちび王子'
+            ] }
+        ],
+        tooltip: '[編成バフ] 自身と王子の攻撃硬直-40%'
+    },
+    {
+        id: null, buffer: '湯けむり吸血鬼エマ', awaken: '-', showAwaken: false,
+        rate: 20, disabled: true,
+        AndOr: 'or', target: [ { 'attribution': [ 'アンデッド', '温泉' ] } ],
+        tooltip: '[編成バフ] 属性：アンデッド・温泉の攻撃硬直-20%'
+    },
+    {
         id: null, buffer: '時の調停者トワ', awaken: '-', showAwaken: false,
         rate: 20, disabled: false,
         AndOr: 'or', target: [ { '-': [] } ],
@@ -286,41 +313,27 @@ const hasteTeemListElem = [
         tooltip:
         '[編成バフ] クラス：砲術士系・重装砲兵系・<br>\
          　　　　　 モンスタースレイヤー系の攻撃硬直-30%'
-    },
-    {
-        id: null, buffer: '湯けむり吸血鬼エマ', awaken: '-', showAwaken: false,
-        rate: 20, disabled: true,
-        AndOr: 'or', target: [ { 'attribution': [ 'アンデッド', '温泉' ] } ],
-        tooltip: '[編成バフ] 属性：アンデッド・温泉の攻撃硬直-20%'
-    },
-    {
-        id: null, buffer: '恋慕の堕天使ソフィー', awaken: '覚醒', showAwaken: false,
-        rate: 40, disabled: true,
-        AndOr: 'or', target: [
-            { 'unitClass': [
-                '王子', '王子【神器装備】', '王子【ケラウノス】', '王子【砂漠】', '王子【獣装】',
-                '王子【巨像】', '王子【風護】', '王子【英魂】', '王子【ダーク】', '王子【英雄王】',
-                '王子【四神】', '王子【神槍】', '王子【ナンディ】', '王子【海鎮】', '王子【幼少】', 'ちび王子'
-            ] }
-        ],
-        tooltip: '[編成バフ] 自身と王子の攻撃硬直-40%'
     }
 ];
 //硬直短縮(スキル)リスト
 const hasteSkillListElem = [
     {
-        id: null, buffer: '付与魔術師ハーニィ', awaken: '通常', showAwaken: false,
-        atkCooldown: 11, disabled: false,
-        AndOr: 'or', target: [ { 'deployType': [ '近接型' ] } ],
-        tooltip: '[スキルバフ] 近接ユニットの攻撃硬直6f化(範囲内)'
+        id: null, buffer: '叡智の杖', awaken: '-', showAwaken: false,
+        atkCooldown: 21, disabled: false,
+        AndOr: 'or', target: [ { 'attribution': [ '魔術師' ] } ],
+        tooltip: '[スキルバフ] 属性：魔術師の攻撃硬直11f化'
     },
     {
-        id: null, buffer: '弓兵の湯浴みソーマ', awaken: '覚醒', showAwaken: false,
-        atkCooldown: 4, disabled: true,
-        AndOr: 'or', target: [
-            { 'unitClass': [ 'アーチャー系', '下級アーチャー', 'ちびアーチャー', 'ちびアルテミス', 'アーチャー', 'スナイパー', 'アルテミス', 'セレーネ', 'ラピッドシューター' ] }
-        ],
-        tooltip: '[スキルバフ] クラス：アーチャー系の攻撃硬直2f化(通常)'
+        id: null, buffer: '秋祭の大魔女デスピア', awaken: '通常', showAwaken: false,
+        atkCooldown: 11, disabled: true,
+        AndOr: 'or', target: [ { 'attribution': [ 'ハロウィン' ] } ],
+        tooltip: '[スキルバフ] 属性：ハロウィンの攻撃硬直6f化'
+    },
+    {
+        id: null, buffer: '聖夜の炸裂海賊デューオ', awaken: '通常', showAwaken: false,
+        atkCooldown: 16, disabled: true,
+        AndOr: 'or', target: [ { 'attribution': [ 'クリスマス' ] } ],
+        tooltip: '[スキルバフ] 属性：クリスマスの攻撃硬直8f化'
     },
     {
         id: null, buffer: '時の調停者トワ', awaken: '通常', showAwaken: true,
@@ -356,16 +369,12 @@ const hasteSkillListElem = [
         tooltip: '[スキルバフ] 属性：仙人の攻撃硬直11f化'
     },
     {
-        id: null, buffer: '秋祭の大魔女デスピア', awaken: '通常', showAwaken: false,
-        atkCooldown: 11, disabled: true,
-        AndOr: 'or', target: [ { 'attribution': [ 'ハロウィン' ] } ],
-        tooltip: '[スキルバフ] 属性：ハロウィンの攻撃硬直6f化'
-    },
-    {
-        id: null, buffer: '聖夜の炸裂海賊デューオ', awaken: '通常', showAwaken: false,
-        atkCooldown: 16, disabled: true,
-        AndOr: 'or', target: [ { 'attribution': [ 'クリスマス' ] } ],
-        tooltip: '[スキルバフ] 属性：クリスマスの攻撃硬直8f化'
+        id: null, buffer: '弓兵の湯浴みソーマ', awaken: '覚醒', showAwaken: false,
+        atkCooldown: 4, disabled: true,
+        AndOr: 'or', target: [
+            { 'unitClass': [ 'アーチャー系', '下級アーチャー', 'ちびアーチャー', 'ちびアルテミス', 'アーチャー', 'スナイパー', 'アルテミス', 'セレーネ', 'ラピッドシューター' ] }
+        ],
+        tooltip: '[スキルバフ] クラス：アーチャー系の攻撃硬直2f化(通常)'
     },
     {
         id: null, buffer: 'お祭り夕涼みココロ', awaken: '覚醒', showAwaken: false,
@@ -374,10 +383,10 @@ const hasteSkillListElem = [
         tooltip: '[スキルバフ] 属性：サマーの遠距離ユニットの攻撃硬直6f化'
     },
     {
-        id: null, buffer: '叡智の杖', awaken: '-', showAwaken: false,
-        atkCooldown: 21, disabled: false,
-        AndOr: 'or', target: [ { 'attribution': [ '魔術師' ] } ],
-        tooltip: '[スキルバフ] 属性：魔術師の攻撃硬直11f化'
+        id: null, buffer: '付与魔術師ハーニィ', awaken: '通常', showAwaken: false,
+        atkCooldown: 11, disabled: false,
+        AndOr: 'or', target: [ { 'deployType': [ '近接型' ] } ],
+        tooltip: '[スキルバフ] 近接ユニットの攻撃硬直6f化(範囲内)'
     }
 ];
 //特攻付与リスト
@@ -493,9 +502,9 @@ const self_skillExtendListElem = [
 const self_hasteTeemListElem = [
     { id: null, buffer: '鉄泉の守護者レアン', rate: 40 },
     { id: null, buffer: '晴着の看板娘ジュノン', rate: 40 },
-    { id: null, buffer: '恋慕の堕天使ソフィー', rate: 40 },
-    { id: null, buffer: '水龍騎士スイレン', rate: 50 },
-    { id: null, buffer: '屍骸道士ランファ', rate: 60 }
+    //{ id: null, buffer: '水龍騎士スイレン', rate: 50 },
+    //{ id: null, buffer: '屍骸道士ランファ', rate: 60 },
+    { id: null, buffer: '絆鎖の救命師シアーシャ', rate: 40 }
 ];
 //鈍化(マップ)軽減リスト
 const self_redMapEffListElem = [
@@ -538,39 +547,33 @@ const specialWTlistElem = [
 //特殊な好感度ボーナス%
 const specialAffListElem = {
     '再動短縮': {
-        '黒': {},
+        '黒': {
+            0.23: [ '奇譚の幻術士タリエ' ]
+        },
         '白': {},
         '金': {
-            0.12: [ 'ちびイブキ', 'ちびナタク', 'ちびアイシャ', 'ちびメル' ],
-            0.15: [
-                '新米狩人ピックル', 'ちびキャリー', 'ちびクリッサ', 'ちびオリヴィエ', 'ちびヴルム', 'ちびウェンディ',
-                'ちびカヨウ', 'ちびキュウビ', 'ちびオーガスタ', 'ちびスピカ', 'ちびフレデリカ'
-            ],
-            0.16: [ '姫装山賊モーティマ', '竜騎士アベル', '黒衣のサイラス' ]
+            0.15: [ '新米狩人ピックル' ]
         }
     },
     '時間延長': {
         '黒': {
-            0.23: [ '赤き盗賊花嫁ベルナ', '降魔の復讐者ノワール', '鬼刃忍タチバナ', '至宝の使い手リアナ', '翠花の領主メアリ' ]
+            0.23: [
+                '赤き盗賊花嫁ベルナ', '降魔の復讐者ノワール', '鬼刃忍タチバナ',
+                '至宝の使い手リアナ', '翠花の領主メアリ'
+            ]
         },
         '白': {},
-        '金': {
-            0.15: [ 'ちびマツリ', 'ちびセーラ', 'ちび鬼刃姫', 'ちびティニー', 'ちびリアナ', 'ちびクラリーチェ', 'ちびコハル' ]
-        }
+        '金': {}
     },
     '攻撃硬直': {
         '黒': {
-            0.17: [ '純白の花嫁カルマ', '夜鳥ツグミ', '花嫁姿の召喚士ファルネ', '冥霊たちの夏メルアビス', '錬金調合師ニコル' ]
+            0.17: [
+                '純白の花嫁カルマ', '鋼の重装砲兵ヴァネッサ', '夜鳥ツグミ',
+                '花嫁姿の召喚士ファルネ', '冥霊たちの夏メルアビス', '錬金調合師ニコル', '焔の竜砲騎兵ジゼル'
+            ]
         },
         '白': {},
-        '金': {
-            0.10: [
-                'ちびディーナ', 'ちびエレイン', 'ちびセシリー', 'ちびジュノン', 'ちびロゼット', 'ちびエルドラ' ,'ちびリディ',
-                'ちびアリス', 'ちびイングリッド', 'ちびソフィー', 'ちびコノハ', 'ちびリュクス', 'ちびアーシェラ',
-                'ちびメーリス', 'ちびイリス', 'ちびメープル', 'ちびアンリ'
-            ],
-            0.12: [ '海賊番長ジョヴァンニ' ]
-        }
+        '金': {}
     }
 };
 
@@ -1209,7 +1212,7 @@ const array_attr2 = [
 ];
 //その他一覧
 const array_note = [
-    '', '女性', '男性', 'プリンセス系', 'ドラゴンライダー系', '状態異常無効', 'GG持ち', 'HP回復不可', '魔界適応', '深海適応', '天界適応'
+    '', '女性', '男性', 'プリンセス系', 'ドラゴンライダー系', 'ドラグーン系', '状態異常無効', 'GG持ち', 'HP回復不可', '魔界適応', '深海適応', '天界適応'
 ];
 
 const vm = new Vue({
@@ -1367,7 +1370,11 @@ const vm = new Vue({
                 let curr = NaN;
                 //150%ボーナスの補正値
                 if(aff.bonus !== null && aff.bonus !== 'その他') {
-                    curr = _.toNumber(_.findKey(me.specialAffList[aff.bonus][rarity], key => _.includes(key, unitName)));
+                    if(unit.unitInfo.attribution.some(elem => elem === 'ちび')) {
+                        curr = 0.15;
+                    } else {
+                        curr = _.toNumber(_.findKey(me.specialAffList[aff.bonus][rarity], key => _.includes(key, unitName)));
+                    }
                 }
                 if(_.isNaN(curr)) {
                     switch(rarity) {
@@ -1383,18 +1390,21 @@ const vm = new Vue({
                             break;
                         default:
                     }
+                    if(unit.unitInfo.note.some(elem => elem === '男性')) {
+                        curr = _.floor(curr * 0.9, 2);
+                    }
                 }
                 //CT・スキル時間の計算
                 switch(aff.bonus) {
                     case '再動短縮':
-                        aff.changeRate = -Math.floor(curr * (aff.percentage - 100) * 20) / 10;
+                        aff.changeRate = -Math.round(curr * (aff.percentage - 100) * 2);
                         CT.A = CT_uncurr.A * (1 + aff.changeRate / 100);
                         if(CT_uncurr.B !== null) CT.B = CT_uncurr.B * (1 + aff.changeRate / 100);
                         dur.A = dur_uncurr.A;
                         dur.B = dur_uncurr.B;
                         break;
                     case '時間延長':
-                        aff.changeRate = Math.floor(curr * (aff.percentage - 100) * 20) / 10;
+                        aff.changeRate = Math.round(curr * (aff.percentage - 100) * 2);
                         CT.A = CT_uncurr.A;
                         CT.B = CT_uncurr.B;
                         dur.A = dur_uncurr.A * (1 + aff.changeRate / 100);
@@ -1584,7 +1594,7 @@ const vm = new Vue({
                 const attr = unit.unitInfo.attribution;         //array
                 const note = unit.unitInfo.note;                //array
                 deployType.push(_.findKey(me.depTypeCount, key => _.includes(key, unitClass)));
-                let isTarget;
+                let isTarget = 0;
                 if(info.AndOr === 'and') {
                     isTarget = 1;
                     _.forEach(info.target,function(tar) {
@@ -1607,7 +1617,7 @@ const vm = new Vue({
                             default:
                         }
                     });
-                } else {
+                } else if(info.AndOr === 'or'){
                     isTarget = 0;
                     _.forEach(info.target, function(tar) {
                         switch(Object.keys(tar)[0]) {
@@ -1834,7 +1844,11 @@ const vm = new Vue({
                 let bufferInfo;
                 //150%ボーナスの補正値
                 if(aff.bonus !== null && aff.bonus !== 'その他') {
-                    curr = _.toNumber(_.findKey(me.specialAffList[aff.bonus][rarity], key => _.includes(key, unitName)));
+                    if(unit.unitInfo.attribution.some(elem => elem === 'ちび')) {
+                        curr = 0.10;
+                    } else {
+                        curr = _.toNumber(_.findKey(me.specialAffList[aff.bonus][rarity], key => _.includes(key, unitName)));
+                    }
                 }
                 if(_.isNaN(curr)) {
                     switch(rarity) {
@@ -1850,12 +1864,15 @@ const vm = new Vue({
                             break;
                         default:
                     }
+                    if(unit.unitInfo.note.some(elem => elem === '男性')) {
+                        curr = _.floor(curr * 0.95, 2);
+                    }
                 }
                 //攻撃速度の計算
                 //好感度ボーナス
                 switch(aff.bonus) {
                     case '攻撃硬直':
-                        aff.changeRate = -Math.floor(curr * (aff.percentage - 100) * 20) / 10;
+                        aff.changeRate = -Math.round(curr * (aff.percentage - 100) * 2);
                         if(atkCooldown !== null) atkCooldown = Math.ceil((atkCooldown - 1) * (1 + aff.changeRate / 100) + 1);
                         break;
                     default:
