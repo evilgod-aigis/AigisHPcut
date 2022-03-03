@@ -67,6 +67,14 @@ const rWTlistElem = [
          　　　　　 属性：サマーの初動-30%'
     },
     {
+        id: null, buffer: '闇炎の魔将イルムガルト', awaken: '覚醒', showAwaken: false,
+        rate: 30, disabled: true,
+        AndOr: 'or', target: [
+            { 'attribution': [ 'オーク', 'ゴブリン', 'デーモン' ] }
+        ],
+        tooltip: '[編成バフ] 属性：デーモン・オーク・ゴブリンの初動-30%'
+    },
+    {
         id: null, buffer: '陰陽師タマミ', awaken: '覚醒', showAwaken: false,
         rate: 25, disabled: false,
         AndOr: 'or', target: [ { 'rarity': [ '白' ] } ],
