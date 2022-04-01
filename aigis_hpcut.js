@@ -1,5 +1,6 @@
 //1000行超えるとは思わなんだ_:(´ཀ`」∠):_
 //2000行超えちゃったよ･･･0(:3　)～ ('､3_ヽ)_
+//3000行･･･（´・ω...:.;::..
 
 //初動短縮リスト
 const rWTlistElem = [
@@ -400,6 +401,20 @@ const hasteSkillListElem = [
 //特攻付与リスト
 const giveDmgMulListElem = [
     {
+        id: null, buffer: '超古代発明家アルレット', awaken: '通常', showAwaken: true,
+        dmgMul: 1.15, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[編成バフ] 飛行敵に対して<br>\
+        　　　　　 全味方の攻撃力が15%上昇'
+    },
+    {
+        id: null, buffer: '超古代発明家アルレット', awaken: '覚醒', showAwaken: true,
+        dmgMul: 1.2, disabled: false,
+        AndOr: 'or', target: [ { '-': [] } ],
+        tooltip: '[編成バフ] 飛行敵に対して<br>\
+        　　　　　 全味方の攻撃力が20%上昇'
+    },
+    {
         id: null, buffer: '奇想の発明家タバサ', awaken: '通常', showAwaken: true,
         dmgMul: 1.1, disabled: false,
         AndOr: 'or', target: [ { '-': [] } ],
@@ -454,6 +469,7 @@ const self_rWTlistElem = [
     { id: null, buffer: 'デスアベンジャー', rate: 80 },
     { id: null, buffer: 'ヴェンデッタ', rate: 80 },
     { id: null, buffer: 'リヴェンジェンス', rate: 80 },
+    { id: null, buffer: '戦術科教師ケイティ', rate: 50 },
     { id: null, buffer: '聖夜の天才戦術家ヘレナ', rate: 20 },
     { id: null, buffer: '雷光の魔剣士タラニア', rate: 50 },
     { id: null, buffer: '主天使セフィーレ', rate: 60 },
