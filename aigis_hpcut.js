@@ -121,6 +121,12 @@ const rCTlistElem = [
         tooltip: '[配置バフ] 属性：ジューンブライドの再動-45%'
     },
     {
+        id: null, buffer: '黒兎の魔剣士タラニア', awaken: '覚醒', showAwaken: false,
+        rate: 30, disabled: false,
+        AndOr: 'or', target: [ { 'attribution': [ '魔術師' ] } ],
+        tooltip: '[配置バフ] 属性：魔術師の再動-30%'
+    },
+    {
         id: null, buffer: '天穿の槍士フィロ', awaken: '覚醒', showAwaken: false,
         rate: 50, disabled: true,
         AndOr: 'or', target: [
